@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"path": @"Path", @"imageName": @"ImageName", @"imageId": @"ImageId", @"imageDescription": @"ImageDescription", @"imageWidth": @"ImageWidth", @"imageHeight": @"ImageHeight", @"xOffset": @"XOffset", @"yOffset": @"YOffset", @"imageDataEmbedId": @"ImageDataEmbedId", @"imageDataContentType": @"ImageDataContentType", @"imageInternalFileName": @"ImageInternalFileName", @"imageContentsURL": @"ImageContentsURL", @"inline": @"Inline" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"path": @"Path", @"imageName": @"ImageName", @"imageId": @"ImageId", @"imageDescription": @"ImageDescription", @"imageWidth": @"ImageWidth", @"imageHeight": @"ImageHeight", @"xOffset": @"XOffset", @"yOffset": @"YOffset", @"imageDataEmbedId": @"ImageDataEmbedId", @"imageDataContentType": @"ImageDataContentType", @"imageInternalFileName": @"ImageInternalFileName", @"imageContentsURL": @"ImageContentsURL", @"inlineWithText": @"InlineWithText" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"path", @"imageName", @"imageId", @"imageDescription", @"imageWidth", @"imageHeight", @"xOffset", @"yOffset", @"imageDataEmbedId", @"imageDataContentType", @"imageInternalFileName", @"imageContentsURL", @"inline"];
+  NSArray *optionalProperties = @[@"path", @"imageName", @"imageId", @"imageDescription", @"imageWidth", @"imageHeight", @"xOffset", @"yOffset", @"imageDataEmbedId", @"imageDataContentType", @"imageInternalFileName", @"imageContentsURL", @"inlineWithText"];
   return [optionalProperties containsObject:propertyName];
 }
 

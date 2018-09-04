@@ -60,6 +60,6 @@
 @property(nonatomic) NSString* imageContentsURL;
 /* True if the image is inline with the text; false if it is floating [optional]
  */
-//@property(nonatomic) NSNumber* inline;
+@property(nonatomic) NSNumber* inlineWithText;
 
 @end
