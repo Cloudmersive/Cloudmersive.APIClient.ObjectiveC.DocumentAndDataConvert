@@ -1,0 +1,1 @@
+& pod trunk push ./client/CloudmersiveImageRecognitionApiClient.podspec --allow-warnings
