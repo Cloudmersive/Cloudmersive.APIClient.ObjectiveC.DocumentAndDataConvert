@@ -1,1 +1,1 @@
-& pod trunk push ./client/CloudmersiveImageRecognitionApiClient.podspec --allow-warnings
+& pod trunk push ./client/CloudmersiveDocumentAndDataConvertApiClient.podspec --allow-warnings

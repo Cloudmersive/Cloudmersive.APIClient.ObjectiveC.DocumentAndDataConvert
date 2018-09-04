@@ -1,4 +1,4 @@
 ﻿Remove-Item –path ./client –recurse
-& java -jar swagger-codegen-cli.jar generate -i https://api.cloudmersive.com/swagger/api/image -l objc -o client -c packageconfig.json
-(Get-Content ./client/CloudmersiveImageRecognitionApiClient.podspec).replace('CloudmersiveImageRecognitionApiClient/**/*.{m,h}', "client/CloudmersiveImageRecognitionApiClient/**/*.{m,h}") | Set-Content ./client/CloudmersiveImageRecognitionApiClient.podspec
-(Get-Content ./client/CloudmersiveImageRecognitionApiClient.podspec).replace('CloudmersiveImageRecognitionApiClient/**/*.h', "client/CloudmersiveImageRecognitionApiClient/**/*.h") | Set-Content ./client/CloudmersiveImageRecognitionApiClient.podspec
+& java -jar swagger-codegen-cli.jar generate -i https://api.cloudmersive.com/swagger/api/convert -l objc -o client -c packageconfig.json
+(Get-Content ./client/CloudmersiveDocumentAndDataConvertApiClient.podspec).replace('CloudmersiveDocumentAndDataConvertApiClient/**/*.{m,h}', "client/CloudmersiveDocumentAndDataConvertApiClient/**/*.{m,h}") | Set-Content ./client/CloudmersiveDocumentAndDataConvertApiClient.podspec
+(Get-Content ./client/CloudmersiveDocumentAndDataConvertApiClient.podspec).replace('CloudmersiveDocumentAndDataConvertApiClient/**/*.h', "client/CloudmersiveDocumentAndDataConvertApiClient/**/*.h") | Set-Content ./client/CloudmersiveDocumentAndDataConvertApiClient.podspec

@@ -1,9 +1,9 @@
 ﻿{
 
-  "podName" : "CloudmersiveImageRecognitionApiClient",
+  "podName" : "CloudmersiveDocumentAndDataConvertApiClient",
   "classPrefix" : "CM",
   "podVersion" : "1.1.2",
   "authorName" : "Cloudmersive",
   "authorEmail" : "support@cloudmersive.com",
-  "gitRepoURL" : "https://github.com/Cloudmersive/Cloudmersive.APIClient.ObjectiveC.ImageRecognition"
+  "gitRepoURL" : "https://github.com/Cloudmersive/Cloudmersive.APIClient.ObjectiveC.DocumentAndDataConvert"
 }  
