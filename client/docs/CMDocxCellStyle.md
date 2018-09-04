@@ -1,0 +1,13 @@
+# CMDocxCellStyle
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**path** | **NSString*** | The Path of the location of this object; leave blank for new rows | [optional] 
+**name** | **NSString*** | Name of the style | [optional] 
+**formatID** | **NSNumber*** | Format ID of the cell style | [optional] 
+**builtInID** | **NSNumber*** | Built&#x3D;in ID of the cell style | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
