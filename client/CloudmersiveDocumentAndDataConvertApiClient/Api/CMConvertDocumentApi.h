@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "CMAutodetectGetInfoResult.h"
 #import "CMPdfToPngResult.h"
 #import "CMApi.h"
 
@@ -22,6 +23,18 @@ extern NSString* kCMConvertDocumentApiErrorDomain;
 extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
+
+/// Get document type information
+/// Auto-detects a document's type information; does not require file extension.  Analyzes file contents to confirm file type.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMAutodetectGetInfoResult*
+-(NSURLSessionTask*) convertDocumentAutodetectGetInfoWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMAutodetectGetInfoResult* output, NSError* error)) handler;
+
 
 /// Convert Document to PDF
 /// Automatically detect file type and convert it to PDF.

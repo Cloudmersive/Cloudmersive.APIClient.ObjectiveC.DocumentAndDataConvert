@@ -41,6 +41,8 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMApiClient.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDefaultConfiguration.h>
 // load models
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMAlternateFileFormatCandidate.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMAutodetectGetInfoResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMConvertedPngPage.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocumentValidationError.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocumentValidationResult.h>
@@ -173,6 +175,7 @@ Class | Method | HTTP request | Description
 *CMCompareDocumentApi* | [**compareDocumentDocx**](docs/CMCompareDocumentApi.md#comparedocumentdocx) | **POST** /convert/compare/docx | Compare Two Word DOCX
 *CMConvertDataApi* | [**convertDataCsvToJson**](docs/CMConvertDataApi.md#convertdatacsvtojson) | **POST** /convert/csv/to/json | CSV to JSON conversion
 *CMConvertDataApi* | [**convertDataXmlToJson**](docs/CMConvertDataApi.md#convertdataxmltojson) | **POST** /convert/xml/to/json | XML to JSON conversion
+*CMConvertDocumentApi* | [**convertDocumentAutodetectGetInfo**](docs/CMConvertDocumentApi.md#convertdocumentautodetectgetinfo) | **POST** /convert/autodetect/get-info | Get document type information
 *CMConvertDocumentApi* | [**convertDocumentAutodetectToPdf**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttopdf) | **POST** /convert/autodetect/to/pdf | Convert Document to PDF
 *CMConvertDocumentApi* | [**convertDocumentCsvToXlsx**](docs/CMConvertDocumentApi.md#convertdocumentcsvtoxlsx) | **POST** /convert/csv/to/xlsx | CSV to Excel XLSX
 *CMConvertDocumentApi* | [**convertDocumentDocToDocx**](docs/CMConvertDocumentApi.md#convertdocumentdoctodocx) | **POST** /convert/doc/to/docx | Word DOC (97-03) to DOCX
@@ -229,6 +232,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [CMAlternateFileFormatCandidate](docs/CMAlternateFileFormatCandidate.md)
+ - [CMAutodetectGetInfoResult](docs/CMAutodetectGetInfoResult.md)
  - [CMConvertedPngPage](docs/CMConvertedPngPage.md)
  - [CMDocumentValidationError](docs/CMDocumentValidationError.md)
  - [CMDocumentValidationResult](docs/CMDocumentValidationResult.md)

@@ -4,6 +4,7 @@ All URIs are relative to *https://api.cloudmersive.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**convertDocumentAutodetectGetInfo**](CMConvertDocumentApi.md#convertdocumentautodetectgetinfo) | **POST** /convert/autodetect/get-info | Get document type information
 [**convertDocumentAutodetectToPdf**](CMConvertDocumentApi.md#convertdocumentautodetecttopdf) | **POST** /convert/autodetect/to/pdf | Convert Document to PDF
 [**convertDocumentCsvToXlsx**](CMConvertDocumentApi.md#convertdocumentcsvtoxlsx) | **POST** /convert/csv/to/xlsx | CSV to Excel XLSX
 [**convertDocumentDocToDocx**](CMConvertDocumentApi.md#convertdocumentdoctodocx) | **POST** /convert/doc/to/docx | Word DOC (97-03) to DOCX
@@ -18,6 +19,63 @@ Method | HTTP request | Description
 [**convertDocumentXlsxToCsv**](CMConvertDocumentApi.md#convertdocumentxlsxtocsv) | **POST** /convert/xlsx/to/csv | Excel XLSX to CSV
 [**convertDocumentXlsxToPdf**](CMConvertDocumentApi.md#convertdocumentxlsxtopdf) | **POST** /convert/xlsx/to/pdf | Excel XLSX to PDF
 
+
+# **convertDocumentAutodetectGetInfo**
+```objc
+-(NSURLSessionTask*) convertDocumentAutodetectGetInfoWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(CMAutodetectGetInfoResult* output, NSError* error)) handler;
+```
+
+Get document type information
+
+Auto-detects a document's type information; does not require file extension.  Analyzes file contents to confirm file type.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMConvertDocumentApi*apiInstance = [[CMConvertDocumentApi alloc] init];
+
+// Get document type information
+[apiInstance convertDocumentAutodetectGetInfoWithInputFile:inputFile
+          completionHandler: ^(CMAutodetectGetInfoResult* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMConvertDocumentApi->convertDocumentAutodetectGetInfo: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+[**CMAutodetectGetInfoResult***](CMAutodetectGetInfoResult.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **convertDocumentAutodetectToPdf**
 ```objc
