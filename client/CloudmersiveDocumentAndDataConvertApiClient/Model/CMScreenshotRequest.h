@@ -27,4 +27,8 @@
 
 @property(nonatomic) NSNumber* extraLoadingWait;
 
+@property(nonatomic) NSNumber* screenshotWidth;
+
+@property(nonatomic) NSNumber* screenshotHeight;
+
 @end
