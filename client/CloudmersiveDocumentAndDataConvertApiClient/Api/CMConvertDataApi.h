@@ -34,6 +34,30 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
+/// Excel (97-2003) XLS to JSON conversion
+/// Convert an Excel (97-2003) XLS file to a JSON object array
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) convertDataXlsToJsonWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Excel XLSX to JSON conversion
+/// Convert an Excel XLSX file to a JSON object array
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) convertDataXlsxToJsonWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
 /// XML to JSON conversion
 /// Convert an XML string or file into JSON
 ///
