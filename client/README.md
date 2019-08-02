@@ -104,6 +104,8 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMInsertDocxTablesResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMInsertXlsxWorksheetRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMInsertXlsxWorksheetResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMMultipageImageFormatConversionResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMPageConversionResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveDocxHeadersAndFootersRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveDocxHeadersAndFootersResponse.h>
@@ -194,6 +196,7 @@ Class | Method | HTTP request | Description
 *CMConvertImageApi* | [**convertImageGetImageInfo**](docs/CMConvertImageApi.md#convertimagegetimageinfo) | **POST** /convert/image/get-info | Get information about an image
 *CMConvertImageApi* | [**convertImageImageFormatConvert**](docs/CMConvertImageApi.md#convertimageimageformatconvert) | **POST** /convert/image/{format1}/to/{format2} | Image format conversion
 *CMConvertImageApi* | [**convertImageImageSetDPI**](docs/CMConvertImageApi.md#convertimageimagesetdpi) | **POST** /convert/image/set-dpi/{dpi} | Change image DPI
+*CMConvertImageApi* | [**convertImageMultipageImageFormatConvert**](docs/CMConvertImageApi.md#convertimagemultipageimageformatconvert) | **POST** /convert/image-multipage/{format1}/to/{format2} | Multi-page format conversion
 *CMConvertTemplateApi* | [**convertTemplateApplyHtmlTemplate**](docs/CMConvertTemplateApi.md#converttemplateapplyhtmltemplate) | **POST** /convert/template/html/apply | Apply HTML template
 *CMConvertWebApi* | [**convertWebHtmlToDocx**](docs/CMConvertWebApi.md#convertwebhtmltodocx) | **POST** /convert/html/to/docx | HTML to DOCX
 *CMConvertWebApi* | [**convertWebHtmlToPdf**](docs/CMConvertWebApi.md#convertwebhtmltopdf) | **POST** /convert/web/html/to/pdf | Convert HTML string to PDF
@@ -297,6 +300,8 @@ Class | Method | HTTP request | Description
  - [CMInsertDocxTablesResponse](docs/CMInsertDocxTablesResponse.md)
  - [CMInsertXlsxWorksheetRequest](docs/CMInsertXlsxWorksheetRequest.md)
  - [CMInsertXlsxWorksheetResponse](docs/CMInsertXlsxWorksheetResponse.md)
+ - [CMMultipageImageFormatConversionResult](docs/CMMultipageImageFormatConversionResult.md)
+ - [CMPageConversionResult](docs/CMPageConversionResult.md)
  - [CMPdfToPngResult](docs/CMPdfToPngResult.md)
  - [CMRemoveDocxHeadersAndFootersRequest](docs/CMRemoveDocxHeadersAndFootersRequest.md)
  - [CMRemoveDocxHeadersAndFootersResponse](docs/CMRemoveDocxHeadersAndFootersResponse.md)

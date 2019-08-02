@@ -715,10 +715,10 @@ NSInteger kCMConvertDocumentApiMissingParamErrorCode = 234513;
 /// Convert Office Excel (97-2003) Workbooks (xls) to standard PDF.  Converts all worksheets in the workbook to PDF.
 ///  @param inputFile Input file to perform the operation on. 
 ///
-///  @returns NSObject*
+///  @returns NSData*
 ///
 -(NSURLSessionTask*) convertDocumentXlsToPdfWithInputFile: (NSURL*) inputFile
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
     // verify the required parameter 'inputFile' is set
     if (inputFile == nil) {
         NSParameterAssert(inputFile);
@@ -768,10 +768,10 @@ NSInteger kCMConvertDocumentApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSObject*"
+                              responseType: @"NSData*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSObject*)data, error);
+                                    handler((NSData*)data, error);
                                 }
                             }];
 }

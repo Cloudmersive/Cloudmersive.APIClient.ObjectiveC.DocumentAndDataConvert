@@ -45,9 +45,9 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return NSObject*
+/// @return NSData*
 -(NSURLSessionTask*) convertWebHtmlToPdfWithInput: (CMHtmlToPdfRequest*) input
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// Convert Markdown to HTML

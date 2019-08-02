@@ -123,10 +123,10 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
 /// Fully renders a website and returns a PDF of the HTML.  Javascript, HTML5, CSS and other advanced features are all supported.
 ///  @param input HTML to PDF request parameters 
 ///
-///  @returns NSObject*
+///  @returns NSData*
 ///
 -(NSURLSessionTask*) convertWebHtmlToPdfWithInput: (CMHtmlToPdfRequest*) input
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
     // verify the required parameter 'input' is set
     if (input == nil) {
         NSParameterAssert(input);
@@ -176,10 +176,10 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSObject*"
+                              responseType: @"NSData*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSObject*)data, error);
+                                    handler((NSData*)data, error);
                                 }
                             }];
 }

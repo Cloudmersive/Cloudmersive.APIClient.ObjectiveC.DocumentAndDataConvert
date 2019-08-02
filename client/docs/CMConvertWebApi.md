@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 # **convertWebHtmlToPdf**
 ```objc
 -(NSURLSessionTask*) convertWebHtmlToPdfWithInput: (CMHtmlToPdfRequest*) input
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
 Convert HTML string to PDF
@@ -94,7 +94,7 @@ CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
 // Convert HTML string to PDF
 [apiInstance convertWebHtmlToPdfWithInput:input
-          completionHandler: ^(NSObject* output, NSError* error) {
+          completionHandler: ^(NSData* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSObject***
+**NSData***
 
 ### Authorization
 

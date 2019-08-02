@@ -593,7 +593,7 @@ Name | Type | Description  | Notes
 # **convertDocumentXlsToPdf**
 ```objc
 -(NSURLSessionTask*) convertDocumentXlsToPdfWithInputFile: (NSURL*) inputFile
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
 Excel XLS (97-03) to PDF
@@ -616,7 +616,7 @@ CMConvertDocumentApi*apiInstance = [[CMConvertDocumentApi alloc] init];
 
 // Excel XLS (97-03) to PDF
 [apiInstance convertDocumentXlsToPdfWithInputFile:inputFile
-          completionHandler: ^(NSObject* output, NSError* error) {
+          completionHandler: ^(NSData* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -634,7 +634,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSObject***
+**NSData***
 
 ### Authorization
 
