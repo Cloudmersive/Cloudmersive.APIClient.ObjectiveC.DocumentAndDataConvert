@@ -185,7 +185,9 @@ Class | Method | HTTP request | Description
 *CMConvertDocumentApi* | [**convertDocumentDocToDocx**](docs/CMConvertDocumentApi.md#convertdocumentdoctodocx) | **POST** /convert/doc/to/docx | Word DOC (97-03) to DOCX
 *CMConvertDocumentApi* | [**convertDocumentDocToPdf**](docs/CMConvertDocumentApi.md#convertdocumentdoctopdf) | **POST** /convert/doc/to/pdf | Word DOC (97-03) to PDF
 *CMConvertDocumentApi* | [**convertDocumentDocxToPdf**](docs/CMConvertDocumentApi.md#convertdocumentdocxtopdf) | **POST** /convert/docx/to/pdf | Word DOCX to PDF
+*CMConvertDocumentApi* | [**convertDocumentPdfToDocx**](docs/CMConvertDocumentApi.md#convertdocumentpdftodocx) | **POST** /convert/pdf/to/docx | PDF to Word DOCX
 *CMConvertDocumentApi* | [**convertDocumentPdfToPngArray**](docs/CMConvertDocumentApi.md#convertdocumentpdftopngarray) | **POST** /convert/pdf/to/png | PDF to PNG Array
+*CMConvertDocumentApi* | [**convertDocumentPdfToPptx**](docs/CMConvertDocumentApi.md#convertdocumentpdftopptx) | **POST** /convert/pdf/to/pptx | PDF to PowerPoint PPTX
 *CMConvertDocumentApi* | [**convertDocumentPptToPdf**](docs/CMConvertDocumentApi.md#convertdocumentppttopdf) | **POST** /convert/ppt/to/pdf | PowerPoint PPT (97-03) to PDF
 *CMConvertDocumentApi* | [**convertDocumentPptToPptx**](docs/CMConvertDocumentApi.md#convertdocumentppttopptx) | **POST** /convert/ppt/to/pptx | PowerPoint PPT (97-03) to PPTX
 *CMConvertDocumentApi* | [**convertDocumentPptxToPdf**](docs/CMConvertDocumentApi.md#convertdocumentpptxtopdf) | **POST** /convert/pptx/to/pdf | PowerPoint PPTX to PDF
@@ -227,6 +229,7 @@ Class | Method | HTTP request | Description
 *CMEditDocumentApi* | [**editDocumentXlsxGetWorksheets**](docs/CMEditDocumentApi.md#editdocumentxlsxgetworksheets) | **POST** /convert/edit/xlsx/get-worksheets | Get worksheets from a XLSX
 *CMEditDocumentApi* | [**editDocumentXlsxInsertWorksheet**](docs/CMEditDocumentApi.md#editdocumentxlsxinsertworksheet) | **POST** /convert/edit/xlsx/insert-worksheet | Insert a new worksheet into an XLSX spreadsheet
 *CMMergeDocumentApi* | [**mergeDocumentDocx**](docs/CMMergeDocumentApi.md#mergedocumentdocx) | **POST** /convert/merge/docx | Merge Multple Word DOCX Together
+*CMMergeDocumentApi* | [**mergeDocumentPdf**](docs/CMMergeDocumentApi.md#mergedocumentpdf) | **POST** /convert/merge/pdf | Merge Multple PDF Files Together
 *CMMergeDocumentApi* | [**mergeDocumentPptx**](docs/CMMergeDocumentApi.md#mergedocumentpptx) | **POST** /convert/merge/pptx | Merge Multple PowerPoint PPTX Together
 *CMMergeDocumentApi* | [**mergeDocumentXlsx**](docs/CMMergeDocumentApi.md#mergedocumentxlsx) | **POST** /convert/merge/xlsx | Merge Multple Excel XLSX Together
 *CMValidateDocumentApi* | [**validateDocumentDocxValidation**](docs/CMValidateDocumentApi.md#validatedocumentdocxvalidation) | **POST** /convert/validate/docx | Validate a Word document (DOCX)

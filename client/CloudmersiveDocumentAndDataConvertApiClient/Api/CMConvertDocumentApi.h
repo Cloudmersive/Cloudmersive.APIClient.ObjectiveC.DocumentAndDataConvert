@@ -96,6 +96,18 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
+/// PDF to Word DOCX
+/// Convert standard PDF to Office Word Documents (docx).    Converts a PDF at high fidelity into Word format, where it can be easily edited and processed.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentPdfToDocxWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
 /// PDF to PNG Array
 /// Convert PDF document to PNG array, one image per page.
 ///
@@ -106,6 +118,18 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
 /// @return CMPdfToPngResult*
 -(NSURLSessionTask*) convertDocumentPdfToPngArrayWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(CMPdfToPngResult* output, NSError* error)) handler;
+
+
+/// PDF to PowerPoint PPTX
+/// Convert standard PDF to Office PowerPoint Presentation (pptx).  Converts a PDF file at high fidelity into PowerPoint format, where it can be easily edited and processed.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentPdfToPptxWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// PowerPoint PPT (97-03) to PDF

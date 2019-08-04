@@ -36,6 +36,20 @@ extern NSInteger kCMMergeDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
+/// Merge Multple PDF Files Together
+/// Combine multiple PDF files (pdf) into a single PDF document, preserving the order of the input documents in the combined document
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentPdfWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
 /// Merge Multple PowerPoint PPTX Together
 /// Combine multiple Office PowerPoint presentations (pptx) into one single Office PowerPoint presentation
 ///
