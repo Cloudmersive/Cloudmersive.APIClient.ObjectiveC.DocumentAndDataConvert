@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "CMAutodetectDocumentValidationResult.h"
 #import "CMDocumentValidationResult.h"
 #import "CMApi.h"
 
@@ -23,6 +24,18 @@ extern NSInteger kCMValidateDocumentApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
+/// Autodetect content type and validate
+/// Automatically detect the type of content, verify and validate that the content is indeed fully valid at depth, and then report the validation result.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMAutodetectDocumentValidationResult*
+-(NSURLSessionTask*) validateDocumentAutodetectValidationWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMAutodetectDocumentValidationResult* output, NSError* error)) handler;
+
+
 /// Validate a Word document (DOCX)
 /// Validate a Word document (DOCX); if the document is not valid, identifies the errors in the document
 ///
@@ -32,6 +45,42 @@ extern NSInteger kCMValidateDocumentApiMissingParamErrorCode;
 ///
 /// @return CMDocumentValidationResult*
 -(NSURLSessionTask*) validateDocumentDocxValidationWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMDocumentValidationResult* output, NSError* error)) handler;
+
+
+/// Validate if a file is executable
+/// Validate if an input file is a binary executable file; if the document is not valid
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDocumentValidationResult*
+-(NSURLSessionTask*) validateDocumentExecutableValidationWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMDocumentValidationResult* output, NSError* error)) handler;
+
+
+/// Validate a JSON file
+/// Validate a JSON (JavaScript Object Notation) document file; if the document is not valid, identifies the errors in the document
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDocumentValidationResult*
+-(NSURLSessionTask*) validateDocumentJsonValidationWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMDocumentValidationResult* output, NSError* error)) handler;
+
+
+/// Validate a PDF document file
+/// Validate a PDF document; if the document is not valid, identifies the errors in the document
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDocumentValidationResult*
+-(NSURLSessionTask*) validateDocumentPdfValidationWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(CMDocumentValidationResult* output, NSError* error)) handler;
 
 
@@ -56,6 +105,18 @@ extern NSInteger kCMValidateDocumentApiMissingParamErrorCode;
 ///
 /// @return CMDocumentValidationResult*
 -(NSURLSessionTask*) validateDocumentXlsxValidationWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMDocumentValidationResult* output, NSError* error)) handler;
+
+
+/// Validate an XML file
+/// Validate an XML document file; if the document is not valid, identifies the errors in the document
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDocumentValidationResult*
+-(NSURLSessionTask*) validateDocumentXmlValidationWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(CMDocumentValidationResult* output, NSError* error)) handler;
 
 

@@ -46,5 +46,11 @@
 /* Optional; location within the document to insert the object; fill in the InsertPath field using the Path value from an existing object.  Used with InsertPlacement of BeforeExistingObject or AfterExistingObject [optional]
  */
 @property(nonatomic) NSString* insertPath;
+/* Optional: The width of the image in EMUs [optional]
+ */
+@property(nonatomic) NSNumber* widthInEMUs;
+/* Optional: The height of the image in EMUs [optional]
+ */
+@property(nonatomic) NSNumber* heightInEMUs;
 
 @end

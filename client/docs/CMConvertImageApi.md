@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**convertImageGetImageInfo**](CMConvertImageApi.md#convertimagegetimageinfo) | **POST** /convert/image/get-info | Get information about an image
 [**convertImageImageFormatConvert**](CMConvertImageApi.md#convertimageimageformatconvert) | **POST** /convert/image/{format1}/to/{format2} | Image format conversion
 [**convertImageImageSetDPI**](CMConvertImageApi.md#convertimageimagesetdpi) | **POST** /convert/image/set-dpi/{dpi} | Change image DPI
-[**convertImageMultipageImageFormatConvert**](CMConvertImageApi.md#convertimagemultipageimageformatconvert) | **POST** /convert/image-multipage/{format1}/to/{format2} | Multi-page format conversion
+[**convertImageMultipageImageFormatConvert**](CMConvertImageApi.md#convertimagemultipageimageformatconvert) | **POST** /convert/image-multipage/{format1}/to/{format2} | Multi-page image format conversion
 
 
 # **convertImageGetImageInfo**
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
         completionHandler: (void (^)(CMMultipageImageFormatConversionResult* output, NSError* error)) handler;
 ```
 
-Multi-page format conversion
+Multi-page image format conversion
 
 Convert between over 100 file formats, including support for Multiple-Page formats (e.g. PDFs, TIFFs, etc. with multiple pages).
 
@@ -221,7 +221,7 @@ NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file t
 
 CMConvertImageApi*apiInstance = [[CMConvertImageApi alloc] init];
 
-// Multi-page format conversion
+// Multi-page image format conversion
 [apiInstance convertImageMultipageImageFormatConvertWithFormat1:format1
               format2:format2
               inputFile:inputFile

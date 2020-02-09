@@ -25,11 +25,14 @@
 
 @interface CMMultipageImageFormatConversionResult : CMObject
 
-
+/* True if successful, false otherwise [optional]
+ */
 @property(nonatomic) NSNumber* successful;
-
+/* The number of pages in the converted output [optional]
+ */
 @property(nonatomic) NSNumber* pageCount;
-
+/* Converted page results [optional]
+ */
 @property(nonatomic) NSArray<CMPageConversionResult>* pages;
 
 @end

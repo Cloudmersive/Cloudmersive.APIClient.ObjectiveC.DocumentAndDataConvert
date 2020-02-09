@@ -1,25 +1,55 @@
 #import <Foundation/Foundation.h>
+#import "CMClearXlsxCellRequest.h"
+#import "CMClearXlsxCellResponse.h"
+#import "CMCreateBlankDocxRequest.h"
+#import "CMCreateBlankDocxResponse.h"
+#import "CMCreateBlankSpreadsheetRequest.h"
+#import "CMCreateBlankSpreadsheetResponse.h"
+#import "CMCreateSpreadsheetFromDataRequest.h"
+#import "CMCreateSpreadsheetFromDataResponse.h"
+#import "CMDeleteDocxTableRowRangeRequest.h"
+#import "CMDeleteDocxTableRowRangeResponse.h"
+#import "CMDeleteDocxTableRowRequest.h"
+#import "CMDeleteDocxTableRowResponse.h"
+#import "CMDocxInsertCommentOnParagraphRequest.h"
 #import "CMDocxInsertImageRequest.h"
 #import "CMDocxInsertImageResponse.h"
 #import "CMDocxRemoveObjectRequest.h"
 #import "CMDocxRemoveObjectResponse.h"
+#import "CMDocxSetFooterAddPageNumberRequest.h"
 #import "CMDocxSetFooterRequest.h"
 #import "CMDocxSetFooterResponse.h"
 #import "CMDocxSetHeaderRequest.h"
 #import "CMDocxSetHeaderResponse.h"
+#import "CMEnableSharedWorkbookRequest.h"
+#import "CMEnableSharedWorkbookResponse.h"
 #import "CMFinishEditingRequest.h"
 #import "CMGetDocxBodyRequest.h"
 #import "CMGetDocxBodyResponse.h"
+#import "CMGetDocxCommentsHierarchicalResponse.h"
+#import "CMGetDocxCommentsResponse.h"
+#import "CMGetDocxGetCommentsHierarchicalRequest.h"
+#import "CMGetDocxGetCommentsRequest.h"
 #import "CMGetDocxHeadersAndFootersRequest.h"
 #import "CMGetDocxHeadersAndFootersResponse.h"
 #import "CMGetDocxImagesRequest.h"
 #import "CMGetDocxImagesResponse.h"
+#import "CMGetDocxPagesRequest.h"
+#import "CMGetDocxPagesResponse.h"
 #import "CMGetDocxSectionsRequest.h"
 #import "CMGetDocxSectionsResponse.h"
 #import "CMGetDocxStylesRequest.h"
 #import "CMGetDocxStylesResponse.h"
+#import "CMGetDocxTableByIndexRequest.h"
+#import "CMGetDocxTableByIndexResponse.h"
+#import "CMGetDocxTableRowRequest.h"
+#import "CMGetDocxTableRowResponse.h"
 #import "CMGetDocxTablesRequest.h"
 #import "CMGetDocxTablesResponse.h"
+#import "CMGetXlsxCellByIdentifierRequest.h"
+#import "CMGetXlsxCellByIdentifierResponse.h"
+#import "CMGetXlsxCellRequest.h"
+#import "CMGetXlsxCellResponse.h"
 #import "CMGetXlsxColumnsRequest.h"
 #import "CMGetXlsxColumnsResponse.h"
 #import "CMGetXlsxImagesRequest.h"
@@ -30,15 +60,29 @@
 #import "CMGetXlsxStylesResponse.h"
 #import "CMGetXlsxWorksheetsRequest.h"
 #import "CMGetXlsxWorksheetsResponse.h"
+#import "CMInsertDocxCommentOnParagraphResponse.h"
 #import "CMInsertDocxInsertParagraphRequest.h"
 #import "CMInsertDocxInsertParagraphResponse.h"
+#import "CMInsertDocxTableRowRequest.h"
+#import "CMInsertDocxTableRowResponse.h"
 #import "CMInsertDocxTablesRequest.h"
 #import "CMInsertDocxTablesResponse.h"
 #import "CMInsertXlsxWorksheetRequest.h"
 #import "CMInsertXlsxWorksheetResponse.h"
 #import "CMRemoveDocxHeadersAndFootersRequest.h"
 #import "CMRemoveDocxHeadersAndFootersResponse.h"
+#import "CMRemoveDocxPagesRequest.h"
+#import "CMRemovePptxSlidesRequest.h"
+#import "CMRemoveXlsxWorksheetRequest.h"
 #import "CMReplaceStringRequest.h"
+#import "CMSetXlsxCellByIdentifierRequest.h"
+#import "CMSetXlsxCellByIdentifierResponse.h"
+#import "CMSetXlsxCellRequest.h"
+#import "CMSetXlsxCellResponse.h"
+#import "CMUpdateDocxTableCellRequest.h"
+#import "CMUpdateDocxTableCellResponse.h"
+#import "CMUpdateDocxTableRowRequest.h"
+#import "CMUpdateDocxTableRowResponse.h"
 #import "CMApi.h"
 
 /**
@@ -63,7 +107,7 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
 /// Begin editing a document
-/// Uploads a document to Cloudmersive to begin a series of one or more editing operations
+/// Uploads a document to Cloudmersive to begin a series of one or more editing operations.  To edit a document, first call Begin Editing on the document.  Then perform operations on the document using the secure URL returned from BeginEditing, such as Word DOCX Delete Pages and Insert Table.  Finally, perform finish editing on the URL to return the resulting edited document.  The editing URL is temporary and only stored in-memory cache, and will automatically expire from the cache after 30 minutes, and cannot be directly accessed.
 ///
 /// @param inputFile Input file to perform the operation on.
 /// 
@@ -74,10 +118,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 
 
-/// Get body from a DOCX
+/// Get body from a Word DOCX document
 /// Returns the body defined in the Word Document (DOCX) format file; this is the main content part of a DOCX document
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -86,10 +130,82 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxBodyResponse* output, NSError* error)) handler;
 
 
-/// Get content of a footer from a DOCX
+/// Create a blank Word DOCX document
+/// Returns a blank Word DOCX Document format file.  The file is blank, with no contents.  Use additional editing commands such as Insert Paragraph or Insert Table or Insert Image to populate the document.
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMCreateBlankDocxResponse*
+-(NSURLSessionTask*) editDocumentDocxCreateBlankDocumentWithInput: (CMCreateBlankDocxRequest*) input
+    completionHandler: (void (^)(CMCreateBlankDocxResponse* output, NSError* error)) handler;
+
+
+/// Delete, remove pages from a Word DOCX document
+/// Returns the edited Word Document in the Word Document (DOCX) format file with the specified pages removed
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxDeletePagesWithReqConfig: (CMRemoveDocxPagesRequest*) reqConfig
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Deletes a table row in an existing table in a Word DOCX document
+/// Deletes an existing table row in a Word DOCX Document and returns the result.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDeleteDocxTableRowResponse*
+-(NSURLSessionTask*) editDocumentDocxDeleteTableRowWithReqConfig: (CMDeleteDocxTableRowRequest*) reqConfig
+    completionHandler: (void (^)(CMDeleteDocxTableRowResponse* output, NSError* error)) handler;
+
+
+/// Deletes a range of multiple table rows in an existing table in a Word DOCX document
+/// Deletes a range of 1 or more existing table rows in a Word DOCX Document and returns the result.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDeleteDocxTableRowRangeResponse*
+-(NSURLSessionTask*) editDocumentDocxDeleteTableRowRangeWithReqConfig: (CMDeleteDocxTableRowRangeRequest*) reqConfig
+    completionHandler: (void (^)(CMDeleteDocxTableRowRangeResponse* output, NSError* error)) handler;
+
+
+/// Get comments from a Word DOCX document as a flat list
+/// Returns the comments and review annotations stored in the Word Document (DOCX) format file as a flattened list (not as a hierarchy of comments and replies).
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetDocxCommentsResponse*
+-(NSURLSessionTask*) editDocumentDocxGetCommentsWithReqConfig: (CMGetDocxGetCommentsRequest*) reqConfig
+    completionHandler: (void (^)(CMGetDocxCommentsResponse* output, NSError* error)) handler;
+
+
+/// Get comments from a Word DOCX document hierarchically
+/// Returns the comments and review annotations stored in the Word Document (DOCX) format file hierarchically, where reply comments are nested as children under top-level comments in the results returned.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetDocxCommentsHierarchicalResponse*
+-(NSURLSessionTask*) editDocumentDocxGetCommentsHierarchicalWithReqConfig: (CMGetDocxGetCommentsHierarchicalRequest*) reqConfig
+    completionHandler: (void (^)(CMGetDocxCommentsHierarchicalResponse* output, NSError* error)) handler;
+
+
+/// Get content of a footer from a Word DOCX document
 /// Returns the footer content from a Word Document (DOCX) format file
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -98,10 +214,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxHeadersAndFootersResponse* output, NSError* error)) handler;
 
 
-/// Get images from a DOCX
+/// Get images from a Word DOCX document
 /// Returns the images defined in the Word Document (DOCX) format file
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -110,10 +226,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxImagesResponse* output, NSError* error)) handler;
 
 
-/// Get sections from a DOCX
+/// Get sections from a Word DOCX document
 /// Returns the sections defined in the Word Document (DOCX) format file
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -122,10 +238,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxSectionsResponse* output, NSError* error)) handler;
 
 
-/// Get styles from a DOCX
+/// Get styles from a Word DOCX document
 /// Returns the styles defined in the Word Document (DOCX) format file
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -134,10 +250,34 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxStylesResponse* output, NSError* error)) handler;
 
 
-/// Get tables in DOCX
+/// Get a specific table by index in a Word DOCX document
+/// Returns the specific table object by its 0-based index in an Office Word Document (DOCX)
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetDocxTableByIndexResponse*
+-(NSURLSessionTask*) editDocumentDocxGetTableByIndexWithReqConfig: (CMGetDocxTableByIndexRequest*) reqConfig
+    completionHandler: (void (^)(CMGetDocxTableByIndexResponse* output, NSError* error)) handler;
+
+
+/// Gets the contents of an existing table row in an existing table in a Word DOCX document
+/// Gets the contents of an existing table row in a Word DOCX Document and returns the result.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetDocxTableRowResponse*
+-(NSURLSessionTask*) editDocumentDocxGetTableRowWithReqConfig: (CMGetDocxTableRowRequest*) reqConfig
+    completionHandler: (void (^)(CMGetDocxTableRowResponse* output, NSError* error)) handler;
+
+
+/// Get all tables in Word DOCX document
 /// Returns all the table objects in an Office Word Document (docx)
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -146,10 +286,22 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxTablesResponse* output, NSError* error)) handler;
 
 
-/// Insert image into a DOCX
-/// Set the footer in a Word Document (DOCX)
+/// Insert a new comment into a Word DOCX document attached to a paragraph
+/// Adds a new comment into a Word DOCX document attached to a paragraph and returns the result.  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMInsertDocxCommentOnParagraphResponse*
+-(NSURLSessionTask*) editDocumentDocxInsertCommentOnParagraphWithReqConfig: (CMDocxInsertCommentOnParagraphRequest*) reqConfig
+    completionHandler: (void (^)(CMInsertDocxCommentOnParagraphResponse* output, NSError* error)) handler;
+
+
+/// Insert image into a Word DOCX document
+/// Set the footer in a Word Document (DOCX).  Call Finish Editing on the output URL to complete the operation.
+///
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -158,10 +310,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMDocxInsertImageResponse* output, NSError* error)) handler;
 
 
-/// Insert a new paragraph into a DOCX
-/// Adds a new paragraph into a DOCX and returns the result.  You can insert at the beginning/end of a document, or before/after an existing object using its Path (location within the document).
+/// Insert a new paragraph into a Word DOCX document
+/// Adds a new paragraph into a DOCX and returns the result.  You can insert at the beginning/end of a document, or before/after an existing object using its Path (location within the document).  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -170,10 +322,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMInsertDocxInsertParagraphResponse* output, NSError* error)) handler;
 
 
-/// Insert a new table into a DOCX
-/// Adds a new table into a DOCX and returns the result
+/// Insert a new table into a Word DOCX document
+/// Adds a new table into a DOCX and returns the result.  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -182,10 +334,34 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMInsertDocxTablesResponse* output, NSError* error)) handler;
 
 
-/// Remove headers and footers from DOCX
-/// Remove all headers, or footers, or both from a Word Document (DOCX)
+/// Insert a new row into an existing table in a Word DOCX document
+/// Adds a new table row into a DOCX Document and returns the result.  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMInsertDocxTableRowResponse*
+-(NSURLSessionTask*) editDocumentDocxInsertTableRowWithReqConfig: (CMInsertDocxTableRowRequest*) reqConfig
+    completionHandler: (void (^)(CMInsertDocxTableRowResponse* output, NSError* error)) handler;
+
+
+/// Get pages and content from a Word DOCX document
+/// Returns the pages and contents of each page defined in the Word Document (DOCX) format file
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetDocxPagesResponse*
+-(NSURLSessionTask*) editDocumentDocxPagesWithReqConfig: (CMGetDocxPagesRequest*) reqConfig
+    completionHandler: (void (^)(CMGetDocxPagesResponse* output, NSError* error)) handler;
+
+
+/// Remove headers and footers from Word DOCX document
+/// Remove all headers, or footers, or both from a Word Document (DOCX).  Call Finish Editing on the output URL to complete the operation.
+///
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -194,10 +370,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMRemoveDocxHeadersAndFootersResponse* output, NSError* error)) handler;
 
 
-/// Delete any object in a DOCX
-/// Delete any object, such as a paragraph, table, image, etc. from a Word Document (DOCX).  Pass in the Path of the object you would like to delete.  You can call other functions such as Get-Tables, Get-Images, Get-Body, etc. to get the paths of the objects in the document.
+/// Delete any object in a Word DOCX document
+/// Delete any object, such as a paragraph, table, image, etc. from a Word Document (DOCX).  Pass in the Path of the object you would like to delete.  You can call other functions such as Get-Tables, Get-Images, Get-Body, etc. to get the paths of the objects in the document.  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -206,10 +382,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMDocxRemoveObjectResponse* output, NSError* error)) handler;
 
 
-/// Replace string in DOCX
+/// Replace string in Word DOCX document
 /// Replace all instances of a string in an Office Word Document (docx)
 ///
-/// @param reqConfig 
+/// @param reqConfig Document string replacement configuration input
 /// 
 ///  code:200 message:"OK"
 ///
@@ -218,10 +394,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Set the footer in a DOCX
-/// Set the footer in a Word Document (DOCX)
+/// Set the footer in a Word DOCX document
+/// Set the footer in a Word Document (DOCX).  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -230,10 +406,22 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMDocxSetFooterResponse* output, NSError* error)) handler;
 
 
-/// Set the header in a DOCX
-/// Set the header in a Word Document (DOCX)
+/// Add page number to footer in a Word DOCX document
+/// Set the footer in a Word Document (DOCX) to contain a page number.  Call Finish Editing on the output URL to complete the operation.
 ///
-/// @param reqConfig 
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDocxSetFooterResponse*
+-(NSURLSessionTask*) editDocumentDocxSetFooterAddPageNumberWithReqConfig: (CMDocxSetFooterAddPageNumberRequest*) reqConfig
+    completionHandler: (void (^)(CMDocxSetFooterResponse* output, NSError* error)) handler;
+
+
+/// Set the header in a Word DOCX document
+/// Set the header in a Word Document (DOCX).  Call Finish Editing on the output URL to complete the operation.
+///
+/// @param reqConfig Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -242,10 +430,34 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMDocxSetHeaderResponse* output, NSError* error)) handler;
 
 
-/// Download result from document editing
+/// Update, set contents of a table cell in an existing table in a Word DOCX document
+/// Sets the contents of a table cell into a DOCX Document and returns the result.  Call Finish Editing on the output URL to complete the operation.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMUpdateDocxTableCellResponse*
+-(NSURLSessionTask*) editDocumentDocxUpdateTableCellWithReqConfig: (CMUpdateDocxTableCellRequest*) reqConfig
+    completionHandler: (void (^)(CMUpdateDocxTableCellResponse* output, NSError* error)) handler;
+
+
+/// Update, set contents of a table row in an existing table in a Word DOCX document
+/// Sets the contents of a table row into a DOCX Document and returns the result.  Call Finish Editing on the output URL to complete the operation.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMUpdateDocxTableRowResponse*
+-(NSURLSessionTask*) editDocumentDocxUpdateTableRowWithReqConfig: (CMUpdateDocxTableRowRequest*) reqConfig
+    completionHandler: (void (^)(CMUpdateDocxTableRowResponse* output, NSError* error)) handler;
+
+
+/// Finish editing document, and download result from document editing
 /// Once done editing a document, download the result.  Begin editing a document by calling begin-editing, then perform operations, then call finish-editing to get the result.
 ///
-/// @param reqConfig 
+/// @param reqConfig Cloudmersive Document URL to complete editing on
 /// 
 ///  code:200 message:"OK"
 ///
@@ -254,10 +466,22 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Replace string in PPTX
+/// Delete, remove slides from a PowerPoint PPTX presentation document
+/// Edits the input PowerPoint PPTX presentation document to remove the specified slides
+///
+/// @param reqConfig Presentation input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentPptxDeleteSlidesWithReqConfig: (CMRemovePptxSlidesRequest*) reqConfig
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Replace string in PowerPoint PPTX presentation
 /// Replace all instances of a string in an Office PowerPoint Document (pptx)
 ///
-/// @param reqConfig 
+/// @param reqConfig Replacement document configuration input
 /// 
 ///  code:200 message:"OK"
 ///
@@ -266,10 +490,94 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Get rows and cells from a XLSX worksheet
-/// Returns the rows and cells defined in the Excel Spreadsheet worksheet
+/// Clear cell contents in an Excel XLSX spreadsheet, worksheet by index
+/// Clears, sets to blank, the contents of a specific cell in an Excel XLSX spreadsheet, worksheet
 ///
-/// @param input 
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMClearXlsxCellResponse*
+-(NSURLSessionTask*) editDocumentXlsxClearCellByIndexWithInput: (CMClearXlsxCellRequest*) input
+    completionHandler: (void (^)(CMClearXlsxCellResponse* output, NSError* error)) handler;
+
+
+/// Create a blank Excel XLSX spreadsheet
+/// Returns a blank Excel XLSX Spreadsheet (XLSX) format file
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMCreateBlankSpreadsheetResponse*
+-(NSURLSessionTask*) editDocumentXlsxCreateBlankSpreadsheetWithInput: (CMCreateBlankSpreadsheetRequest*) input
+    completionHandler: (void (^)(CMCreateBlankSpreadsheetResponse* output, NSError* error)) handler;
+
+
+/// Create a new Excel XLSX spreadsheet from column and row data
+/// Returns a new Excel XLSX Spreadsheet (XLSX) format file populated with column and row data specified as input
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMCreateSpreadsheetFromDataResponse*
+-(NSURLSessionTask*) editDocumentXlsxCreateSpreadsheetFromDataWithInput: (CMCreateSpreadsheetFromDataRequest*) input
+    completionHandler: (void (^)(CMCreateSpreadsheetFromDataResponse* output, NSError* error)) handler;
+
+
+/// Delete, remove worksheet from an Excel XLSX spreadsheet document
+/// Edits the input Excel XLSX spreadsheet document to remove the specified worksheet (tab).  Use the Get Worksheets API to enumerate available worksheets in a spreadsheet.
+///
+/// @param reqConfig Spreadsheet input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) editDocumentXlsxDeleteWorksheetWithReqConfig: (CMRemoveXlsxWorksheetRequest*) reqConfig
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Enable Shared Workbook (legacy) in Excel XLSX spreadsheet
+/// Enables the Shared Workbook (legacy) mode in an Excel XLSX spreadsheet
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMEnableSharedWorkbookResponse*
+-(NSURLSessionTask*) editDocumentXlsxEnableSharedWorkbookWithInput: (CMEnableSharedWorkbookRequest*) input
+    completionHandler: (void (^)(CMEnableSharedWorkbookResponse* output, NSError* error)) handler;
+
+
+/// Get cell from an Excel XLSX spreadsheet, worksheet by cell identifier
+/// Returns the value of a specific cell based on its identifier (e.g. A1, B22, C33, etc.) in the Excel Spreadsheet worksheet
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetXlsxCellByIdentifierResponse*
+-(NSURLSessionTask*) editDocumentXlsxGetCellByIdentifierWithInput: (CMGetXlsxCellByIdentifierRequest*) input
+    completionHandler: (void (^)(CMGetXlsxCellByIdentifierResponse* output, NSError* error)) handler;
+
+
+/// Get cell from an Excel XLSX spreadsheet, worksheet by index
+/// Returns the value and definition of a specific cell in a specific row in the Excel Spreadsheet worksheet
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetXlsxCellResponse*
+-(NSURLSessionTask*) editDocumentXlsxGetCellByIndexWithInput: (CMGetXlsxCellRequest*) input
+    completionHandler: (void (^)(CMGetXlsxCellResponse* output, NSError* error)) handler;
+
+
+/// Get columns from a Excel XLSX spreadsheet, worksheet
+/// Returns the columns defined in the Excel Spreadsheet worksheet
+///
+/// @param input Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -278,10 +586,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetXlsxColumnsResponse* output, NSError* error)) handler;
 
 
-/// Get images from a XLSX worksheet
+/// Get images from a Excel XLSX spreadsheet, worksheet
 /// Returns the images defined in the Excel Spreadsheet worksheet
 ///
-/// @param input 
+/// @param input Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -290,10 +598,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetXlsxImagesResponse* output, NSError* error)) handler;
 
 
-/// Get rows and cells from a XLSX worksheet
+/// Get rows and cells from a Excel XLSX spreadsheet, worksheet
 /// Returns the rows and cells defined in the Excel Spreadsheet worksheet
 ///
-/// @param input 
+/// @param input Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -302,10 +610,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetXlsxRowsAndCellsResponse* output, NSError* error)) handler;
 
 
-/// Get styles from a XLSX worksheet
+/// Get styles from a Excel XLSX spreadsheet, worksheet
 /// Returns the style defined in the Excel Spreadsheet
 ///
-/// @param input 
+/// @param input Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -314,10 +622,10 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetXlsxStylesResponse* output, NSError* error)) handler;
 
 
-/// Get worksheets from a XLSX
+/// Get worksheets from a Excel XLSX spreadsheet
 /// Returns the worksheets (tabs) defined in the Excel Spreadsheet (XLSX) format file
 ///
-/// @param input 
+/// @param input Document input request
 /// 
 ///  code:200 message:"OK"
 ///
@@ -326,16 +634,40 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetXlsxWorksheetsResponse* output, NSError* error)) handler;
 
 
-/// Insert a new worksheet into an XLSX spreadsheet
+/// Insert a new worksheet into an Excel XLSX spreadsheet
 /// Inserts a new worksheet into an Excel Spreadsheet
 ///
-/// @param input 
+/// @param input Document input request
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return CMInsertXlsxWorksheetResponse*
 -(NSURLSessionTask*) editDocumentXlsxInsertWorksheetWithInput: (CMInsertXlsxWorksheetRequest*) input
     completionHandler: (void (^)(CMInsertXlsxWorksheetResponse* output, NSError* error)) handler;
+
+
+/// Set, update cell contents in an Excel XLSX spreadsheet, worksheet by cell identifier
+/// Sets, updates the contents of a specific cell in an Excel XLSX spreadsheet, worksheet using its cell identifier (e.g. A1, B22, C33) in the worksheet
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMSetXlsxCellByIdentifierResponse*
+-(NSURLSessionTask*) editDocumentXlsxSetCellByIdentifierWithInput: (CMSetXlsxCellByIdentifierRequest*) input
+    completionHandler: (void (^)(CMSetXlsxCellByIdentifierResponse* output, NSError* error)) handler;
+
+
+/// Set, update cell contents in an Excel XLSX spreadsheet, worksheet by index
+/// Sets, updates the contents of a specific cell in an Excel XLSX spreadsheet, worksheet
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMSetXlsxCellResponse*
+-(NSURLSessionTask*) editDocumentXlsxSetCellByIndexWithInput: (CMSetXlsxCellRequest*) input
+    completionHandler: (void (^)(CMSetXlsxCellResponse* output, NSError* error)) handler;
 
 
 

@@ -28,7 +28,7 @@
 /* Index of the row, 0-based [optional]
  */
 @property(nonatomic) NSNumber* rowIndex;
-/* The Path of the location of this object; leave blank for new tables [optional]
+/* The Path of the location of this table row object; leave blank for new tables [optional]
  */
 @property(nonatomic) NSString* path;
 /* Cells in the row; this is where the contents of the row is stored [optional]

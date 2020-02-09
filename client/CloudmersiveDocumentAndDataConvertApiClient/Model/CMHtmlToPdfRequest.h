@@ -22,9 +22,11 @@
 
 @interface CMHtmlToPdfRequest : CMObject
 
-
+/* HTML to render to PDF [optional]
+ */
 @property(nonatomic) NSString* html;
-
+/* Optional: Additional number of milliseconds to wait once the web page has finished loading before taking the screenshot.  Can be helpful for highly asynchronous websites. [optional]
+ */
 @property(nonatomic) NSNumber* extraLoadingWait;
 
 @end

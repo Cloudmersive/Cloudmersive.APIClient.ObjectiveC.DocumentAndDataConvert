@@ -22,9 +22,11 @@
 
 @interface CMPageConversionResult : CMObject
 
-
+/* File name of the image in the converted file format [optional]
+ */
 @property(nonatomic) NSString* filename;
-
+/* File bytes (contents) of the image in converted file format [optional]
+ */
 @property(nonatomic) NSData* fileBytes;
 
 @end

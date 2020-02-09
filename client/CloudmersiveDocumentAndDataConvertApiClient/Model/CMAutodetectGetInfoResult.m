@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"successful": @"Successful", @"detectedFileExtension": @"DetectedFileExtension", @"detectedMimeType": @"DetectedMimeType", @"alternateFileTypeCandidates": @"AlternateFileTypeCandidates" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"successful": @"Successful", @"detectedFileExtension": @"DetectedFileExtension", @"detectedMimeType": @"DetectedMimeType", @"pageCount": @"PageCount", @"author": @"Author", @"dateModified": @"DateModified", @"alternateFileTypeCandidates": @"AlternateFileTypeCandidates" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"successful", @"detectedFileExtension", @"detectedMimeType", @"alternateFileTypeCandidates"];
+  NSArray *optionalProperties = @[@"successful", @"detectedFileExtension", @"detectedMimeType", @"pageCount", @"author", @"dateModified", @"alternateFileTypeCandidates"];
   return [optionalProperties containsObject:propertyName];
 }
 

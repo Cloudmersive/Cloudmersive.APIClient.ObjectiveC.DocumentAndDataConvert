@@ -22,11 +22,14 @@
 
 @interface CMExifValue : CMObject
 
-
+/* Tag name for the EXIF value [optional]
+ */
 @property(nonatomic) NSString* tag;
-
+/* Date type of the EXIF value [optional]
+ */
 @property(nonatomic) NSString* dataType;
-
+/* Value, formatted as a string of the EXIF value [optional]
+ */
 @property(nonatomic) NSString* dataValue;
 
 @end

@@ -51,6 +51,78 @@ NSInteger kCMConvertTemplateApiMissingParamErrorCode = 234513;
 #pragma mark - Api Methods
 
 ///
+/// Apply Word DOCX template
+/// Apply operations to fill in a Word DOCX template by replacing target template/placeholder strings in the DOCX with values, generating a final Word DOCX result.  For example, you could create a Word Document invoice containing strings such as \"{FirstName}\" and \"{LastName}\" and then replace these values with \"John\" and \"Smith\".
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @param templateDefinition Template definition for the document, including what values to replace (optional)
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) convertTemplateApplyDocxTemplateWithInputFile: (NSURL*) inputFile
+    templateDefinition: (NSString*) templateDefinition
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMConvertTemplateApiErrorDomain code:kCMConvertTemplateApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/template/docx/apply"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    if (templateDefinition != nil) {
+        headerParams[@"templateDefinition"] = templateDefinition;
+    }
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Apply HTML template
 /// Apply operations to fill in an HTML template, generating a final HTML result
 ///  @param value Operations to apply to template 

@@ -4,7 +4,13 @@
 #import "CMHtmlMdResult.h"
 #import "CMHtmlToOfficeRequest.h"
 #import "CMHtmlToPdfRequest.h"
+#import "CMHtmlToPngRequest.h"
+#import "CMHtmlToTextRequest.h"
+#import "CMHtmlToTextResponse.h"
 #import "CMScreenshotRequest.h"
+#import "CMUrlToPdfRequest.h"
+#import "CMUrlToTextRequest.h"
+#import "CMUrlToTextResponse.h"
 
 
 @interface CMConvertWebApi ()
@@ -53,9 +59,9 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
 #pragma mark - Api Methods
 
 ///
-/// HTML to DOCX
+/// Convert HTML to Word DOCX Document
 /// Convert HTML to Office Word Document (DOCX) format
-///  @param inputRequest  
+///  @param inputRequest HTL input to convert to DOCX 
 ///
 ///  @returns NSData*
 ///
@@ -146,7 +152,7 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
     if(acceptHeader.length > 0) {
         headerParams[@"Accept"] = acceptHeader;
     }
@@ -180,6 +186,138 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Convert HTML string to PNG screenshot
+/// Fully renders a website and returns a PNG (screenshot) of the HTML.  Javascript, HTML5, CSS and other advanced features are all supported.
+///  @param input HTML to PNG request parameters 
+///
+///  @returns NSObject*
+///
+-(NSURLSessionTask*) convertWebHtmlToPngWithInput: (CMHtmlToPngRequest*) input
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMConvertWebApiErrorDomain code:kCMConvertWebApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/web/html/to/png"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSObject*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSObject*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Convert HTML string to text (txt)
+/// Converts an HTML string input into text (txt); extracts text from HTML
+///  @param input HTML to Text request parameters 
+///
+///  @returns CMHtmlToTextResponse*
+///
+-(NSURLSessionTask*) convertWebHtmlToTxtWithInput: (CMHtmlToTextRequest*) input
+    completionHandler: (void (^)(CMHtmlToTextResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMConvertWebApiErrorDomain code:kCMConvertWebApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/web/html/to/txt"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMHtmlToTextResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMHtmlToTextResponse*)data, error);
                                 }
                             }];
 }
@@ -257,7 +395,7 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSData*
 ///
--(NSURLSessionTask*) convertWebUrlToPdfWithInput: (CMScreenshotRequest*) input
+-(NSURLSessionTask*) convertWebUrlToPdfWithInput: (CMUrlToPdfRequest*) input
     completionHandler: (void (^)(NSData* output, NSError* error)) handler {
     // verify the required parameter 'input' is set
     if (input == nil) {
@@ -278,7 +416,7 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
     if(acceptHeader.length > 0) {
         headerParams[@"Accept"] = acceptHeader;
     }
@@ -344,7 +482,7 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
     if(acceptHeader.length > 0) {
         headerParams[@"Accept"] = acceptHeader;
     }
@@ -378,6 +516,72 @@ NSInteger kCMConvertWebApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Convert website URL page to text (txt)
+/// Converts a website URL page into text (txt); extracts text from HTML
+///  @param input HTML to Text request parameters 
+///
+///  @returns CMUrlToTextResponse*
+///
+-(NSURLSessionTask*) convertWebUrlToTxtWithInput: (CMUrlToTextRequest*) input
+    completionHandler: (void (^)(CMUrlToTextResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMConvertWebApiErrorDomain code:kCMConvertWebApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/web/url/to/txt"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMUrlToTextResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMUrlToTextResponse*)data, error);
                                 }
                             }];
 }

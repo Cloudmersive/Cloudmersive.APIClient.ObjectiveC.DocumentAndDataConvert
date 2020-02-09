@@ -22,8 +22,8 @@ extern NSInteger kCMMergeDocumentApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
-/// Merge Multple Word DOCX Together
-/// Combine multiple Office Word Documents (docx) into one single Office Word document
+/// Merge Two Word DOCX Together
+/// Combine two Office Word Documents (docx) into one single Office Word document
 ///
 /// @param inputFile1 First input file to perform the operation on.
 /// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
@@ -36,8 +36,38 @@ extern NSInteger kCMMergeDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Merge Multple PDF Files Together
-/// Combine multiple PDF files (pdf) into a single PDF document, preserving the order of the input documents in the combined document
+/// Merge Multple Word DOCX Together
+/// Combine multiple Office Word Documents (docx) into one single Office Word document
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on.
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentDocxMultiWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Merge Two PDF Files Together
+/// Combine two PDF files (pdf) into a single PDF document, preserving the order of the input documents in the combined document
 ///
 /// @param inputFile1 First input file to perform the operation on.
 /// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
@@ -50,8 +80,52 @@ extern NSInteger kCMMergeDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Merge Multple PowerPoint PPTX Together
-/// Combine multiple Office PowerPoint presentations (pptx) into one single Office PowerPoint presentation
+/// Merge Multple PDF Files Together
+/// Combine multiple PDF files (pdf) into a single PDF document, preserving the order of the input documents in the combined document
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on.
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentPdfMultiWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Merge Multple PNG Files Together
+/// Combine multiple PNG files into a single PNG document, preserving the order of the input documents in the combined document by stacking them vertically
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentPngWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Merge Two PowerPoint PPTX Together
+/// Combine two Office PowerPoint presentations (pptx) into one single Office PowerPoint presentation
 ///
 /// @param inputFile1 First input file to perform the operation on.
 /// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
@@ -64,8 +138,82 @@ extern NSInteger kCMMergeDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Merge Multple Excel XLSX Together
-/// Combine multiple Office Excel spreadsheets (xlsx) into a single Office Excel spreadsheet
+/// Merge Multple PowerPoint PPTX Together
+/// Combine multiple Office PowerPoint presentations (pptx) into one single Office PowerPoint presentation
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on.
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentPptxMultiWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Merge Two Text (TXT) Files Together
+/// Combine two Text (.TXT) files into a single text document, preserving the order of the input documents in the combined document by stacking them vertically.
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) mergeDocumentTxtWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Merge Multple Text (TXT) Files Together
+/// Combine multiple Text (.TXT) files into a single text document, preserving the order of the input documents in the combined document by stacking them vertically.
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on.
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentTxtMultiWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Merge Two Excel XLSX Together
+/// Combine two Office Excel spreadsheets (xlsx) into a single Office Excel spreadsheet
 ///
 /// @param inputFile1 First input file to perform the operation on.
 /// @param inputFile2 Second input file to perform the operation on (more than 2 can be supplied).
@@ -75,6 +223,36 @@ extern NSInteger kCMMergeDocumentApiMissingParamErrorCode;
 /// @return NSData*
 -(NSURLSessionTask*) mergeDocumentXlsxWithInputFile1: (NSURL*) inputFile1
     inputFile2: (NSURL*) inputFile2
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Merge Multple Excel XLSX Together
+/// Combine multiple Office Excel spreadsheets (xlsx) into a single Office Excel spreadsheet
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on.
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) mergeDocumentXlsxMultiWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 

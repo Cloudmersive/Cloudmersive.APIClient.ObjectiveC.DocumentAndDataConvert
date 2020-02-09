@@ -1,4 +1,13 @@
 #import <Foundation/Foundation.h>
+#import "CMXmlAddAttributeWithXPathResult.h"
+#import "CMXmlAddChildWithXPathResult.h"
+#import "CMXmlFilterWithXPathResult.h"
+#import "CMXmlQueryWithXQueryMultiResult.h"
+#import "CMXmlQueryWithXQueryResult.h"
+#import "CMXmlRemoveAllChildrenWithXPathResult.h"
+#import "CMXmlRemoveWithXPathResult.h"
+#import "CMXmlReplaceWithXPathResult.h"
+#import "CMXmlSetValueWithXPathResult.h"
 #import "CMApi.h"
 
 /**
@@ -22,7 +31,7 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
-/// CSV to JSON conversion
+/// Convert CSV to JSON conversion
 /// Convert a CSV file to a JSON object array
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -34,7 +43,19 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
-/// Excel (97-2003) XLS to JSON conversion
+/// Convert JSON to XML conversion
+/// Convert a JSON object into XML
+///
+/// @param jsonObject Input JSON to convert to XML
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDataJsonToXmlWithJsonObject: (NSObject*) jsonObject
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert Excel (97-2003) XLS to JSON conversion
 /// Convert an Excel (97-2003) XLS file to a JSON object array
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -46,7 +67,7 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
-/// Excel XLSX to JSON conversion
+/// Convert Excel XLSX to JSON conversion
 /// Convert an Excel XLSX file to a JSON object array
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -58,7 +79,161 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 
-/// XML to JSON conversion
+/// Adds an attribute to all XML nodes matching XPath expression
+/// Return the reuslts of editing an XML document by adding an attribute to all of the nodes that match an input XPath expression.
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param xPathExpression Valid XML XPath query expression
+/// @param xmlAttributeName Name of the XML attribute to add
+/// @param xmlAttributeValue Value of the XML attribute to add
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlAddAttributeWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlEditAddAttributeWithXPathWithInputFile: (NSURL*) inputFile
+    xPathExpression: (NSString*) xPathExpression
+    xmlAttributeName: (NSString*) xmlAttributeName
+    xmlAttributeValue: (NSString*) xmlAttributeValue
+    completionHandler: (void (^)(CMXmlAddAttributeWithXPathResult* output, NSError* error)) handler;
+
+
+/// Adds an XML node as a child to XML nodes matching XPath expression
+/// Return the reuslts of editing an XML document by adding an XML node as a child to all of the nodes that match an input XPath expression.
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param xPathExpression Valid XML XPath query expression
+/// @param xmlNodeToAdd XML Node to add as a child
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlAddChildWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlEditAddChildWithXPathWithInputFile: (NSURL*) inputFile
+    xPathExpression: (NSString*) xPathExpression
+    xmlNodeToAdd: (NSString*) xmlNodeToAdd
+    completionHandler: (void (^)(CMXmlAddChildWithXPathResult* output, NSError* error)) handler;
+
+
+/// Removes, deletes all children of nodes matching XPath expression, but does not remove the nodes
+/// Return the reuslts of editing an XML document by removing all child nodes of the nodes that match an input XPath expression.
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param xPathExpression Valid XML XPath query expression
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlRemoveAllChildrenWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlEditRemoveAllChildNodesWithXPathWithInputFile: (NSURL*) inputFile
+    xPathExpression: (NSString*) xPathExpression
+    completionHandler: (void (^)(CMXmlRemoveAllChildrenWithXPathResult* output, NSError* error)) handler;
+
+
+/// Replaces XML nodes matching XPath expression with new node
+/// Return the reuslts of editing an XML document by replacing all of the nodes that match an input XPath expression with a new XML node expression.
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param xPathExpression Valid XML XPath query expression
+/// @param xmlNodeReplacement XML Node replacement content
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlReplaceWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlEditReplaceWithXPathWithInputFile: (NSURL*) inputFile
+    xPathExpression: (NSString*) xPathExpression
+    xmlNodeReplacement: (NSString*) xmlNodeReplacement
+    completionHandler: (void (^)(CMXmlReplaceWithXPathResult* output, NSError* error)) handler;
+
+
+/// Sets the value contents of XML nodes matching XPath expression
+/// Return the reuslts of editing an XML document by setting the contents of all of the nodes that match an input XPath expression.  Supports elements and attributes.
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param xPathExpression Valid XML XPath query expression
+/// @param xmlValue XML Value to set into the matching XML nodes
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlSetValueWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlEditSetValueWithXPathWithInputFile: (NSURL*) inputFile
+    xPathExpression: (NSString*) xPathExpression
+    xmlValue: (NSString*) xmlValue
+    completionHandler: (void (^)(CMXmlSetValueWithXPathResult* output, NSError* error)) handler;
+
+
+/// Filter, select XML nodes using XPath expression, get results
+/// Return the reuslts of filtering, selecting an XML document with an XPath expression
+///
+/// @param xPathExpression Valid XML XPath query expression
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlFilterWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlFilterWithXPathWithXPathExpression: (NSString*) xPathExpression
+    inputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMXmlFilterWithXPathResult* output, NSError* error)) handler;
+
+
+/// Query an XML file using XQuery query, get results
+/// Return the reuslts of querying a single XML document with an XQuery expression.  Supports XQuery 3.1 and earlier.  This API is optimized for a single XML document as input.  Provided XML document is automatically loaded as the default context; to access elements in the document, simply refer to them without a document reference, such as bookstore/book
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param xQuery Valid XML XQuery 3.1 or earlier query expression; multi-line expressions are supported
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlQueryWithXQueryResult*
+-(NSURLSessionTask*) convertDataXmlQueryWithXQueryWithInputFile: (NSURL*) inputFile
+    xQuery: (NSString*) xQuery
+    completionHandler: (void (^)(CMXmlQueryWithXQueryResult* output, NSError* error)) handler;
+
+
+/// Query multiple XML files using XQuery query, get results
+/// Return the reuslts of querying an XML document with an XQuery expression.  Supports XQuery 3.1 and earlier.  This API is optimized for multiple XML documents as input.  You can refer to the contents of a given document by name, for example doc(\"books.xml\") or doc(\"restaurants.xml\") if you included two input files named books.xml and restaurants.xml.  If input files contain no file name, they will default to file names input1.xml, input2.xml and so on.
+///
+/// @param inputFile1 First input XML file to perform the operation on.
+/// @param xQuery Valid XML XQuery 3.1 or earlier query expression; multi-line expressions are supported
+/// @param inputFile2 Second input XML file to perform the operation on. (optional)
+/// @param inputFile3 Third input XML file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input XML file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input XML file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input XML file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input XML file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input XML file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input XML file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input XML file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlQueryWithXQueryMultiResult*
+-(NSURLSessionTask*) convertDataXmlQueryWithXQueryMultiWithInputFile1: (NSURL*) inputFile1
+    xQuery: (NSString*) xQuery
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(CMXmlQueryWithXQueryMultiResult* output, NSError* error)) handler;
+
+
+/// Remove, delete XML nodes and items matching XPath expression
+/// Return the reuslts of editing an XML document by removing all of the nodes that match an input XPath expression
+///
+/// @param xPathExpression Valid XML XPath query expression
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMXmlRemoveWithXPathResult*
+-(NSURLSessionTask*) convertDataXmlRemoveWithXPathWithXPathExpression: (NSString*) xPathExpression
+    inputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMXmlRemoveWithXPathResult* output, NSError* error)) handler;
+
+
+/// Convert XML to JSON conversion
 /// Convert an XML string or file into JSON
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -68,6 +243,20 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
 /// @return NSObject*
 -(NSURLSessionTask*) convertDataXmlToJsonWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Transform XML document file with XSLT into a new XML document
+/// Convert an XML string or file into JSON
+///
+/// @param inputFile Input XML file to perform the operation on.
+/// @param transformFile Input XSLT file to use to transform the input XML file.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDataXmlTransformWithXsltToXmlWithInputFile: (NSURL*) inputFile
+    transformFile: (NSURL*) transformFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 

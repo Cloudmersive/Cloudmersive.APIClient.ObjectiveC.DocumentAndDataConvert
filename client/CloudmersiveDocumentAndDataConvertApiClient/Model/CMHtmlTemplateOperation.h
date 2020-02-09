@@ -22,11 +22,14 @@
 
 @interface CMHtmlTemplateOperation : CMObject
 
-
+/* Operation action to take; possible values are \"Replace\" [optional]
+ */
 @property(nonatomic) NSNumber* action;
-
+/* For Replace operations, the string to match against (to be replaced with ReplaceWith string) [optional]
+ */
 @property(nonatomic) NSString* matchAgsint;
-
+/* For Replace operations, the string to Replace the original string with [optional]
+ */
 @property(nonatomic) NSString* replaceWith;
 
 @end

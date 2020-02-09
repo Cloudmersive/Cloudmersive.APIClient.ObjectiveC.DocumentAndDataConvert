@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"inputDocumentFileBytes": @"InputDocumentFileBytes", @"inputDocumentFileUrl": @"InputDocumentFileUrl", @"inputImageFileBytes": @"InputImageFileBytes", @"inputImageFileUrl": @"InputImageFileUrl", @"imageToAdd": @"ImageToAdd", @"insertPlacement": @"InsertPlacement", @"insertPath": @"InsertPath" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"inputDocumentFileBytes": @"InputDocumentFileBytes", @"inputDocumentFileUrl": @"InputDocumentFileUrl", @"inputImageFileBytes": @"InputImageFileBytes", @"inputImageFileUrl": @"InputImageFileUrl", @"imageToAdd": @"ImageToAdd", @"insertPlacement": @"InsertPlacement", @"insertPath": @"InsertPath", @"widthInEMUs": @"WidthInEMUs", @"heightInEMUs": @"HeightInEMUs" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"inputDocumentFileBytes", @"inputDocumentFileUrl", @"inputImageFileBytes", @"inputImageFileUrl", @"imageToAdd", @"insertPlacement", @"insertPath"];
+  NSArray *optionalProperties = @[@"inputDocumentFileBytes", @"inputDocumentFileUrl", @"inputImageFileBytes", @"inputImageFileUrl", @"imageToAdd", @"insertPlacement", @"insertPath", @"widthInEMUs", @"heightInEMUs"];
   return [optionalProperties containsObject:propertyName];
 }
 

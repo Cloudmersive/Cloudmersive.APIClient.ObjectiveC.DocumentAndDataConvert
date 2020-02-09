@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **imageToAdd** | [**CMDocxImage***](CMDocxImage.md) | Optional: Image to add; if you supply in this object, do not supply InputImageFileBytes or InputImageFileUrl. | [optional] 
 **insertPlacement** | **NSString*** | Optional; default is DocumentEnd.  Placement Type of the insert; possible values are: DocumentStart (very beginning of the document), DocumentEnd (very end of the document), BeforeExistingObject (right before an existing object - fill in the InsertPath field using the Path value from an existing object), AfterExistingObject (right after an existing object - fill in the InsertPath field using the Path value from an existing object) | [optional] 
 **insertPath** | **NSString*** | Optional; location within the document to insert the object; fill in the InsertPath field using the Path value from an existing object.  Used with InsertPlacement of BeforeExistingObject or AfterExistingObject | [optional] 
+**widthInEMUs** | **NSNumber*** | Optional: The width of the image in EMUs | [optional] 
+**heightInEMUs** | **NSNumber*** | Optional: The height of the image in EMUs | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

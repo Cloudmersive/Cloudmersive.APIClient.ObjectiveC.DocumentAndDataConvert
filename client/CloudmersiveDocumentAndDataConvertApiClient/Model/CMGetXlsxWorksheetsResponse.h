@@ -28,7 +28,7 @@
 /* True if successful, false otherwise [optional]
  */
 @property(nonatomic) NSNumber* successful;
-/* Styles in the DOCX document [optional]
+/* Worksheets in the Excel XLSX spreadsheet [optional]
  */
 @property(nonatomic) NSArray<CMXlsxWorksheet>* worksheets;
 

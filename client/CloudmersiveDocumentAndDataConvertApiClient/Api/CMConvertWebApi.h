@@ -2,7 +2,13 @@
 #import "CMHtmlMdResult.h"
 #import "CMHtmlToOfficeRequest.h"
 #import "CMHtmlToPdfRequest.h"
+#import "CMHtmlToPngRequest.h"
+#import "CMHtmlToTextRequest.h"
+#import "CMHtmlToTextResponse.h"
 #import "CMScreenshotRequest.h"
+#import "CMUrlToPdfRequest.h"
+#import "CMUrlToTextRequest.h"
+#import "CMUrlToTextResponse.h"
 #import "CMApi.h"
 
 /**
@@ -26,10 +32,10 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
-/// HTML to DOCX
+/// Convert HTML to Word DOCX Document
 /// Convert HTML to Office Word Document (DOCX) format
 ///
-/// @param inputRequest 
+/// @param inputRequest HTL input to convert to DOCX
 /// 
 ///  code:200 message:"OK"
 ///
@@ -48,6 +54,30 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 /// @return NSData*
 -(NSURLSessionTask*) convertWebHtmlToPdfWithInput: (CMHtmlToPdfRequest*) input
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert HTML string to PNG screenshot
+/// Fully renders a website and returns a PNG (screenshot) of the HTML.  Javascript, HTML5, CSS and other advanced features are all supported.
+///
+/// @param input HTML to PNG request parameters
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) convertWebHtmlToPngWithInput: (CMHtmlToPngRequest*) input
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Convert HTML string to text (txt)
+/// Converts an HTML string input into text (txt); extracts text from HTML
+///
+/// @param input HTML to Text request parameters
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMHtmlToTextResponse*
+-(NSURLSessionTask*) convertWebHtmlToTxtWithInput: (CMHtmlToTextRequest*) input
+    completionHandler: (void (^)(CMHtmlToTextResponse* output, NSError* error)) handler;
 
 
 /// Convert Markdown to HTML
@@ -70,7 +100,7 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 ///  code:200 message:"OK"
 ///
 /// @return NSData*
--(NSURLSessionTask*) convertWebUrlToPdfWithInput: (CMScreenshotRequest*) input
+-(NSURLSessionTask*) convertWebUrlToPdfWithInput: (CMUrlToPdfRequest*) input
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
@@ -84,6 +114,18 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 /// @return NSData*
 -(NSURLSessionTask*) convertWebUrlToScreenshotWithInput: (CMScreenshotRequest*) input
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert website URL page to text (txt)
+/// Converts a website URL page into text (txt); extracts text from HTML
+///
+/// @param input HTML to Text request parameters
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMUrlToTextResponse*
+-(NSURLSessionTask*) convertWebUrlToTxtWithInput: (CMUrlToTextRequest*) input
+    completionHandler: (void (^)(CMUrlToTextResponse* output, NSError* error)) handler;
 
 
 

@@ -22,7 +22,8 @@
 
 @interface CMHtmlToOfficeRequest : CMObject
 
-
+/* HTML to render to Office format [optional]
+ */
 @property(nonatomic) NSString* html;
 
 @end

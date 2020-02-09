@@ -28,7 +28,7 @@
 /* The ID of the table; leave blank for new tables [optional]
  */
 @property(nonatomic) NSString* tableID;
-/* The Path of the location of this object; leave blank for new tables [optional]
+/* The Path of the location of this table object; leave blank for new tables [optional]
  */
 @property(nonatomic) NSString* path;
 /* The Width of the table, or 0 if not specified [optional]

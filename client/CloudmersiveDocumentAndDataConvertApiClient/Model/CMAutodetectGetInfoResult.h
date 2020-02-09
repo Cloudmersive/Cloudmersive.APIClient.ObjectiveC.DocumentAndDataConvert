@@ -34,6 +34,15 @@
 /* MIME type of this file extension [optional]
  */
 @property(nonatomic) NSString* detectedMimeType;
+/* Number of pages in a page-based document; for presentations, this is the number of slides and for a spreadsheet this is the number of worksheets.  Contains 0 when the page count cannot be determined, or if the concept of page count does not apply (e.g. for an image) [optional]
+ */
+@property(nonatomic) NSNumber* pageCount;
+/* User name of the creator/author of the document, if available, null if not available [optional]
+ */
+@property(nonatomic) NSString* author;
+/* The timestamp that the document was last modified, if available, null if not available [optional]
+ */
+@property(nonatomic) NSDate* dateModified;
 /* Alternate file type options and their probability [optional]
  */
 @property(nonatomic) NSArray<CMAlternateFileFormatCandidate>* alternateFileTypeCandidates;

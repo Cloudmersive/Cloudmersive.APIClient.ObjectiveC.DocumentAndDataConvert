@@ -25,11 +25,14 @@
 
 @interface CMHtmlTemplateApplicationRequest : CMObject
 
-
+/* HTML template input as a string [optional]
+ */
 @property(nonatomic) NSString* htmlTemplate;
-
+/* URL to HTML template input [optional]
+ */
 @property(nonatomic) NSString* htmlTemplateUrl;
-
+/* Operations to apply to this template [optional]
+ */
 @property(nonatomic) NSArray<CMHtmlTemplateOperation>* operations;
 
 @end

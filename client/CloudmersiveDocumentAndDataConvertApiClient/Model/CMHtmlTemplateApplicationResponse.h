@@ -22,9 +22,11 @@
 
 @interface CMHtmlTemplateApplicationResponse : CMObject
 
-
+/* True if the operation was successful, false otherwise [optional]
+ */
 @property(nonatomic) NSNumber* successful;
-
+/* Final HTML result of all operations on input [optional]
+ */
 @property(nonatomic) NSString* finalHtml;
 
 @end

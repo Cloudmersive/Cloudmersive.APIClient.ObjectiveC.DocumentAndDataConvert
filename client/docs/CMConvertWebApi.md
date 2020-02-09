@@ -4,11 +4,14 @@ All URIs are relative to *https://api.cloudmersive.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**convertWebHtmlToDocx**](CMConvertWebApi.md#convertwebhtmltodocx) | **POST** /convert/html/to/docx | HTML to DOCX
+[**convertWebHtmlToDocx**](CMConvertWebApi.md#convertwebhtmltodocx) | **POST** /convert/html/to/docx | Convert HTML to Word DOCX Document
 [**convertWebHtmlToPdf**](CMConvertWebApi.md#convertwebhtmltopdf) | **POST** /convert/web/html/to/pdf | Convert HTML string to PDF
+[**convertWebHtmlToPng**](CMConvertWebApi.md#convertwebhtmltopng) | **POST** /convert/web/html/to/png | Convert HTML string to PNG screenshot
+[**convertWebHtmlToTxt**](CMConvertWebApi.md#convertwebhtmltotxt) | **POST** /convert/web/html/to/txt | Convert HTML string to text (txt)
 [**convertWebMdToHtml**](CMConvertWebApi.md#convertwebmdtohtml) | **POST** /convert/web/md/to/html | Convert Markdown to HTML
 [**convertWebUrlToPdf**](CMConvertWebApi.md#convertweburltopdf) | **POST** /convert/web/url/to/pdf | Convert a URL to PDF
 [**convertWebUrlToScreenshot**](CMConvertWebApi.md#convertweburltoscreenshot) | **POST** /convert/web/url/to/screenshot | Take screenshot of URL
+[**convertWebUrlToTxt**](CMConvertWebApi.md#convertweburltotxt) | **POST** /convert/web/url/to/txt | Convert website URL page to text (txt)
 
 
 # **convertWebHtmlToDocx**
@@ -17,7 +20,7 @@ Method | HTTP request | Description
         completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
-HTML to DOCX
+Convert HTML to Word DOCX Document
 
 Convert HTML to Office Word Document (DOCX) format
 
@@ -31,11 +34,11 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
 
 
-CMHtmlToOfficeRequest* inputRequest = [[CMHtmlToOfficeRequest alloc] init]; // 
+CMHtmlToOfficeRequest* inputRequest = [[CMHtmlToOfficeRequest alloc] init]; // HTL input to convert to DOCX
 
 CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
-// HTML to DOCX
+// Convert HTML to Word DOCX Document
 [apiInstance convertWebHtmlToDocxWithInputRequest:inputRequest
           completionHandler: ^(NSData* output, NSError* error) {
                         if (output) {
@@ -51,7 +54,7 @@ CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputRequest** | [**CMHtmlToOfficeRequest***](CMHtmlToOfficeRequest.md)|  | 
+ **inputRequest** | [**CMHtmlToOfficeRequest***](CMHtmlToOfficeRequest.md)| HTL input to convert to DOCX | 
 
 ### Return type
 
@@ -121,7 +124,121 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **convertWebHtmlToPng**
+```objc
+-(NSURLSessionTask*) convertWebHtmlToPngWithInput: (CMHtmlToPngRequest*) input
+        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+```
+
+Convert HTML string to PNG screenshot
+
+Fully renders a website and returns a PNG (screenshot) of the HTML.  Javascript, HTML5, CSS and other advanced features are all supported.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMHtmlToPngRequest* input = [[CMHtmlToPngRequest alloc] init]; // HTML to PNG request parameters
+
+CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
+
+// Convert HTML string to PNG screenshot
+[apiInstance convertWebHtmlToPngWithInput:input
+          completionHandler: ^(NSObject* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMConvertWebApi->convertWebHtmlToPng: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMHtmlToPngRequest***](CMHtmlToPngRequest.md)| HTML to PNG request parameters | 
+
+### Return type
+
+**NSObject***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **convertWebHtmlToTxt**
+```objc
+-(NSURLSessionTask*) convertWebHtmlToTxtWithInput: (CMHtmlToTextRequest*) input
+        completionHandler: (void (^)(CMHtmlToTextResponse* output, NSError* error)) handler;
+```
+
+Convert HTML string to text (txt)
+
+Converts an HTML string input into text (txt); extracts text from HTML
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMHtmlToTextRequest* input = [[CMHtmlToTextRequest alloc] init]; // HTML to Text request parameters
+
+CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
+
+// Convert HTML string to text (txt)
+[apiInstance convertWebHtmlToTxtWithInput:input
+          completionHandler: ^(CMHtmlToTextResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMConvertWebApi->convertWebHtmlToTxt: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMHtmlToTextRequest***](CMHtmlToTextRequest.md)| HTML to Text request parameters | 
+
+### Return type
+
+[**CMHtmlToTextResponse***](CMHtmlToTextResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -184,7 +301,7 @@ Name | Type | Description  | Notes
 
 # **convertWebUrlToPdf**
 ```objc
--(NSURLSessionTask*) convertWebUrlToPdfWithInput: (CMScreenshotRequest*) input
+-(NSURLSessionTask*) convertWebUrlToPdfWithInput: (CMUrlToPdfRequest*) input
         completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
@@ -202,7 +319,7 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
 
 
-CMScreenshotRequest* input = [[CMScreenshotRequest alloc] init]; // URL to PDF request parameters
+CMUrlToPdfRequest* input = [[CMUrlToPdfRequest alloc] init]; // URL to PDF request parameters
 
 CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
@@ -222,7 +339,7 @@ CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **input** | [**CMScreenshotRequest***](CMScreenshotRequest.md)| URL to PDF request parameters | 
+ **input** | [**CMUrlToPdfRequest***](CMUrlToPdfRequest.md)| URL to PDF request parameters | 
 
 ### Return type
 
@@ -235,7 +352,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -292,7 +409,64 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **convertWebUrlToTxt**
+```objc
+-(NSURLSessionTask*) convertWebUrlToTxtWithInput: (CMUrlToTextRequest*) input
+        completionHandler: (void (^)(CMUrlToTextResponse* output, NSError* error)) handler;
+```
+
+Convert website URL page to text (txt)
+
+Converts a website URL page into text (txt); extracts text from HTML
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMUrlToTextRequest* input = [[CMUrlToTextRequest alloc] init]; // HTML to Text request parameters
+
+CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
+
+// Convert website URL page to text (txt)
+[apiInstance convertWebUrlToTxtWithInput:input
+          completionHandler: ^(CMUrlToTextResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMConvertWebApi->convertWebUrlToTxt: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMUrlToTextRequest***](CMUrlToTextRequest.md)| HTML to Text request parameters | 
+
+### Return type
+
+[**CMUrlToTextResponse***](CMUrlToTextResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

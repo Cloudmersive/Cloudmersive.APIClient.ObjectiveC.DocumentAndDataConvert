@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "CMAutodetectGetInfoResult.h"
+#import "CMAutodetectToPngResult.h"
 #import "CMPdfToPngResult.h"
+#import "CMTextConversionResult.h"
 #import "CMApi.h"
 
 /**
@@ -25,7 +27,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
 /// Get document type information
-/// Auto-detects a document's type information; does not require file extension.  Analyzes file contents to confirm file type.
+/// Auto-detects a document's type information; does not require file extension.  Analyzes file contents to confirm file type.  Even if no file extension is present, the auto-detect system will reliably analyze the contents of the file and identify its file type.  Supports over 100 image file formats, Office document file formats, PDF, and more.
 ///
 /// @param inputFile Input file to perform the operation on.
 /// 
@@ -37,7 +39,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
 
 
 /// Convert Document to PDF
-/// Automatically detect file type and convert it to PDF.
+/// Automatically detect file type and convert it to PDF.  Supports all of the major Office document file formats including Word (DOCX, DOC), Excel (XLSX, XLS), PowerPoint (PPTX, PPT), over 100 image formats, HTML files, and even multi-page TIFF files.
 ///
 /// @param inputFile Input file to perform the operation on.
 /// 
@@ -48,7 +50,33 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// CSV to Excel XLSX
+/// Convert Document to PNG array
+/// Automatically detect file type and convert it to an array of PNG images.  Supports all of the major Office document file formats, over 100 image formats, and even multi-page TIFF files.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMAutodetectToPngResult*
+-(NSURLSessionTask*) convertDocumentAutodetectToPngArrayWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMAutodetectToPngResult* output, NSError* error)) handler;
+
+
+/// Convert Document to Text (txt)
+/// Automatically detect file type and convert it to Text.  Supports all of the major Office document file formats including Word (DOCX, DOC), Excel (XLSX, XLS), PowerPoint (PPTX, PPT) and PDF files.  For spreadsheets, all worksheets will be included.  If you wish to exclude certain pages, worksheets, slides, etc. use the Split document API first, or the delete pages/slides/worksheet APIs first to adjust the document to the target state prior to converting to text.
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param textFormattingMode Optional; specify how whitespace should be handled when converting the document to text.  Possible values are &#39;preserveWhitespace&#39; which will attempt to preserve whitespace in the document and relative positioning of text within the document, and &#39;minimizeWhitespace&#39; which will not insert additional spaces into the document in most cases.  Default is &#39;preserveWhitespace&#39;. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentAutodetectToTxtWithInputFile: (NSURL*) inputFile
+    textFormattingMode: (NSString*) textFormattingMode
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
+
+
+/// Convert CSV to Excel XLSX Spreadsheet
 /// Convert CSV file to Office Excel XLSX Workbooks file format.
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -60,7 +88,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Word DOC (97-03) to DOCX
+/// Convert Word DOC (97-03) Document to DOCX
 /// Convert/upgrade Office Word (97-2003 Format) Documents (doc) to the modern DOCX format
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -72,7 +100,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Word DOC (97-03) to PDF
+/// Convert Word DOC (97-03) Document to PDF
 /// Convert Office Word (97-2003 Format) Documents (doc) to standard PDF
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -84,7 +112,19 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Word DOCX to PDF
+/// Convert Word DOC (97-03) Document to Text (txt)
+/// Convert Office Word DOC (97-03) Document (doc) to text
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentDocToTxtWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
+
+
+/// Convert Word DOCX Document to PDF
 /// Convert Office Word Documents (docx) to standard PDF
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -96,7 +136,57 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// PDF to Word DOCX
+/// Convert Word DOCX Document to Text (txt)
+/// Convert Office Word Documents (docx) to text
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param textFormattingMode Optional; specify how whitespace should be handled when converting the document to text.  Possible values are &#39;preserveWhitespace&#39; which will attempt to preserve whitespace in the document and relative positioning of text within the document, and &#39;minimizeWhitespace&#39; which will not insert additional spaces into the document in most cases.  Default is &#39;minimizeWhitespace&#39;. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentDocxToTxtWithInputFile: (NSURL*) inputFile
+    textFormattingMode: (NSString*) textFormattingMode
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
+
+
+/// Convert HTML document file to PDF Document
+/// Convert standard HTML, with full support for CSS, JavaScript, Images, and other complex behavior to PDF.  To use external files such as images, use an absolute URL to the file.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentHtmlToPdfWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert HTML document file to PNG image array
+/// Convert standard HTML, with full support for CSS, JavaScript, Images, and other complex behavior to an array of PNG images, one for each page.  To use external files in your HTML such as images, use an absolute URL to the file.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMPdfToPngResult*
+-(NSURLSessionTask*) convertDocumentHtmlToPngWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMPdfToPngResult* output, NSError* error)) handler;
+
+
+/// HTML Document file to Text (txt)
+/// HTML document to text
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentHtmlToTxtWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
+
+
+/// Convert PDF to Word DOCX Document
 /// Convert standard PDF to Office Word Documents (docx).    Converts a PDF at high fidelity into Word format, where it can be easily edited and processed.
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -108,7 +198,19 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// PDF to PNG Array
+/// Convert PDF to Word DOCX Document based on rasterized version of the PDF
+/// Convert standard PDF to Office Word Documents (docx), but first rasterize the PDF.    Converts a PDF at high fidelity into Word format.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentPdfToDocxRasterizeWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert PDF to PNG Image Array
 /// Convert PDF document to PNG array, one image per page.
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -120,7 +222,19 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMPdfToPngResult* output, NSError* error)) handler;
 
 
-/// PDF to PowerPoint PPTX
+/// Convert PDF to Single PNG image
+/// Convert PDF document to a single tall PNG image, by stacking/concatenating the images vertically into a single \"tall\" image
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentPdfToPngSingleWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert PDF to PowerPoint PPTX Presentation
 /// Convert standard PDF to Office PowerPoint Presentation (pptx).  Converts a PDF file at high fidelity into PowerPoint format, where it can be easily edited and processed.
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -132,7 +246,51 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// PowerPoint PPT (97-03) to PDF
+/// Convert PDF Document to Text (txt)
+/// PDF document to text
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param textFormattingMode Optional; specify how whitespace should be handled when converting PDF to text.  Possible values are &#39;preserveWhitespace&#39; which will attempt to preserve whitespace in the document and relative positioning of text within the document, and &#39;minimizeWhitespace&#39; which will not insert additional spaces into the document in most cases.  Default is &#39;preserveWhitespace&#39;. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentPdfToTxtWithInputFile: (NSURL*) inputFile
+    textFormattingMode: (NSString*) textFormattingMode
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
+
+
+/// Convert PNG Array to PDF
+/// Convert an array of PNG images, one image per page, into a newly-created PDF.  Supports images of different sizes as input.
+///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on.
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentPngArrayToPdfWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert PowerPoint PPT (97-03) Presentation to PDF
 /// Convert Office PowerPoint (97-2003) Documents (ppt) to standard PDF
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -144,7 +302,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// PowerPoint PPT (97-03) to PPTX
+/// Convert PowerPoint PPT (97-03) Presentation to PPTX
 /// Convert/upgrade Office PowerPoint (97-2003) Documents (ppt) to modern PPTX
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -156,7 +314,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// PowerPoint PPTX to PDF
+/// Convert PowerPoint PPTX Presentation to PDF
 /// Convert Office PowerPoint Documents (pptx) to standard PDF
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -168,7 +326,31 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Excel XLS (97-03) to PDF
+/// Convert PowerPoint PPTX Presentation to Text (txt)
+/// Convert Office PowerPoint Documents (pptx) to standard Text
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentPptxToTxtWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
+
+
+/// Convert Excel XLS (97-03) Spreadsheet to CSV
+/// Convert/upgrade Office Excel (97-2003) Workbooks (xls) to standard CSV format.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDocumentXlsToCsvWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert Excel XLS (97-03) Spreadsheet to PDF
 /// Convert Office Excel (97-2003) Workbooks (xls) to standard PDF.  Converts all worksheets in the workbook to PDF.
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -180,7 +362,7 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Excel XLS (97-03) to XLSX
+/// Convert Excel XLS (97-03) Spreadsheet to XLSX
 /// Convert/upgrade Office Excel (97-2003) Workbooks (xls) to modern XLSX format.
 ///
 /// @param inputFile Input file to perform the operation on.
@@ -192,20 +374,22 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Excel XLSX to CSV
-/// Convert Office Excel Workbooks (xlsx) to standard Comma-Separated Values (CSV) format.
+/// Convert Excel XLSX Spreadsheet to CSV
+/// Convert Office Excel Workbooks (XLSX) to standard Comma-Separated Values (CSV) format.  Supports both XLSX and XLSB file Excel formats.
 ///
 /// @param inputFile Input file to perform the operation on.
+/// @param outputEncoding Optional, set the output text encoding for the result; possible values are UTF-8 and UTF-32.  Default is UTF-32. (optional)
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return NSData*
 -(NSURLSessionTask*) convertDocumentXlsxToCsvWithInputFile: (NSURL*) inputFile
+    outputEncoding: (NSString*) outputEncoding
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
-/// Excel XLSX to PDF
-/// Convert Office Excel Workbooks (xlsx) to standard PDF.  Converts all worksheets in the workbook to PDF.
+/// Convert Excel XLSX Spreadsheet to PDF
+/// Convert Office Excel Workbooks (XLSX) to standard PDF.  Converts all worksheets in the workbook to PDF.  Supports both XLSX and XLSB Excel file formats.
 ///
 /// @param inputFile Input file to perform the operation on.
 /// 
@@ -214,6 +398,18 @@ extern NSInteger kCMConvertDocumentApiMissingParamErrorCode;
 /// @return NSData*
 -(NSURLSessionTask*) convertDocumentXlsxToPdfWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert Excel XLSX Spreadsheet to Text (txt)
+/// Convert Office Excel Workbooks (XLSX) to standard Text.  Converts all worksheets in the workbook to Text.  Supports both XLSX and XLSB file formats.  When a spreadsheet contains multiple worksheets, will export all of the text from all of the worksheets.  If you wish to export the text from only one worksheet, try using the Split XLSX API to split the spreadsheet into multiple worksheet files, and then run XLSX to Text on the individual worksheet file that you need to extract the text from.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMTextConversionResult*
+-(NSURLSessionTask*) convertDocumentXlsxToTxtWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMTextConversionResult* output, NSError* error)) handler;
 
 
 

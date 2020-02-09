@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tableID** | **NSString*** | The ID of the table; leave blank for new tables | [optional] 
-**path** | **NSString*** | The Path of the location of this object; leave blank for new tables | [optional] 
+**path** | **NSString*** | The Path of the location of this table object; leave blank for new tables | [optional] 
 **width** | **NSString*** | The Width of the table, or 0 if not specified | [optional] 
 **widthType** | **NSString*** | The Width configuration type of the table | [optional] 
 **tableRows** | [**NSArray&lt;CMDocxTableRow&gt;***](CMDocxTableRow.md) | Rows in the table; this is where the contents is located | [optional] 

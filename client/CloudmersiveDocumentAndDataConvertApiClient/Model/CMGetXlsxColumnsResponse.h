@@ -28,7 +28,7 @@
 /* True if successful, false otherwise [optional]
  */
 @property(nonatomic) NSNumber* successful;
-/* Spreadsheet Columns in the DOCX document [optional]
+/* Spreadsheet Columns in the XLSX document [optional]
  */
 @property(nonatomic) NSArray<CMXlsxSpreadsheetColumn>* columns;
 

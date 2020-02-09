@@ -24,6 +24,20 @@ extern NSInteger kCMConvertTemplateApiMissingParamErrorCode;
 
 -(instancetype) initWithApiClient:(CMApiClient *)apiClient NS_DESIGNATED_INITIALIZER;
 
+/// Apply Word DOCX template
+/// Apply operations to fill in a Word DOCX template by replacing target template/placeholder strings in the DOCX with values, generating a final Word DOCX result.  For example, you could create a Word Document invoice containing strings such as \"{FirstName}\" and \"{LastName}\" and then replace these values with \"John\" and \"Smith\".
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param templateDefinition Template definition for the document, including what values to replace (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertTemplateApplyDocxTemplateWithInputFile: (NSURL*) inputFile
+    templateDefinition: (NSString*) templateDefinition
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
 /// Apply HTML template
 /// Apply operations to fill in an HTML template, generating a final HTML result
 ///
