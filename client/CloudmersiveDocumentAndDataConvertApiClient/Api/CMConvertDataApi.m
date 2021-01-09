@@ -62,9 +62,12 @@ NSInteger kCMConvertDataApiMissingParamErrorCode = 234513;
 /// Convert a CSV file to a JSON object array
 ///  @param inputFile Input file to perform the operation on. 
 ///
+///  @param columnNamesFromFirstRow Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. (optional)
+///
 ///  @returns NSObject*
 ///
 -(NSURLSessionTask*) convertDataCsvToJsonWithInputFile: (NSURL*) inputFile
+    columnNamesFromFirstRow: (NSNumber*) columnNamesFromFirstRow
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
     // verify the required parameter 'inputFile' is set
     if (inputFile == nil) {
@@ -84,6 +87,9 @@ NSInteger kCMConvertDataApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    if (columnNamesFromFirstRow != nil) {
+        headerParams[@"columnNamesFromFirstRow"] = columnNamesFromFirstRow;
+    }
     // HTTP header `Accept`
     NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
     if(acceptHeader.length > 0) {
@@ -119,6 +125,78 @@ NSInteger kCMConvertDataApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((NSObject*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Convert CSV to XML conversion
+/// Convert a CSV file to a XML file
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @param columnNamesFromFirstRow Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. (optional)
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) convertDataCsvToXmlWithInputFile: (NSURL*) inputFile
+    columnNamesFromFirstRow: (NSNumber*) columnNamesFromFirstRow
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMConvertDataApiErrorDomain code:kCMConvertDataApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/csv/to/xml"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    if (columnNamesFromFirstRow != nil) {
+        headerParams[@"columnNamesFromFirstRow"] = columnNamesFromFirstRow;
+    }
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
                                 }
                             }];
 }
@@ -260,10 +338,10 @@ NSInteger kCMConvertDataApiMissingParamErrorCode = 234513;
 /// Convert an Excel XLSX file to a JSON object array
 ///  @param inputFile Input file to perform the operation on. 
 ///
-///  @returns NSObject*
+///  @returns NSData*
 ///
 -(NSURLSessionTask*) convertDataXlsxToJsonWithInputFile: (NSURL*) inputFile
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
     // verify the required parameter 'inputFile' is set
     if (inputFile == nil) {
         NSParameterAssert(inputFile);
@@ -283,7 +361,7 @@ NSInteger kCMConvertDataApiMissingParamErrorCode = 234513;
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
     if(acceptHeader.length > 0) {
         headerParams[@"Accept"] = acceptHeader;
     }
@@ -313,10 +391,76 @@ NSInteger kCMConvertDataApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSObject*"
+                              responseType: @"NSData*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSObject*)data, error);
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Convert Excel XLSX to XML conversion
+/// Convert an Excel XLSX file to a XML file
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) convertDataXlsxToXmlWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMConvertDataApiErrorDomain code:kCMConvertDataApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/xlsx/to/xml"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
                                 }
                             }];
 }

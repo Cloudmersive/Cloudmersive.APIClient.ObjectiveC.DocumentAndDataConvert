@@ -34,7 +34,7 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
 
 
-CMHtmlToOfficeRequest* inputRequest = [[CMHtmlToOfficeRequest alloc] init]; // HTL input to convert to DOCX
+CMHtmlToOfficeRequest* inputRequest = [[CMHtmlToOfficeRequest alloc] init]; // HTML input to convert to DOCX
 
 CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
@@ -54,7 +54,7 @@ CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inputRequest** | [**CMHtmlToOfficeRequest***](CMHtmlToOfficeRequest.md)| HTL input to convert to DOCX | 
+ **inputRequest** | [**CMHtmlToOfficeRequest***](CMHtmlToOfficeRequest.md)| HTML input to convert to DOCX | 
 
 ### Return type
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 # **convertWebHtmlToPng**
 ```objc
 -(NSURLSessionTask*) convertWebHtmlToPngWithInput: (CMHtmlToPngRequest*) input
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
 Convert HTML string to PNG screenshot
@@ -154,7 +154,7 @@ CMConvertWebApi*apiInstance = [[CMConvertWebApi alloc] init];
 
 // Convert HTML string to PNG screenshot
 [apiInstance convertWebHtmlToPngWithInput:input
-          completionHandler: ^(NSObject* output, NSError* error) {
+          completionHandler: ^(NSData* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSObject***
+**NSData***
 
 ### Authorization
 

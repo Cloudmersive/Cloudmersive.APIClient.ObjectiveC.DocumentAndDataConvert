@@ -10,6 +10,8 @@ Method | HTTP request | Description
 # **viewerToolsCreateSimple**
 ```objc
 -(NSURLSessionTask*) viewerToolsCreateSimpleWithInputFile: (NSURL*) inputFile
+    width: (NSNumber*) width
+    height: (NSNumber*) height
         completionHandler: (void (^)(CMViewerResponse* output, NSError* error)) handler;
 ```
 
@@ -28,11 +30,15 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 
 
 NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+NSNumber* width = @56; // Optional; width of the output viewer in pixels (optional)
+NSNumber* height = @56; // Optional; height of the output viewer in pixels (optional)
 
 CMViewerToolsApi*apiInstance = [[CMViewerToolsApi alloc] init];
 
 // Create a web-based viewer
 [apiInstance viewerToolsCreateSimpleWithInputFile:inputFile
+              width:width
+              height:height
           completionHandler: ^(CMViewerResponse* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -48,6 +54,8 @@ CMViewerToolsApi*apiInstance = [[CMViewerToolsApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inputFile** | **NSURL***| Input file to perform the operation on. | 
+ **width** | **NSNumber***| Optional; width of the output viewer in pixels | [optional] 
+ **height** | **NSNumber***| Optional; height of the output viewer in pixels | [optional] 
 
 ### Return type
 

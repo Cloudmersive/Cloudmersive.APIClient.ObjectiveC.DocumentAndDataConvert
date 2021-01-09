@@ -28,7 +28,7 @@
 /* Index of the run, 0-based [optional]
  */
 @property(nonatomic) NSNumber* runIndex;
-/* The Path of the location of this object; leave blank for new tables [optional]
+/* The Path of the location of this Run object; leave blank for creation [optional]
  */
 @property(nonatomic) NSString* path;
 /* Text items inside the run; this is where the actual text content is stored [optional]

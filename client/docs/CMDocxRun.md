@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **runIndex** | **NSNumber*** | Index of the run, 0-based | [optional] 
-**path** | **NSString*** | The Path of the location of this object; leave blank for new tables | [optional] 
+**path** | **NSString*** | The Path of the location of this Run object; leave blank for creation | [optional] 
 **textItems** | [**NSArray&lt;CMDocxText&gt;***](CMDocxText.md) | Text items inside the run; this is where the actual text content is stored | [optional] 
 **bold** | **NSNumber*** | True to make the text bold, false otherwise | [optional] 
 **italic** | **NSNumber*** | True to make the text italic, false otherwise | [optional] 

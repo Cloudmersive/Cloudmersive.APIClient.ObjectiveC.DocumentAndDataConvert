@@ -5,15 +5,20 @@ All URIs are relative to *https://api.cloudmersive.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**editDocumentBeginEditing**](CMEditDocumentApi.md#editdocumentbeginediting) | **POST** /convert/edit/begin-editing | Begin editing a document
+[**editDocumentDocxAcceptAllTrackChanges**](CMEditDocumentApi.md#editdocumentdocxacceptalltrackchanges) | **POST** /convert/edit/docx/track-changes/accept-all | Accept all tracked changes, revisions in a Word DOCX document
 [**editDocumentDocxBody**](CMEditDocumentApi.md#editdocumentdocxbody) | **POST** /convert/edit/docx/get-body | Get body from a Word DOCX document
 [**editDocumentDocxCreateBlankDocument**](CMEditDocumentApi.md#editdocumentdocxcreateblankdocument) | **POST** /convert/edit/docx/create/blank | Create a blank Word DOCX document
 [**editDocumentDocxDeletePages**](CMEditDocumentApi.md#editdocumentdocxdeletepages) | **POST** /convert/edit/docx/delete-pages | Delete, remove pages from a Word DOCX document
 [**editDocumentDocxDeleteTableRow**](CMEditDocumentApi.md#editdocumentdocxdeletetablerow) | **POST** /convert/edit/docx/delete-table-row | Deletes a table row in an existing table in a Word DOCX document
 [**editDocumentDocxDeleteTableRowRange**](CMEditDocumentApi.md#editdocumentdocxdeletetablerowrange) | **POST** /convert/edit/docx/delete-table-row/range | Deletes a range of multiple table rows in an existing table in a Word DOCX document
+[**editDocumentDocxDisableTrackChanges**](CMEditDocumentApi.md#editdocumentdocxdisabletrackchanges) | **POST** /convert/edit/docx/track-changes/disable | Disable track changes, revisions in a Word DOCX document
+[**editDocumentDocxEnableTrackChanges**](CMEditDocumentApi.md#editdocumentdocxenabletrackchanges) | **POST** /convert/edit/docx/track-changes/enable | Enable track changes, revisions in a Word DOCX document
+[**editDocumentDocxFindParagraph**](CMEditDocumentApi.md#editdocumentdocxfindparagraph) | **POST** /convert/edit/docx/find/paragraph | Find matching paragraphs in a Word DOCX document
 [**editDocumentDocxGetComments**](CMEditDocumentApi.md#editdocumentdocxgetcomments) | **POST** /convert/edit/docx/get-comments/flat-list | Get comments from a Word DOCX document as a flat list
 [**editDocumentDocxGetCommentsHierarchical**](CMEditDocumentApi.md#editdocumentdocxgetcommentshierarchical) | **POST** /convert/edit/docx/get-comments/hierarchical | Get comments from a Word DOCX document hierarchically
 [**editDocumentDocxGetHeadersAndFooters**](CMEditDocumentApi.md#editdocumentdocxgetheadersandfooters) | **POST** /convert/edit/docx/get-headers-and-footers | Get content of a footer from a Word DOCX document
 [**editDocumentDocxGetImages**](CMEditDocumentApi.md#editdocumentdocxgetimages) | **POST** /convert/edit/docx/get-images | Get images from a Word DOCX document
+[**editDocumentDocxGetMetadataProperties**](CMEditDocumentApi.md#editdocumentdocxgetmetadataproperties) | **POST** /convert/edit/docx/get-metadata | Get all metadata properties in Word DOCX document
 [**editDocumentDocxGetSections**](CMEditDocumentApi.md#editdocumentdocxgetsections) | **POST** /convert/edit/docx/get-sections | Get sections from a Word DOCX document
 [**editDocumentDocxGetStyles**](CMEditDocumentApi.md#editdocumentdocxgetstyles) | **POST** /convert/edit/docx/get-styles | Get styles from a Word DOCX document
 [**editDocumentDocxGetTableByIndex**](CMEditDocumentApi.md#editdocumentdocxgettablebyindex) | **POST** /convert/edit/docx/get-table/by-index | Get a specific table by index in a Word DOCX document
@@ -25,9 +30,13 @@ Method | HTTP request | Description
 [**editDocumentDocxInsertTable**](CMEditDocumentApi.md#editdocumentdocxinserttable) | **POST** /convert/edit/docx/insert-table | Insert a new table into a Word DOCX document
 [**editDocumentDocxInsertTableRow**](CMEditDocumentApi.md#editdocumentdocxinserttablerow) | **POST** /convert/edit/docx/insert-table-row | Insert a new row into an existing table in a Word DOCX document
 [**editDocumentDocxPages**](CMEditDocumentApi.md#editdocumentdocxpages) | **POST** /convert/edit/docx/get-pages | Get pages and content from a Word DOCX document
+[**editDocumentDocxRemoveAllComments**](CMEditDocumentApi.md#editdocumentdocxremoveallcomments) | **POST** /convert/edit/docx/comments/remove-all | Remove all comments from a Word DOCX document
 [**editDocumentDocxRemoveHeadersAndFooters**](CMEditDocumentApi.md#editdocumentdocxremoveheadersandfooters) | **POST** /convert/edit/docx/remove-headers-and-footers | Remove headers and footers from Word DOCX document
 [**editDocumentDocxRemoveObject**](CMEditDocumentApi.md#editdocumentdocxremoveobject) | **POST** /convert/edit/docx/remove-object | Delete any object in a Word DOCX document
 [**editDocumentDocxReplace**](CMEditDocumentApi.md#editdocumentdocxreplace) | **POST** /convert/edit/docx/replace-all | Replace string in Word DOCX document
+[**editDocumentDocxReplaceMulti**](CMEditDocumentApi.md#editdocumentdocxreplacemulti) | **POST** /convert/edit/docx/replace-all/multi | Replace multiple strings in Word DOCX document
+[**editDocumentDocxReplaceParagraph**](CMEditDocumentApi.md#editdocumentdocxreplaceparagraph) | **POST** /convert/edit/docx/replace/paragraph | Replace matching paragraphs in a Word DOCX document
+[**editDocumentDocxSetCustomMetadataProperties**](CMEditDocumentApi.md#editdocumentdocxsetcustommetadataproperties) | **POST** /convert/edit/docx/set-metadata/custom-property | Set custom property metadata properties in Word DOCX document
 [**editDocumentDocxSetFooter**](CMEditDocumentApi.md#editdocumentdocxsetfooter) | **POST** /convert/edit/docx/set-footer | Set the footer in a Word DOCX document
 [**editDocumentDocxSetFooterAddPageNumber**](CMEditDocumentApi.md#editdocumentdocxsetfooteraddpagenumber) | **POST** /convert/edit/docx/set-footer/add-page-number | Add page number to footer in a Word DOCX document
 [**editDocumentDocxSetHeader**](CMEditDocumentApi.md#editdocumentdocxsetheader) | **POST** /convert/edit/docx/set-header | Set the header in a Word DOCX document
@@ -36,19 +45,24 @@ Method | HTTP request | Description
 [**editDocumentFinishEditing**](CMEditDocumentApi.md#editdocumentfinishediting) | **POST** /convert/edit/finish-editing | Finish editing document, and download result from document editing
 [**editDocumentPptxDeleteSlides**](CMEditDocumentApi.md#editdocumentpptxdeleteslides) | **POST** /convert/edit/pptx/delete-slides | Delete, remove slides from a PowerPoint PPTX presentation document
 [**editDocumentPptxReplace**](CMEditDocumentApi.md#editdocumentpptxreplace) | **POST** /convert/edit/pptx/replace-all | Replace string in PowerPoint PPTX presentation
+[**editDocumentXlsxAppendRow**](CMEditDocumentApi.md#editdocumentxlsxappendrow) | **POST** /convert/edit/xlsx/append-row | Append row to a Excel XLSX spreadsheet, worksheet
 [**editDocumentXlsxClearCellByIndex**](CMEditDocumentApi.md#editdocumentxlsxclearcellbyindex) | **POST** /convert/edit/xlsx/clear-cell/by-index | Clear cell contents in an Excel XLSX spreadsheet, worksheet by index
+[**editDocumentXlsxClearRow**](CMEditDocumentApi.md#editdocumentxlsxclearrow) | **POST** /convert/edit/xlsx/clear-row | Clear row from a Excel XLSX spreadsheet, worksheet
 [**editDocumentXlsxCreateBlankSpreadsheet**](CMEditDocumentApi.md#editdocumentxlsxcreateblankspreadsheet) | **POST** /convert/edit/xlsx/create/blank | Create a blank Excel XLSX spreadsheet
 [**editDocumentXlsxCreateSpreadsheetFromData**](CMEditDocumentApi.md#editdocumentxlsxcreatespreadsheetfromdata) | **POST** /convert/edit/xlsx/create/from/data | Create a new Excel XLSX spreadsheet from column and row data
 [**editDocumentXlsxDeleteWorksheet**](CMEditDocumentApi.md#editdocumentxlsxdeleteworksheet) | **POST** /convert/edit/xlsx/delete-worksheet | Delete, remove worksheet from an Excel XLSX spreadsheet document
+[**editDocumentXlsxDisableSharedWorkbook**](CMEditDocumentApi.md#editdocumentxlsxdisablesharedworkbook) | **POST** /convert/edit/xlsx/configuration/disable-shared-workbook | Disable Shared Workbook (legacy) in Excel XLSX spreadsheet
 [**editDocumentXlsxEnableSharedWorkbook**](CMEditDocumentApi.md#editdocumentxlsxenablesharedworkbook) | **POST** /convert/edit/xlsx/configuration/enable-shared-workbook | Enable Shared Workbook (legacy) in Excel XLSX spreadsheet
 [**editDocumentXlsxGetCellByIdentifier**](CMEditDocumentApi.md#editdocumentxlsxgetcellbyidentifier) | **POST** /convert/edit/xlsx/get-cell/by-identifier | Get cell from an Excel XLSX spreadsheet, worksheet by cell identifier
 [**editDocumentXlsxGetCellByIndex**](CMEditDocumentApi.md#editdocumentxlsxgetcellbyindex) | **POST** /convert/edit/xlsx/get-cell/by-index | Get cell from an Excel XLSX spreadsheet, worksheet by index
 [**editDocumentXlsxGetColumns**](CMEditDocumentApi.md#editdocumentxlsxgetcolumns) | **POST** /convert/edit/xlsx/get-columns | Get columns from a Excel XLSX spreadsheet, worksheet
 [**editDocumentXlsxGetImages**](CMEditDocumentApi.md#editdocumentxlsxgetimages) | **POST** /convert/edit/xlsx/get-images | Get images from a Excel XLSX spreadsheet, worksheet
 [**editDocumentXlsxGetRowsAndCells**](CMEditDocumentApi.md#editdocumentxlsxgetrowsandcells) | **POST** /convert/edit/xlsx/get-rows-and-cells | Get rows and cells from a Excel XLSX spreadsheet, worksheet
+[**editDocumentXlsxGetSpecificRow**](CMEditDocumentApi.md#editdocumentxlsxgetspecificrow) | **POST** /convert/edit/xlsx/get-specific-row | Get a specific row from a Excel XLSX spreadsheet, worksheet by path
 [**editDocumentXlsxGetStyles**](CMEditDocumentApi.md#editdocumentxlsxgetstyles) | **POST** /convert/edit/xlsx/get-styles | Get styles from a Excel XLSX spreadsheet, worksheet
 [**editDocumentXlsxGetWorksheets**](CMEditDocumentApi.md#editdocumentxlsxgetworksheets) | **POST** /convert/edit/xlsx/get-worksheets | Get worksheets from a Excel XLSX spreadsheet
 [**editDocumentXlsxInsertWorksheet**](CMEditDocumentApi.md#editdocumentxlsxinsertworksheet) | **POST** /convert/edit/xlsx/insert-worksheet | Insert a new worksheet into an Excel XLSX spreadsheet
+[**editDocumentXlsxRenameWorksheet**](CMEditDocumentApi.md#editdocumentxlsxrenameworksheet) | **POST** /convert/edit/xlsx/rename-worksheet | Rename a specific worksheet in a Excel XLSX spreadsheet
 [**editDocumentXlsxSetCellByIdentifier**](CMEditDocumentApi.md#editdocumentxlsxsetcellbyidentifier) | **POST** /convert/edit/xlsx/set-cell/by-identifier | Set, update cell contents in an Excel XLSX spreadsheet, worksheet by cell identifier
 [**editDocumentXlsxSetCellByIndex**](CMEditDocumentApi.md#editdocumentxlsxsetcellbyindex) | **POST** /convert/edit/xlsx/set-cell/by-index | Set, update cell contents in an Excel XLSX spreadsheet, worksheet by index
 
@@ -98,6 +112,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 **NSString***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxAcceptAllTrackChanges**
+```objc
+-(NSURLSessionTask*) editDocumentDocxAcceptAllTrackChangesWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Accept all tracked changes, revisions in a Word DOCX document
+
+Accepts all tracked changes and revisions in a Word DOCX document.  This will accept all pending changes in the document when tracked changes is turned on.  Track changes will remain on (if it is on) after this oepration is completed.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Accept all tracked changes, revisions in a Word DOCX document
+[apiInstance editDocumentDocxAcceptAllTrackChangesWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxAcceptAllTrackChanges: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
 
 ### Authorization
 
@@ -395,6 +466,177 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **editDocumentDocxDisableTrackChanges**
+```objc
+-(NSURLSessionTask*) editDocumentDocxDisableTrackChangesWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Disable track changes, revisions in a Word DOCX document
+
+Diables tracking of changes and revisions in a Word DOCX document, and accepts any pending changes.  Users editing the document will no longer see changes tracked automatically.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Disable track changes, revisions in a Word DOCX document
+[apiInstance editDocumentDocxDisableTrackChangesWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxDisableTrackChanges: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxEnableTrackChanges**
+```objc
+-(NSURLSessionTask*) editDocumentDocxEnableTrackChangesWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Enable track changes, revisions in a Word DOCX document
+
+Enables tracking of changes and revisions in a Word DOCX document.  Users editing the document will see changes tracked automatically, with edits highlighted, and the ability to accept or reject changes made to the document.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Enable track changes, revisions in a Word DOCX document
+[apiInstance editDocumentDocxEnableTrackChangesWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxEnableTrackChanges: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxFindParagraph**
+```objc
+-(NSURLSessionTask*) editDocumentDocxFindParagraphWithReqConfig: (CMFindDocxParagraphRequest*) reqConfig
+        completionHandler: (void (^)(CMFindDocxParagraphResponse* output, NSError* error)) handler;
+```
+
+Find matching paragraphs in a Word DOCX document
+
+Returns the paragraphs defined in the Word Document (DOCX) format file that match the input criteria
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMFindDocxParagraphRequest* reqConfig = [[CMFindDocxParagraphRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Find matching paragraphs in a Word DOCX document
+[apiInstance editDocumentDocxFindParagraphWithReqConfig:reqConfig
+          completionHandler: ^(CMFindDocxParagraphResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxFindParagraph: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reqConfig** | [**CMFindDocxParagraphRequest***](CMFindDocxParagraphRequest.md)| Document input request | 
+
+### Return type
+
+[**CMFindDocxParagraphResponse***](CMFindDocxParagraphResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **editDocumentDocxGetComments**
 ```objc
 -(NSURLSessionTask*) editDocumentDocxGetCommentsWithReqConfig: (CMGetDocxGetCommentsRequest*) reqConfig
@@ -619,6 +861,63 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxGetMetadataProperties**
+```objc
+-(NSURLSessionTask*) editDocumentDocxGetMetadataPropertiesWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(CMGetDocxMetadataPropertiesResponse* output, NSError* error)) handler;
+```
+
+Get all metadata properties in Word DOCX document
+
+Returns all the metadata properties in an Office Word Document (docx)
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Get all metadata properties in Word DOCX document
+[apiInstance editDocumentDocxGetMetadataPropertiesWithInputFile:inputFile
+          completionHandler: ^(CMGetDocxMetadataPropertiesResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxGetMetadataProperties: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+[**CMGetDocxMetadataPropertiesResponse***](CMGetDocxMetadataPropertiesResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json, text/json, application/xml, text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1250,6 +1549,63 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **editDocumentDocxRemoveAllComments**
+```objc
+-(NSURLSessionTask*) editDocumentDocxRemoveAllCommentsWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Remove all comments from a Word DOCX document
+
+Removes all of the comments from a Word Document.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Remove all comments from a Word DOCX document
+[apiInstance editDocumentDocxRemoveAllCommentsWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxRemoveAllComments: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **editDocumentDocxRemoveHeadersAndFooters**
 ```objc
 -(NSURLSessionTask*) editDocumentDocxRemoveHeadersAndFootersWithReqConfig: (CMRemoveDocxHeadersAndFootersRequest*) reqConfig
@@ -1418,6 +1774,177 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxReplaceMulti**
+```objc
+-(NSURLSessionTask*) editDocumentDocxReplaceMultiWithReqConfig: (CMMultiReplaceStringRequest*) reqConfig
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Replace multiple strings in Word DOCX document
+
+Replace all instances of multiple strings in an Office Word Document (docx)
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMMultiReplaceStringRequest* reqConfig = [[CMMultiReplaceStringRequest alloc] init]; // Document string replacement configuration input
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Replace multiple strings in Word DOCX document
+[apiInstance editDocumentDocxReplaceMultiWithReqConfig:reqConfig
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxReplaceMulti: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reqConfig** | [**CMMultiReplaceStringRequest***](CMMultiReplaceStringRequest.md)| Document string replacement configuration input | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxReplaceParagraph**
+```objc
+-(NSURLSessionTask*) editDocumentDocxReplaceParagraphWithReqConfig: (CMReplaceDocxParagraphRequest*) reqConfig
+        completionHandler: (void (^)(CMReplaceDocxParagraphResponse* output, NSError* error)) handler;
+```
+
+Replace matching paragraphs in a Word DOCX document
+
+Returns the edited Word Document (DOCX) format file with the matching paragraphs replaced as requested.  Replace a paragraph with another object such as an image.  Useful for performing templating operations.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMReplaceDocxParagraphRequest* reqConfig = [[CMReplaceDocxParagraphRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Replace matching paragraphs in a Word DOCX document
+[apiInstance editDocumentDocxReplaceParagraphWithReqConfig:reqConfig
+          completionHandler: ^(CMReplaceDocxParagraphResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxReplaceParagraph: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reqConfig** | [**CMReplaceDocxParagraphRequest***](CMReplaceDocxParagraphRequest.md)| Document input request | 
+
+### Return type
+
+[**CMReplaceDocxParagraphResponse***](CMReplaceDocxParagraphResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentDocxSetCustomMetadataProperties**
+```objc
+-(NSURLSessionTask*) editDocumentDocxSetCustomMetadataPropertiesWithInput: (CMDocxSetCustomMetadataPropertiesRequest*) input
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Set custom property metadata properties in Word DOCX document
+
+Sets the custom property metadata for the metadata properties in an Office Word Document (docx)
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMDocxSetCustomMetadataPropertiesRequest* input = [[CMDocxSetCustomMetadataPropertiesRequest alloc] init]; // 
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Set custom property metadata properties in Word DOCX document
+[apiInstance editDocumentDocxSetCustomMetadataPropertiesWithInput:input
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentDocxSetCustomMetadataProperties: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMDocxSetCustomMetadataPropertiesRequest***](CMDocxSetCustomMetadataPropertiesRequest.md)|  | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1877,6 +2404,63 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **editDocumentXlsxAppendRow**
+```objc
+-(NSURLSessionTask*) editDocumentXlsxAppendRowWithInput: (CMAppendXlsxRowRequest*) input
+        completionHandler: (void (^)(CMAppendXlsxRowResponse* output, NSError* error)) handler;
+```
+
+Append row to a Excel XLSX spreadsheet, worksheet
+
+Appends a row to the end of an Excel Spreadsheet worksheet.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMAppendXlsxRowRequest* input = [[CMAppendXlsxRowRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Append row to a Excel XLSX spreadsheet, worksheet
+[apiInstance editDocumentXlsxAppendRowWithInput:input
+          completionHandler: ^(CMAppendXlsxRowResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentXlsxAppendRow: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMAppendXlsxRowRequest***](CMAppendXlsxRowRequest.md)| Document input request | 
+
+### Return type
+
+[**CMAppendXlsxRowResponse***](CMAppendXlsxRowResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **editDocumentXlsxClearCellByIndex**
 ```objc
 -(NSURLSessionTask*) editDocumentXlsxClearCellByIndexWithInput: (CMClearXlsxCellRequest*) input
@@ -1922,6 +2506,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CMClearXlsxCellResponse***](CMClearXlsxCellResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentXlsxClearRow**
+```objc
+-(NSURLSessionTask*) editDocumentXlsxClearRowWithInput: (CMClearXlsxRowRequest*) input
+        completionHandler: (void (^)(CMClearXlsxRowResponse* output, NSError* error)) handler;
+```
+
+Clear row from a Excel XLSX spreadsheet, worksheet
+
+Clears data from a specific row in the Excel Spreadsheet worksheet, leaving a blank row. Use the Get Rows And Cells API to enumerate available rows in a spreadsheet.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMClearXlsxRowRequest* input = [[CMClearXlsxRowRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Clear row from a Excel XLSX spreadsheet, worksheet
+[apiInstance editDocumentXlsxClearRowWithInput:input
+          completionHandler: ^(CMClearXlsxRowResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentXlsxClearRow: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMClearXlsxRowRequest***](CMClearXlsxRowRequest.md)| Document input request | 
+
+### Return type
+
+[**CMClearXlsxRowResponse***](CMClearXlsxRowResponse.md)
 
 ### Authorization
 
@@ -2051,7 +2692,7 @@ Name | Type | Description  | Notes
 # **editDocumentXlsxDeleteWorksheet**
 ```objc
 -(NSURLSessionTask*) editDocumentXlsxDeleteWorksheetWithReqConfig: (CMRemoveXlsxWorksheetRequest*) reqConfig
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
 Delete, remove worksheet from an Excel XLSX spreadsheet document
@@ -2074,7 +2715,7 @@ CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
 
 // Delete, remove worksheet from an Excel XLSX spreadsheet document
 [apiInstance editDocumentXlsxDeleteWorksheetWithReqConfig:reqConfig
-          completionHandler: ^(NSObject* output, NSError* error) {
+          completionHandler: ^(NSData* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -2092,7 +2733,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSObject***
+**NSData***
 
 ### Authorization
 
@@ -2102,6 +2743,63 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
  - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentXlsxDisableSharedWorkbook**
+```objc
+-(NSURLSessionTask*) editDocumentXlsxDisableSharedWorkbookWithInput: (CMDisableSharedWorkbookRequest*) input
+        completionHandler: (void (^)(CMDisableSharedWorkbookResponse* output, NSError* error)) handler;
+```
+
+Disable Shared Workbook (legacy) in Excel XLSX spreadsheet
+
+Disable the Shared Workbook (legacy) mode in an Excel XLSX spreadsheet
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMDisableSharedWorkbookRequest* input = [[CMDisableSharedWorkbookRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Disable Shared Workbook (legacy) in Excel XLSX spreadsheet
+[apiInstance editDocumentXlsxDisableSharedWorkbookWithInput:input
+          completionHandler: ^(CMDisableSharedWorkbookResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentXlsxDisableSharedWorkbook: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMDisableSharedWorkbookRequest***](CMDisableSharedWorkbookRequest.md)| Document input request | 
+
+### Return type
+
+[**CMDisableSharedWorkbookResponse***](CMDisableSharedWorkbookResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2447,6 +3145,63 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **editDocumentXlsxGetSpecificRow**
+```objc
+-(NSURLSessionTask*) editDocumentXlsxGetSpecificRowWithInput: (CMGetXlsxSpecificRowRequest*) input
+        completionHandler: (void (^)(CMGetXlsxSpecificRowResponse* output, NSError* error)) handler;
+```
+
+Get a specific row from a Excel XLSX spreadsheet, worksheet by path
+
+Returns the specific row and its cells defined in the Excel Spreadsheet worksheet based on the specified path.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMGetXlsxSpecificRowRequest* input = [[CMGetXlsxSpecificRowRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Get a specific row from a Excel XLSX spreadsheet, worksheet by path
+[apiInstance editDocumentXlsxGetSpecificRowWithInput:input
+          completionHandler: ^(CMGetXlsxSpecificRowResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentXlsxGetSpecificRow: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMGetXlsxSpecificRowRequest***](CMGetXlsxSpecificRowRequest.md)| Document input request | 
+
+### Return type
+
+[**CMGetXlsxSpecificRowResponse***](CMGetXlsxSpecificRowResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **editDocumentXlsxGetStyles**
 ```objc
 -(NSURLSessionTask*) editDocumentXlsxGetStylesWithInput: (CMGetXlsxStylesRequest*) input
@@ -2606,6 +3361,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CMInsertXlsxWorksheetResponse***](CMInsertXlsxWorksheetResponse.md)
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/json, text/json, application/xml, text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editDocumentXlsxRenameWorksheet**
+```objc
+-(NSURLSessionTask*) editDocumentXlsxRenameWorksheetWithInput: (CMRenameXlsxWorksheetRequest*) input
+        completionHandler: (void (^)(CMRenameXlsxWorksheetResponse* output, NSError* error)) handler;
+```
+
+Rename a specific worksheet in a Excel XLSX spreadsheet
+
+Edits the input Excel XLSX spreadsheet document to rename a specified worksheet (tab).  Use the Get Worksheets API to enumerate available worksheets in a spreadsheet.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+CMRenameXlsxWorksheetRequest* input = [[CMRenameXlsxWorksheetRequest alloc] init]; // Document input request
+
+CMEditDocumentApi*apiInstance = [[CMEditDocumentApi alloc] init];
+
+// Rename a specific worksheet in a Excel XLSX spreadsheet
+[apiInstance editDocumentXlsxRenameWorksheetWithInput:input
+          completionHandler: ^(CMRenameXlsxWorksheetResponse* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditDocumentApi->editDocumentXlsxRenameWorksheet: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **input** | [**CMRenameXlsxWorksheetRequest***](CMRenameXlsxWorksheetRequest.md)| Document input request | 
+
+### Return type
+
+[**CMRenameXlsxWorksheetResponse***](CMRenameXlsxWorksheetResponse.md)
 
 ### Authorization
 

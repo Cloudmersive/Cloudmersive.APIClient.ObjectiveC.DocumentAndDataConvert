@@ -5,9 +5,11 @@ All URIs are relative to *https://api.cloudmersive.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**convertDataCsvToJson**](CMConvertDataApi.md#convertdatacsvtojson) | **POST** /convert/csv/to/json | Convert CSV to JSON conversion
+[**convertDataCsvToXml**](CMConvertDataApi.md#convertdatacsvtoxml) | **POST** /convert/csv/to/xml | Convert CSV to XML conversion
 [**convertDataJsonToXml**](CMConvertDataApi.md#convertdatajsontoxml) | **POST** /convert/json/to/xml | Convert JSON to XML conversion
 [**convertDataXlsToJson**](CMConvertDataApi.md#convertdataxlstojson) | **POST** /convert/xls/to/json | Convert Excel (97-2003) XLS to JSON conversion
 [**convertDataXlsxToJson**](CMConvertDataApi.md#convertdataxlsxtojson) | **POST** /convert/xlsx/to/json | Convert Excel XLSX to JSON conversion
+[**convertDataXlsxToXml**](CMConvertDataApi.md#convertdataxlsxtoxml) | **POST** /convert/xlsx/to/xml | Convert Excel XLSX to XML conversion
 [**convertDataXmlEditAddAttributeWithXPath**](CMConvertDataApi.md#convertdataxmleditaddattributewithxpath) | **POST** /convert/xml/edit/xpath/add-attribute | Adds an attribute to all XML nodes matching XPath expression
 [**convertDataXmlEditAddChildWithXPath**](CMConvertDataApi.md#convertdataxmleditaddchildwithxpath) | **POST** /convert/xml/edit/xpath/add-child | Adds an XML node as a child to XML nodes matching XPath expression
 [**convertDataXmlEditRemoveAllChildNodesWithXPath**](CMConvertDataApi.md#convertdataxmleditremoveallchildnodeswithxpath) | **POST** /convert/xml/edit/xpath/remove-all-children | Removes, deletes all children of nodes matching XPath expression, but does not remove the nodes
@@ -24,6 +26,7 @@ Method | HTTP request | Description
 # **convertDataCsvToJson**
 ```objc
 -(NSURLSessionTask*) convertDataCsvToJsonWithInputFile: (NSURL*) inputFile
+    columnNamesFromFirstRow: (NSNumber*) columnNamesFromFirstRow
         completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 ```
 
@@ -42,11 +45,13 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 
 
 NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+NSNumber* columnNamesFromFirstRow = @true; // Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. (optional)
 
 CMConvertDataApi*apiInstance = [[CMConvertDataApi alloc] init];
 
 // Convert CSV to JSON conversion
 [apiInstance convertDataCsvToJsonWithInputFile:inputFile
+              columnNamesFromFirstRow:columnNamesFromFirstRow
           completionHandler: ^(NSObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -62,6 +67,7 @@ CMConvertDataApi*apiInstance = [[CMConvertDataApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inputFile** | **NSURL***| Input file to perform the operation on. | 
+ **columnNamesFromFirstRow** | **NSNumber***| Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. | [optional] 
 
 ### Return type
 
@@ -75,6 +81,67 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **convertDataCsvToXml**
+```objc
+-(NSURLSessionTask*) convertDataCsvToXmlWithInputFile: (NSURL*) inputFile
+    columnNamesFromFirstRow: (NSNumber*) columnNamesFromFirstRow
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Convert CSV to XML conversion
+
+Convert a CSV file to a XML file
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+NSNumber* columnNamesFromFirstRow = @true; // Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. (optional)
+
+CMConvertDataApi*apiInstance = [[CMConvertDataApi alloc] init];
+
+// Convert CSV to XML conversion
+[apiInstance convertDataCsvToXmlWithInputFile:inputFile
+              columnNamesFromFirstRow:columnNamesFromFirstRow
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMConvertDataApi->convertDataCsvToXml: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+ **columnNamesFromFirstRow** | **NSNumber***| Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. | [optional] 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -195,7 +262,7 @@ Name | Type | Description  | Notes
 # **convertDataXlsxToJson**
 ```objc
 -(NSURLSessionTask*) convertDataXlsxToJsonWithInputFile: (NSURL*) inputFile
-        completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 ```
 
 Convert Excel XLSX to JSON conversion
@@ -218,7 +285,7 @@ CMConvertDataApi*apiInstance = [[CMConvertDataApi alloc] init];
 
 // Convert Excel XLSX to JSON conversion
 [apiInstance convertDataXlsxToJsonWithInputFile:inputFile
-          completionHandler: ^(NSObject* output, NSError* error) {
+          completionHandler: ^(NSData* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -236,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**NSObject***
+**NSData***
 
 ### Authorization
 
@@ -245,7 +312,64 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **convertDataXlsxToXml**
+```objc
+-(NSURLSessionTask*) convertDataXlsxToXmlWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Convert Excel XLSX to XML conversion
+
+Convert an Excel XLSX file to a XML file
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMConvertDataApi*apiInstance = [[CMConvertDataApi alloc] init];
+
+// Convert Excel XLSX to XML conversion
+[apiInstance convertDataXlsxToXmlWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMConvertDataApi->convertDataXlsxToXml: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

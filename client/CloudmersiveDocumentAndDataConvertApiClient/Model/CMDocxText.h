@@ -25,7 +25,7 @@
 /* Index of the text content in the run; 0-based [optional]
  */
 @property(nonatomic) NSNumber* textIndex;
-/* The Path of the location of this object; leave blank for new tables [optional]
+/* The Path of the location of this Text object; leave blank for creation [optional]
  */
 @property(nonatomic) NSString* path;
 /* Text string containing the text content of this text content item [optional]

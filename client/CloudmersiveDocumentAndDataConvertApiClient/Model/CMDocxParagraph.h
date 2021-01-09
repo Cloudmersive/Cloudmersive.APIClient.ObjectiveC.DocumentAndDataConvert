@@ -28,7 +28,7 @@
 /* The index of the paragraph; 0-based [optional]
  */
 @property(nonatomic) NSNumber* paragraphIndex;
-/* The Path of the location of this object; leave blank for new tables [optional]
+/* The Path of the location of this Paragraph object; leave blank during creation [optional]
  */
 @property(nonatomic) NSString* path;
 /* The content runs in the paragraph - this is where text is stored; similar to a span in HTML [optional]

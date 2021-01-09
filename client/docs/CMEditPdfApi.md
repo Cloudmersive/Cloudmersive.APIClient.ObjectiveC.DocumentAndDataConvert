@@ -5,6 +5,7 @@ All URIs are relative to *https://api.cloudmersive.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**editPdfAddAnnotations**](CMEditPdfApi.md#editpdfaddannotations) | **POST** /convert/edit/pdf/annotations/add-item | Add one or more PDF annotations, comments in the PDF document
+[**editPdfConvertToPdfA**](CMEditPdfApi.md#editpdfconverttopdfa) | **POST** /convert/edit/pdf/optimize/pdf-a | Convert a PDF file to PDF/A
 [**editPdfDecrypt**](CMEditPdfApi.md#editpdfdecrypt) | **POST** /convert/edit/pdf/decrypt | Decrypt and password-protect a PDF
 [**editPdfDeletePages**](CMEditPdfApi.md#editpdfdeletepages) | **POST** /convert/edit/pdf/pages/delete | Remove, delete pages from a PDF document
 [**editPdfEncrypt**](CMEditPdfApi.md#editpdfencrypt) | **POST** /convert/edit/pdf/encrypt | Encrypt and password-protect a PDF
@@ -13,9 +14,12 @@ Method | HTTP request | Description
 [**editPdfGetMetadata**](CMEditPdfApi.md#editpdfgetmetadata) | **POST** /convert/edit/pdf/get-metadata | Get PDF document metadata
 [**editPdfGetPdfTextByPages**](CMEditPdfApi.md#editpdfgetpdftextbypages) | **POST** /convert/edit/pdf/pages/get-text | Get text in a PDF document by page
 [**editPdfInsertPages**](CMEditPdfApi.md#editpdfinsertpages) | **POST** /convert/edit/pdf/pages/insert | Insert, copy pages from one PDF document into another
+[**editPdfLinearize**](CMEditPdfApi.md#editpdflinearize) | **POST** /convert/edit/pdf/optimize/linearize | Linearize and optimize a PDF for streaming download
 [**editPdfRasterize**](CMEditPdfApi.md#editpdfrasterize) | **POST** /convert/edit/pdf/rasterize | Rasterize a PDF to an image-based PDF
+[**editPdfReduceFileSize**](CMEditPdfApi.md#editpdfreducefilesize) | **POST** /convert/edit/pdf/optimize/reduce-file-size | Reduce the file size and optimize a PDF
 [**editPdfRemoveAllAnnotations**](CMEditPdfApi.md#editpdfremoveallannotations) | **POST** /convert/edit/pdf/annotations/remove-all | Remove all PDF annotations, including comments in the document
 [**editPdfRemoveAnnotationItem**](CMEditPdfApi.md#editpdfremoveannotationitem) | **POST** /convert/edit/pdf/annotations/remove-item | Remove a specific PDF annotation, comment in the document
+[**editPdfResize**](CMEditPdfApi.md#editpdfresize) | **POST** /convert/edit/pdf/resize | Change PDF Document&#39;s Paper Size
 [**editPdfRotateAllPages**](CMEditPdfApi.md#editpdfrotateallpages) | **POST** /convert/edit/pdf/pages/rotate/all | Rotate all pages in a PDF document
 [**editPdfRotatePageRange**](CMEditPdfApi.md#editpdfrotatepagerange) | **POST** /convert/edit/pdf/pages/rotate/page-range | Rotate a range, subset of pages in a PDF document
 [**editPdfSetFormFields**](CMEditPdfApi.md#editpdfsetformfields) | **POST** /convert/edit/pdf/form/set-fields | Sets ands fills PDF Form field values
@@ -77,6 +81,67 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editPdfConvertToPdfA**
+```objc
+-(NSURLSessionTask*) editPdfConvertToPdfAWithInputFile: (NSURL*) inputFile
+    conformanceLevel: (NSString*) conformanceLevel
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Convert a PDF file to PDF/A
+
+Converts the input PDF file to a PDF/A-1b or PDF/A-2b standardized PDF.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+NSString* conformanceLevel = @"conformanceLevel_example"; // Optional: Select the conformance level for PDF/A - specify '1b' for PDF/A-1b or specify '2b' for PDF/A-2b; default is PDF/A-1b (optional)
+
+CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
+
+// Convert a PDF file to PDF/A
+[apiInstance editPdfConvertToPdfAWithInputFile:inputFile
+              conformanceLevel:conformanceLevel
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditPdfApi->editPdfConvertToPdfA: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+ **conformanceLevel** | **NSString***| Optional: Select the conformance level for PDF/A - specify &#39;1b&#39; for PDF/A-1b or specify &#39;2b&#39; for PDF/A-2b; default is PDF/A-1b | [optional] 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -450,6 +515,7 @@ Name | Type | Description  | Notes
 # **editPdfGetPdfTextByPages**
 ```objc
 -(NSURLSessionTask*) editPdfGetPdfTextByPagesWithInputFile: (NSURL*) inputFile
+    textFormattingMode: (NSString*) textFormattingMode
         completionHandler: (void (^)(CMPdfTextByPageResult* output, NSError* error)) handler;
 ```
 
@@ -468,11 +534,13 @@ CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
 
 
 NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+NSString* textFormattingMode = @"textFormattingMode_example"; // Optional; specify how whitespace should be handled when converting the document to text.  Possible values are 'preserveWhitespace' which will attempt to preserve whitespace in the document and relative positioning of text within the document, and 'minimizeWhitespace' which will not insert additional spaces into the document in most cases.  Default is 'preserveWhitespace'. (optional)
 
 CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
 
 // Get text in a PDF document by page
 [apiInstance editPdfGetPdfTextByPagesWithInputFile:inputFile
+              textFormattingMode:textFormattingMode
           completionHandler: ^(CMPdfTextByPageResult* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -488,6 +556,7 @@ CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inputFile** | **NSURL***| Input file to perform the operation on. | 
+ **textFormattingMode** | **NSString***| Optional; specify how whitespace should be handled when converting the document to text.  Possible values are &#39;preserveWhitespace&#39; which will attempt to preserve whitespace in the document and relative positioning of text within the document, and &#39;minimizeWhitespace&#39; which will not insert additional spaces into the document in most cases.  Default is &#39;preserveWhitespace&#39;. | [optional] 
 
 ### Return type
 
@@ -577,6 +646,63 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **editPdfLinearize**
+```objc
+-(NSURLSessionTask*) editPdfLinearizeWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Linearize and optimize a PDF for streaming download
+
+Linearizes the content of a PDF to optimize it for streaming download, particularly over web streaming.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
+
+// Linearize and optimize a PDF for streaming download
+[apiInstance editPdfLinearizeWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditPdfApi->editPdfLinearize: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **editPdfRasterize**
 ```objc
 -(NSURLSessionTask*) editPdfRasterizeWithInputFile: (NSURL*) inputFile
@@ -609,6 +735,63 @@ CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
                         }
                         if (error) {
                             NSLog(@"Error calling CMEditPdfApi->editPdfRasterize: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editPdfReduceFileSize**
+```objc
+-(NSURLSessionTask*) editPdfReduceFileSizeWithInputFile: (NSURL*) inputFile
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Reduce the file size and optimize a PDF
+
+Reduces the file size and optimizes the content of a PDF to minimize its file size.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+
+CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
+
+// Reduce the file size and optimize a PDF
+[apiInstance editPdfReduceFileSizeWithInputFile:inputFile
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditPdfApi->editPdfReduceFileSize: %@", error);
                         }
                     }];
 ```
@@ -736,6 +919,67 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inputFile** | **NSURL***| Input file to perform the operation on. | 
  **annotationIndex** | **NSNumber***| The 0-based index of the annotation in the document | 
+
+### Return type
+
+**NSData***
+
+### Authorization
+
+[Apikey](../README.md#Apikey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/octet-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **editPdfResize**
+```objc
+-(NSURLSessionTask*) editPdfResizeWithInputFile: (NSURL*) inputFile
+    paperSize: (NSString*) paperSize
+        completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+```
+
+Change PDF Document's Paper Size
+
+Resizes a PDF document's paper size.
+
+### Example 
+```objc
+CMDefaultConfiguration *apiConfig = [CMDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: Apikey)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Apikey"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Apikey"];
+
+
+NSURL* inputFile = [NSURL fileURLWithPath:@"/path/to/file.txt"]; // Input file to perform the operation on.
+NSString* paperSize = @"paperSize_example"; // The desired paper size for the resized PDF document. Size ranges from A7 (smallest) to A0 (largest).
+
+CMEditPdfApi*apiInstance = [[CMEditPdfApi alloc] init];
+
+// Change PDF Document's Paper Size
+[apiInstance editPdfResizeWithInputFile:inputFile
+              paperSize:paperSize
+          completionHandler: ^(NSData* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling CMEditPdfApi->editPdfResize: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inputFile** | **NSURL***| Input file to perform the operation on. | 
+ **paperSize** | **NSString***| The desired paper size for the resized PDF document. Size ranges from A7 (smallest) to A0 (largest). | 
 
 ### Return type
 

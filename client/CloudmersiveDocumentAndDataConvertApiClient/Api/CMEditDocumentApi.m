@@ -1,8 +1,12 @@
 #import "CMEditDocumentApi.h"
 #import "CMQueryParamCollection.h"
 #import "CMApiClient.h"
+#import "CMAppendXlsxRowRequest.h"
+#import "CMAppendXlsxRowResponse.h"
 #import "CMClearXlsxCellRequest.h"
 #import "CMClearXlsxCellResponse.h"
+#import "CMClearXlsxRowRequest.h"
+#import "CMClearXlsxRowResponse.h"
 #import "CMCreateBlankDocxRequest.h"
 #import "CMCreateBlankDocxResponse.h"
 #import "CMCreateBlankSpreadsheetRequest.h"
@@ -13,11 +17,14 @@
 #import "CMDeleteDocxTableRowRangeResponse.h"
 #import "CMDeleteDocxTableRowRequest.h"
 #import "CMDeleteDocxTableRowResponse.h"
+#import "CMDisableSharedWorkbookRequest.h"
+#import "CMDisableSharedWorkbookResponse.h"
 #import "CMDocxInsertCommentOnParagraphRequest.h"
 #import "CMDocxInsertImageRequest.h"
 #import "CMDocxInsertImageResponse.h"
 #import "CMDocxRemoveObjectRequest.h"
 #import "CMDocxRemoveObjectResponse.h"
+#import "CMDocxSetCustomMetadataPropertiesRequest.h"
 #import "CMDocxSetFooterAddPageNumberRequest.h"
 #import "CMDocxSetFooterRequest.h"
 #import "CMDocxSetFooterResponse.h"
@@ -25,6 +32,8 @@
 #import "CMDocxSetHeaderResponse.h"
 #import "CMEnableSharedWorkbookRequest.h"
 #import "CMEnableSharedWorkbookResponse.h"
+#import "CMFindDocxParagraphRequest.h"
+#import "CMFindDocxParagraphResponse.h"
 #import "CMFinishEditingRequest.h"
 #import "CMGetDocxBodyRequest.h"
 #import "CMGetDocxBodyResponse.h"
@@ -36,6 +45,7 @@
 #import "CMGetDocxHeadersAndFootersResponse.h"
 #import "CMGetDocxImagesRequest.h"
 #import "CMGetDocxImagesResponse.h"
+#import "CMGetDocxMetadataPropertiesResponse.h"
 #import "CMGetDocxPagesRequest.h"
 #import "CMGetDocxPagesResponse.h"
 #import "CMGetDocxSectionsRequest.h"
@@ -58,6 +68,8 @@
 #import "CMGetXlsxImagesResponse.h"
 #import "CMGetXlsxRowsAndCellsRequest.h"
 #import "CMGetXlsxRowsAndCellsResponse.h"
+#import "CMGetXlsxSpecificRowRequest.h"
+#import "CMGetXlsxSpecificRowResponse.h"
 #import "CMGetXlsxStylesRequest.h"
 #import "CMGetXlsxStylesResponse.h"
 #import "CMGetXlsxWorksheetsRequest.h"
@@ -71,11 +83,16 @@
 #import "CMInsertDocxTablesResponse.h"
 #import "CMInsertXlsxWorksheetRequest.h"
 #import "CMInsertXlsxWorksheetResponse.h"
+#import "CMMultiReplaceStringRequest.h"
 #import "CMRemoveDocxHeadersAndFootersRequest.h"
 #import "CMRemoveDocxHeadersAndFootersResponse.h"
 #import "CMRemoveDocxPagesRequest.h"
 #import "CMRemovePptxSlidesRequest.h"
 #import "CMRemoveXlsxWorksheetRequest.h"
+#import "CMRenameXlsxWorksheetRequest.h"
+#import "CMRenameXlsxWorksheetResponse.h"
+#import "CMReplaceDocxParagraphRequest.h"
+#import "CMReplaceDocxParagraphResponse.h"
 #import "CMReplaceStringRequest.h"
 #import "CMSetXlsxCellByIdentifierRequest.h"
 #import "CMSetXlsxCellByIdentifierResponse.h"
@@ -194,6 +211,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((NSString*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Accept all tracked changes, revisions in a Word DOCX document
+/// Accepts all tracked changes and revisions in a Word DOCX document.  This will accept all pending changes in the document when tracked changes is turned on.  Track changes will remain on (if it is on) after this oepration is completed.
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) editDocumentDocxAcceptAllTrackChangesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/track-changes/accept-all"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
                                 }
                             }];
 }
@@ -529,6 +612,204 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
 }
 
 ///
+/// Disable track changes, revisions in a Word DOCX document
+/// Diables tracking of changes and revisions in a Word DOCX document, and accepts any pending changes.  Users editing the document will no longer see changes tracked automatically.
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) editDocumentDocxDisableTrackChangesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/track-changes/disable"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Enable track changes, revisions in a Word DOCX document
+/// Enables tracking of changes and revisions in a Word DOCX document.  Users editing the document will see changes tracked automatically, with edits highlighted, and the ability to accept or reject changes made to the document.
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) editDocumentDocxEnableTrackChangesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/track-changes/enable"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Find matching paragraphs in a Word DOCX document
+/// Returns the paragraphs defined in the Word Document (DOCX) format file that match the input criteria
+///  @param reqConfig Document input request 
+///
+///  @returns CMFindDocxParagraphResponse*
+///
+-(NSURLSessionTask*) editDocumentDocxFindParagraphWithReqConfig: (CMFindDocxParagraphRequest*) reqConfig
+    completionHandler: (void (^)(CMFindDocxParagraphResponse* output, NSError* error)) handler {
+    // verify the required parameter 'reqConfig' is set
+    if (reqConfig == nil) {
+        NSParameterAssert(reqConfig);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"reqConfig"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/find/paragraph"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = reqConfig;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMFindDocxParagraphResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMFindDocxParagraphResponse*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Get comments from a Word DOCX document as a flat list
 /// Returns the comments and review annotations stored in the Word Document (DOCX) format file as a flattened list (not as a hierarchy of comments and replies).
 ///  @param reqConfig Document input request 
@@ -788,6 +1069,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((CMGetDocxImagesResponse*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Get all metadata properties in Word DOCX document
+/// Returns all the metadata properties in an Office Word Document (docx)
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @returns CMGetDocxMetadataPropertiesResponse*
+///
+-(NSURLSessionTask*) editDocumentDocxGetMetadataPropertiesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMGetDocxMetadataPropertiesResponse* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/get-metadata"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMGetDocxMetadataPropertiesResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMGetDocxMetadataPropertiesResponse*)data, error);
                                 }
                             }];
 }
@@ -1519,6 +1866,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
 }
 
 ///
+/// Remove all comments from a Word DOCX document
+/// Removes all of the comments from a Word Document.
+///  @param inputFile Input file to perform the operation on. 
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) editDocumentDocxRemoveAllCommentsWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'inputFile' is set
+    if (inputFile == nil) {
+        NSParameterAssert(inputFile);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"inputFile"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/comments/remove-all"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"multipart/form-data"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    localVarFiles[@"inputFile"] = inputFile;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Remove headers and footers from Word DOCX document
 /// Remove all headers, or footers, or both from a Word Document (DOCX).  Call Finish Editing on the output URL to complete the operation.
 ///  @param reqConfig Document input request 
@@ -1696,6 +2109,204 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
     bodyParam = reqConfig;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Replace multiple strings in Word DOCX document
+/// Replace all instances of multiple strings in an Office Word Document (docx)
+///  @param reqConfig Document string replacement configuration input 
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) editDocumentDocxReplaceMultiWithReqConfig: (CMMultiReplaceStringRequest*) reqConfig
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'reqConfig' is set
+    if (reqConfig == nil) {
+        NSParameterAssert(reqConfig);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"reqConfig"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/replace-all/multi"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/octet-stream"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = reqConfig;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"NSData*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Replace matching paragraphs in a Word DOCX document
+/// Returns the edited Word Document (DOCX) format file with the matching paragraphs replaced as requested.  Replace a paragraph with another object such as an image.  Useful for performing templating operations.
+///  @param reqConfig Document input request 
+///
+///  @returns CMReplaceDocxParagraphResponse*
+///
+-(NSURLSessionTask*) editDocumentDocxReplaceParagraphWithReqConfig: (CMReplaceDocxParagraphRequest*) reqConfig
+    completionHandler: (void (^)(CMReplaceDocxParagraphResponse* output, NSError* error)) handler {
+    // verify the required parameter 'reqConfig' is set
+    if (reqConfig == nil) {
+        NSParameterAssert(reqConfig);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"reqConfig"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/replace/paragraph"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = reqConfig;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMReplaceDocxParagraphResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMReplaceDocxParagraphResponse*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Set custom property metadata properties in Word DOCX document
+/// Sets the custom property metadata for the metadata properties in an Office Word Document (docx)
+///  @param input  
+///
+///  @returns NSData*
+///
+-(NSURLSessionTask*) editDocumentDocxSetCustomMetadataPropertiesWithInput: (CMDocxSetCustomMetadataPropertiesRequest*) input
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/docx/set-metadata/custom-property"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"
@@ -2245,6 +2856,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
 }
 
 ///
+/// Append row to a Excel XLSX spreadsheet, worksheet
+/// Appends a row to the end of an Excel Spreadsheet worksheet.
+///  @param input Document input request 
+///
+///  @returns CMAppendXlsxRowResponse*
+///
+-(NSURLSessionTask*) editDocumentXlsxAppendRowWithInput: (CMAppendXlsxRowRequest*) input
+    completionHandler: (void (^)(CMAppendXlsxRowResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/xlsx/append-row"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMAppendXlsxRowResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMAppendXlsxRowResponse*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Clear cell contents in an Excel XLSX spreadsheet, worksheet by index
 /// Clears, sets to blank, the contents of a specific cell in an Excel XLSX spreadsheet, worksheet
 ///  @param input Document input request 
@@ -2306,6 +2983,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((CMClearXlsxCellResponse*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Clear row from a Excel XLSX spreadsheet, worksheet
+/// Clears data from a specific row in the Excel Spreadsheet worksheet, leaving a blank row. Use the Get Rows And Cells API to enumerate available rows in a spreadsheet.
+///  @param input Document input request 
+///
+///  @returns CMClearXlsxRowResponse*
+///
+-(NSURLSessionTask*) editDocumentXlsxClearRowWithInput: (CMClearXlsxRowRequest*) input
+    completionHandler: (void (^)(CMClearXlsxRowResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/xlsx/clear-row"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMClearXlsxRowResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMClearXlsxRowResponse*)data, error);
                                 }
                             }];
 }
@@ -2447,10 +3190,10 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
 /// Edits the input Excel XLSX spreadsheet document to remove the specified worksheet (tab).  Use the Get Worksheets API to enumerate available worksheets in a spreadsheet.
 ///  @param reqConfig Spreadsheet input request 
 ///
-///  @returns NSObject*
+///  @returns NSData*
 ///
 -(NSURLSessionTask*) editDocumentXlsxDeleteWorksheetWithReqConfig: (CMRemoveXlsxWorksheetRequest*) reqConfig
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler {
     // verify the required parameter 'reqConfig' is set
     if (reqConfig == nil) {
         NSParameterAssert(reqConfig);
@@ -2500,10 +3243,76 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"NSObject*"
+                              responseType: @"NSData*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((NSObject*)data, error);
+                                    handler((NSData*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Disable Shared Workbook (legacy) in Excel XLSX spreadsheet
+/// Disable the Shared Workbook (legacy) mode in an Excel XLSX spreadsheet
+///  @param input Document input request 
+///
+///  @returns CMDisableSharedWorkbookResponse*
+///
+-(NSURLSessionTask*) editDocumentXlsxDisableSharedWorkbookWithInput: (CMDisableSharedWorkbookRequest*) input
+    completionHandler: (void (^)(CMDisableSharedWorkbookResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/xlsx/configuration/disable-shared-workbook"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMDisableSharedWorkbookResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMDisableSharedWorkbookResponse*)data, error);
                                 }
                             }];
 }
@@ -2905,6 +3714,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
 }
 
 ///
+/// Get a specific row from a Excel XLSX spreadsheet, worksheet by path
+/// Returns the specific row and its cells defined in the Excel Spreadsheet worksheet based on the specified path.
+///  @param input Document input request 
+///
+///  @returns CMGetXlsxSpecificRowResponse*
+///
+-(NSURLSessionTask*) editDocumentXlsxGetSpecificRowWithInput: (CMGetXlsxSpecificRowRequest*) input
+    completionHandler: (void (^)(CMGetXlsxSpecificRowResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/xlsx/get-specific-row"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMGetXlsxSpecificRowResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMGetXlsxSpecificRowResponse*)data, error);
+                                }
+                            }];
+}
+
+///
 /// Get styles from a Excel XLSX spreadsheet, worksheet
 /// Returns the style defined in the Excel Spreadsheet
 ///  @param input Document input request 
@@ -3098,6 +3973,72 @@ NSInteger kCMEditDocumentApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((CMInsertXlsxWorksheetResponse*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Rename a specific worksheet in a Excel XLSX spreadsheet
+/// Edits the input Excel XLSX spreadsheet document to rename a specified worksheet (tab).  Use the Get Worksheets API to enumerate available worksheets in a spreadsheet.
+///  @param input Document input request 
+///
+///  @returns CMRenameXlsxWorksheetResponse*
+///
+-(NSURLSessionTask*) editDocumentXlsxRenameWorksheetWithInput: (CMRenameXlsxWorksheetRequest*) input
+    completionHandler: (void (^)(CMRenameXlsxWorksheetResponse* output, NSError* error)) handler {
+    // verify the required parameter 'input' is set
+    if (input == nil) {
+        NSParameterAssert(input);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"input"] };
+            NSError* error = [NSError errorWithDomain:kCMEditDocumentApiErrorDomain code:kCMEditDocumentApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/convert/edit/xlsx/rename-worksheet"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json", @"text/json", @"application/xml", @"text/xml", @"application/x-www-form-urlencoded"]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"Apikey"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = input;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"CMRenameXlsxWorksheetResponse*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((CMRenameXlsxWorksheetResponse*)data, error);
                                 }
                             }];
 }

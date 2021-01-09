@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"html": @"Html", @"extraLoadingWait": @"ExtraLoadingWait" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"html": @"Html", @"extraLoadingWait": @"ExtraLoadingWait", @"includeBackgroundGraphics": @"IncludeBackgroundGraphics", @"scaleFactor": @"ScaleFactor" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"html", @"extraLoadingWait"];
+  NSArray *optionalProperties = @[@"html", @"extraLoadingWait", @"includeBackgroundGraphics", @"scaleFactor"];
   return [optionalProperties containsObject:propertyName];
 }
 

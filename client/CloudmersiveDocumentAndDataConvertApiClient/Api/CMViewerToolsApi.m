@@ -54,9 +54,15 @@ NSInteger kCMViewerToolsApiMissingParamErrorCode = 234513;
 /// Creates an HTML embed code for a simple web-based viewer of a document; supports Office document types and PDF.
 ///  @param inputFile Input file to perform the operation on. 
 ///
+///  @param width Optional; width of the output viewer in pixels (optional)
+///
+///  @param height Optional; height of the output viewer in pixels (optional)
+///
 ///  @returns CMViewerResponse*
 ///
 -(NSURLSessionTask*) viewerToolsCreateSimpleWithInputFile: (NSURL*) inputFile
+    width: (NSNumber*) width
+    height: (NSNumber*) height
     completionHandler: (void (^)(CMViewerResponse* output, NSError* error)) handler {
     // verify the required parameter 'inputFile' is set
     if (inputFile == nil) {
@@ -76,6 +82,12 @@ NSInteger kCMViewerToolsApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    if (width != nil) {
+        headerParams[@"width"] = width;
+    }
+    if (height != nil) {
+        headerParams[@"height"] = height;
+    }
     // HTTP header `Accept`
     NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json", @"text/json", @"application/xml", @"text/xml"]];
     if(acceptHeader.length > 0) {

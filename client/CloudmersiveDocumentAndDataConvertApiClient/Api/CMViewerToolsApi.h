@@ -27,11 +27,15 @@ extern NSInteger kCMViewerToolsApiMissingParamErrorCode;
 /// Creates an HTML embed code for a simple web-based viewer of a document; supports Office document types and PDF.
 ///
 /// @param inputFile Input file to perform the operation on.
+/// @param width Optional; width of the output viewer in pixels (optional)
+/// @param height Optional; height of the output viewer in pixels (optional)
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return CMViewerResponse*
 -(NSURLSessionTask*) viewerToolsCreateSimpleWithInputFile: (NSURL*) inputFile
+    width: (NSNumber*) width
+    height: (NSNumber*) height
     completionHandler: (void (^)(CMViewerResponse* output, NSError* error)) handler;
 
 

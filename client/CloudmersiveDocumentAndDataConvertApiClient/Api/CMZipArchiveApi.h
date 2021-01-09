@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "CMCreateZipArchiveRequest.h"
+#import "CMZipEncryptionAdvancedRequest.h"
 #import "CMZipExtractResponse.h"
 #import "CMApi.h"
 
@@ -27,12 +28,31 @@ extern NSInteger kCMZipArchiveApiMissingParamErrorCode;
 /// Compress files to create a new zip archive
 /// Create a new zip archive by compressing input files.
 ///
+/// @param inputFile1 First input file to perform the operation on.
+/// @param inputFile2 Second input file to perform the operation on. (optional)
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return NSObject*
--(NSURLSessionTask*) zipArchiveZipCreateWithCompletionHandler: 
-    (void (^)(NSObject* output, NSError* error)) handler;
+/// @return NSData*
+-(NSURLSessionTask*) zipArchiveZipCreateWithInputFile1: (NSURL*) inputFile1
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// Compress files and folders to create a new zip archive with advanced options
@@ -44,6 +64,66 @@ extern NSInteger kCMZipArchiveApiMissingParamErrorCode;
 ///
 /// @return NSObject*
 -(NSURLSessionTask*) zipArchiveZipCreateAdvancedWithRequest: (CMCreateZipArchiveRequest*) request
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Compress files to create a new, encrypted and password-protected zip archive
+/// Create a new zip archive by compressing input files, and also applies encryption and password protection to the zip.
+///
+/// @param password Password to place on the Zip file; the longer the password, the more secure
+/// @param inputFile1 First input file to perform the operation on.
+/// @param encryptionAlgorithm Encryption algorithm to use; possible values are AES-256 (recommended), AES-128, and PK-Zip (not recommended; legacy, weak encryption algorithm). Default is AES-256. (optional)
+/// @param inputFile2 Second input file to perform the operation on. (optional)
+/// @param inputFile3 Third input file to perform the operation on. (optional)
+/// @param inputFile4 Fourth input file to perform the operation on. (optional)
+/// @param inputFile5 Fifth input file to perform the operation on. (optional)
+/// @param inputFile6 Sixth input file to perform the operation on. (optional)
+/// @param inputFile7 Seventh input file to perform the operation on. (optional)
+/// @param inputFile8 Eighth input file to perform the operation on. (optional)
+/// @param inputFile9 Ninth input file to perform the operation on. (optional)
+/// @param inputFile10 Tenth input file to perform the operation on. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) zipArchiveZipCreateEncryptedWithPassword: (NSString*) password
+    inputFile1: (NSURL*) inputFile1
+    encryptionAlgorithm: (NSString*) encryptionAlgorithm
+    inputFile2: (NSURL*) inputFile2
+    inputFile3: (NSURL*) inputFile3
+    inputFile4: (NSURL*) inputFile4
+    inputFile5: (NSURL*) inputFile5
+    inputFile6: (NSURL*) inputFile6
+    inputFile7: (NSURL*) inputFile7
+    inputFile8: (NSURL*) inputFile8
+    inputFile9: (NSURL*) inputFile9
+    inputFile10: (NSURL*) inputFile10
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Decrypt and remove password protection on a zip file
+/// Decrypts and removes password protection from an encrypted zip file with the specified password
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param zipPassword Required; Password for the input archive
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) zipArchiveZipDecryptWithInputFile: (NSURL*) inputFile
+    zipPassword: (NSString*) zipPassword
+    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Encrypt and password protect a zip file
+/// Encrypts and password protects an existing zip file with the specified password and encryption algorithm
+///
+/// @param encryptionRequest Encryption request
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSObject*
+-(NSURLSessionTask*) zipArchiveZipEncryptAdvancedWithEncryptionRequest: (CMZipEncryptionAdvancedRequest*) encryptionRequest
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
 
 

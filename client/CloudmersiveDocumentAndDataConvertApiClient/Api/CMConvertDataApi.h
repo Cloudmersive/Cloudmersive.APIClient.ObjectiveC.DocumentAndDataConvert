@@ -35,12 +35,28 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
 /// Convert a CSV file to a JSON object array
 ///
 /// @param inputFile Input file to perform the operation on.
+/// @param columnNamesFromFirstRow Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. (optional)
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return NSObject*
 -(NSURLSessionTask*) convertDataCsvToJsonWithInputFile: (NSURL*) inputFile
+    columnNamesFromFirstRow: (NSNumber*) columnNamesFromFirstRow
     completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+
+
+/// Convert CSV to XML conversion
+/// Convert a CSV file to a XML file
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param columnNamesFromFirstRow Optional; If true, the first row will be used as the labels for the columns; if false, columns will be named Column0, Column1, etc.  Default is true.  Set to false if you are not using column headings, or have an irregular column structure. (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDataCsvToXmlWithInputFile: (NSURL*) inputFile
+    columnNamesFromFirstRow: (NSNumber*) columnNamesFromFirstRow
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// Convert JSON to XML conversion
@@ -74,9 +90,21 @@ extern NSInteger kCMConvertDataApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return NSObject*
+/// @return NSData*
 -(NSURLSessionTask*) convertDataXlsxToJsonWithInputFile: (NSURL*) inputFile
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Convert Excel XLSX to XML conversion
+/// Convert an Excel XLSX file to a XML file
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) convertDataXlsxToXmlWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// Adds an attribute to all XML nodes matching XPath expression

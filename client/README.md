@@ -43,9 +43,13 @@ Import the following:
 // load models
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMAddPdfAnnotationRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMAlternateFileFormatCandidate.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMAppendXlsxRowRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMAppendXlsxRowResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMAutodetectDocumentValidationResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMAutodetectGetInfoResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMAutodetectToJpgResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMAutodetectToPngResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMAutodetectToThumbnailsResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMBase64DecodeRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMBase64DecodeResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMBase64DetectRequest.h>
@@ -55,6 +59,9 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMChangeLineEndingResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMClearXlsxCellRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMClearXlsxCellResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMClearXlsxRowRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMClearXlsxRowResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMConvertedJpgPage.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMConvertedPngPage.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMCreateBlankDocxRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMCreateBlankDocxResponse.h>
@@ -63,11 +70,15 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMCreateSpreadsheetFromDataRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMCreateSpreadsheetFromDataResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMCreateZipArchiveRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMCsvCollection.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMCsvFileResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDeleteDocxTableRowRangeRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDeleteDocxTableRowRangeResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDeleteDocxTableRowRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDeleteDocxTableRowResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDetectLineEndingsResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMDisableSharedWorkbookRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMDisableSharedWorkbookResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocumentValidationError.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocumentValidationResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxBody.h>
@@ -79,12 +90,14 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxInsertCommentOnParagraphRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxInsertImageRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxInsertImageResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxMetadataCustomProperty.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxPage.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxParagraph.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxRemoveObjectRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxRemoveObjectResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxRun.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxSection.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxSetCustomMetadataPropertiesRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxSetFooterAddPageNumberRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxSetFooterRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxSetFooterResponse.h>
@@ -97,10 +110,18 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxTemplateApplicationRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxTemplateOperation.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxText.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMDocxTopLevelComment.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMEmlAttachment.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMEmlToHtmlResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMEmlToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMEmlToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMEnableSharedWorkbookRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMEnableSharedWorkbookResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMExifValue.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMFindDocxParagraphRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMFindDocxParagraphResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMFindRegexMatch.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMFindStringMatch.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMFindStringRegexRequest.h>
@@ -118,6 +139,7 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxHeadersAndFootersResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxImagesRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxImagesResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxMetadataPropertiesResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxPagesRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxPagesResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxSectionsRequest.h>
@@ -130,6 +152,7 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxTableRowResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxTablesRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetDocxTablesResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMGetFileTypeIconResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetImageInfoResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetPdfAnnotationsResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxCellByIdentifierRequest.h>
@@ -142,6 +165,8 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxImagesResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxRowsAndCellsRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxRowsAndCellsResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxSpecificRowRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxSpecificRowResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxStylesRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxStylesResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMGetXlsxWorksheetsRequest.h>
@@ -164,7 +189,20 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMInsertDocxTablesResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMInsertXlsxWorksheetRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMInsertXlsxWorksheetResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMKeynoteToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMKeynoteToPngResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMMsgAttachment.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMMsgToHtmlResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMMsgToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMMsgToPngResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMMultiReplaceStringRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMMultipageImageFormatConversionResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMOdpToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMOdpToPngResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMOdsToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMOdsToPngResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMOdtToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMOdtToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPageConversionResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfAnnotation.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfDocument.h>
@@ -173,7 +211,9 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfMetadata.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfPageText.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfTextByPageResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfToJpgResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPdfToPngResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMPptxToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMPresentationResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveDocxHeadersAndFootersRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveDocxHeadersAndFootersResponse.h>
@@ -184,11 +224,17 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveWhitespaceFromTextRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveWhitespaceFromTextResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMRemoveXlsxWorksheetRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMRenameXlsxWorksheetRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMRenameXlsxWorksheetResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceDocxParagraphRequest.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceDocxParagraphResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceStringRegexRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceStringRegexResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceStringRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceStringSimpleRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMReplaceStringSimpleResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMRtfToJpgResult.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMRtfToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMScreenshotRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSetFormFieldValue.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSetPdfFormFieldsRequest.h>
@@ -197,6 +243,7 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSetXlsxCellByIdentifierResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSetXlsxCellRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSetXlsxCellResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMSingleReplaceString.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSplitDocumentResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSplitDocxDocumentResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSplitPdfResult.h>
@@ -208,6 +255,7 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMTextDocumentElement.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMTextDocumentLine.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMTextEncodingDetectResponse.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMThumbnail.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMUpdateDocxTableCellRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMUpdateDocxTableCellResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMUpdateDocxTableRowRequest.h>
@@ -221,6 +269,7 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXlsxSpreadsheetCell.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXlsxSpreadsheetColumn.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXlsxSpreadsheetRow.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMXlsxToPngResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXlsxWorksheet.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXmlAddAttributeWithXPathResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXmlAddChildWithXPathResult.h>
@@ -232,6 +281,7 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXmlReplaceWithXPathResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMXmlSetValueWithXPathResult.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMZipDirectory.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMZipEncryptionAdvancedRequest.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMZipExtractResponse.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMZipFile.h>
 // load API classes for accessing endpoints
@@ -242,10 +292,12 @@ Import the following:
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMConvertTemplateApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMConvertWebApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMEditDocumentApi.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMEditHtmlApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMEditPdfApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMEditTextApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMMergeDocumentApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMSplitDocumentApi.h>
+#import <CloudmersiveDocumentAndDataConvertApiClient/CMTransformDocumentApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMValidateDocumentApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMViewerToolsApi.h>
 #import <CloudmersiveDocumentAndDataConvertApiClient/CMZipArchiveApi.h>
@@ -297,9 +349,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CMCompareDocumentApi* | [**compareDocumentDocx**](docs/CMCompareDocumentApi.md#comparedocumentdocx) | **POST** /convert/compare/docx | Compare Two Word DOCX
 *CMConvertDataApi* | [**convertDataCsvToJson**](docs/CMConvertDataApi.md#convertdatacsvtojson) | **POST** /convert/csv/to/json | Convert CSV to JSON conversion
+*CMConvertDataApi* | [**convertDataCsvToXml**](docs/CMConvertDataApi.md#convertdatacsvtoxml) | **POST** /convert/csv/to/xml | Convert CSV to XML conversion
 *CMConvertDataApi* | [**convertDataJsonToXml**](docs/CMConvertDataApi.md#convertdatajsontoxml) | **POST** /convert/json/to/xml | Convert JSON to XML conversion
 *CMConvertDataApi* | [**convertDataXlsToJson**](docs/CMConvertDataApi.md#convertdataxlstojson) | **POST** /convert/xls/to/json | Convert Excel (97-2003) XLS to JSON conversion
 *CMConvertDataApi* | [**convertDataXlsxToJson**](docs/CMConvertDataApi.md#convertdataxlsxtojson) | **POST** /convert/xlsx/to/json | Convert Excel XLSX to JSON conversion
+*CMConvertDataApi* | [**convertDataXlsxToXml**](docs/CMConvertDataApi.md#convertdataxlsxtoxml) | **POST** /convert/xlsx/to/xml | Convert Excel XLSX to XML conversion
 *CMConvertDataApi* | [**convertDataXmlEditAddAttributeWithXPath**](docs/CMConvertDataApi.md#convertdataxmleditaddattributewithxpath) | **POST** /convert/xml/edit/xpath/add-attribute | Adds an attribute to all XML nodes matching XPath expression
 *CMConvertDataApi* | [**convertDataXmlEditAddChildWithXPath**](docs/CMConvertDataApi.md#convertdataxmleditaddchildwithxpath) | **POST** /convert/xml/edit/xpath/add-child | Adds an XML node as a child to XML nodes matching XPath expression
 *CMConvertDataApi* | [**convertDataXmlEditRemoveAllChildNodesWithXPath**](docs/CMConvertDataApi.md#convertdataxmleditremoveallchildnodeswithxpath) | **POST** /convert/xml/edit/xpath/remove-all-children | Removes, deletes all children of nodes matching XPath expression, but does not remove the nodes
@@ -312,20 +366,58 @@ Class | Method | HTTP request | Description
 *CMConvertDataApi* | [**convertDataXmlToJson**](docs/CMConvertDataApi.md#convertdataxmltojson) | **POST** /convert/xml/to/json | Convert XML to JSON conversion
 *CMConvertDataApi* | [**convertDataXmlTransformWithXsltToXml**](docs/CMConvertDataApi.md#convertdataxmltransformwithxslttoxml) | **POST** /convert/xml/transform/xslt/to/xml | Transform XML document file with XSLT into a new XML document
 *CMConvertDocumentApi* | [**convertDocumentAutodetectGetInfo**](docs/CMConvertDocumentApi.md#convertdocumentautodetectgetinfo) | **POST** /convert/autodetect/get-info | Get document type information
+*CMConvertDocumentApi* | [**convertDocumentAutodetectToJpg**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttojpg) | **POST** /convert/autodetect/to/jpg | Convert Document to JPG/JPEG image array
 *CMConvertDocumentApi* | [**convertDocumentAutodetectToPdf**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttopdf) | **POST** /convert/autodetect/to/pdf | Convert Document to PDF
 *CMConvertDocumentApi* | [**convertDocumentAutodetectToPngArray**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttopngarray) | **POST** /convert/autodetect/to/png | Convert Document to PNG array
+*CMConvertDocumentApi* | [**convertDocumentAutodetectToThumbnail**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttothumbnail) | **POST** /convert/autodetect/to/thumbnail | Convert File to Thumbnail Image
+*CMConvertDocumentApi* | [**convertDocumentAutodetectToThumbnailsAdvanced**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttothumbnailsadvanced) | **POST** /convert/autodetect/to/thumbnail/advanced | Convert File to Thumbnail Image Object
 *CMConvertDocumentApi* | [**convertDocumentAutodetectToTxt**](docs/CMConvertDocumentApi.md#convertdocumentautodetecttotxt) | **POST** /convert/autodetect/to/txt | Convert Document to Text (txt)
+*CMConvertDocumentApi* | [**convertDocumentCsvMultiToXlsx**](docs/CMConvertDocumentApi.md#convertdocumentcsvmultitoxlsx) | **POST** /convert/csv/multi/to/xlsx | Convert Multiple CSV Files into a Single XLSX Spreadsheet
+*CMConvertDocumentApi* | [**convertDocumentCsvToHtml**](docs/CMConvertDocumentApi.md#convertdocumentcsvtohtml) | **POST** /convert/csv/to/html | Convert CSV to HTML document
+*CMConvertDocumentApi* | [**convertDocumentCsvToPdf**](docs/CMConvertDocumentApi.md#convertdocumentcsvtopdf) | **POST** /convert/csv/to/pdf | Convert CSV to PDF document
 *CMConvertDocumentApi* | [**convertDocumentCsvToXlsx**](docs/CMConvertDocumentApi.md#convertdocumentcsvtoxlsx) | **POST** /convert/csv/to/xlsx | Convert CSV to Excel XLSX Spreadsheet
 *CMConvertDocumentApi* | [**convertDocumentDocToDocx**](docs/CMConvertDocumentApi.md#convertdocumentdoctodocx) | **POST** /convert/doc/to/docx | Convert Word DOC (97-03) Document to DOCX
 *CMConvertDocumentApi* | [**convertDocumentDocToPdf**](docs/CMConvertDocumentApi.md#convertdocumentdoctopdf) | **POST** /convert/doc/to/pdf | Convert Word DOC (97-03) Document to PDF
 *CMConvertDocumentApi* | [**convertDocumentDocToTxt**](docs/CMConvertDocumentApi.md#convertdocumentdoctotxt) | **POST** /convert/doc/to/txt | Convert Word DOC (97-03) Document to Text (txt)
+*CMConvertDocumentApi* | [**convertDocumentDocxToDoc**](docs/CMConvertDocumentApi.md#convertdocumentdocxtodoc) | **POST** /convert/docx/to/doc | Convert Word DOCX Document to Legacy Word DOC (97-03)
+*CMConvertDocumentApi* | [**convertDocumentDocxToHtml**](docs/CMConvertDocumentApi.md#convertdocumentdocxtohtml) | **POST** /convert/docx/to/html | Convert Word DOCX Document to HTML Document
+*CMConvertDocumentApi* | [**convertDocumentDocxToJpg**](docs/CMConvertDocumentApi.md#convertdocumentdocxtojpg) | **POST** /convert/docx/to/jpg | Convert Word DOCX Document to JPG/JPEG image array
 *CMConvertDocumentApi* | [**convertDocumentDocxToPdf**](docs/CMConvertDocumentApi.md#convertdocumentdocxtopdf) | **POST** /convert/docx/to/pdf | Convert Word DOCX Document to PDF
+*CMConvertDocumentApi* | [**convertDocumentDocxToPng**](docs/CMConvertDocumentApi.md#convertdocumentdocxtopng) | **POST** /convert/docx/to/png | Convert Word DOCX Document to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentDocxToRtf**](docs/CMConvertDocumentApi.md#convertdocumentdocxtortf) | **POST** /convert/docx/to/rtf | Convert Word DOCX Document to RTF
 *CMConvertDocumentApi* | [**convertDocumentDocxToTxt**](docs/CMConvertDocumentApi.md#convertdocumentdocxtotxt) | **POST** /convert/docx/to/txt | Convert Word DOCX Document to Text (txt)
+*CMConvertDocumentApi* | [**convertDocumentEmlToHtml**](docs/CMConvertDocumentApi.md#convertdocumentemltohtml) | **POST** /convert/eml/to/html | Convert Email EML file to HTML string
+*CMConvertDocumentApi* | [**convertDocumentEmlToJpg**](docs/CMConvertDocumentApi.md#convertdocumentemltojpg) | **POST** /convert/eml/to/jpg | Convert Email EML file to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentEmlToPdf**](docs/CMConvertDocumentApi.md#convertdocumentemltopdf) | **POST** /convert/eml/to/pdf | Convert Email EML file to PDF document
+*CMConvertDocumentApi* | [**convertDocumentEmlToPng**](docs/CMConvertDocumentApi.md#convertdocumentemltopng) | **POST** /convert/eml/to/png | Convert Email EML file to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentGetFileTypeIcon**](docs/CMConvertDocumentApi.md#convertdocumentgetfiletypeicon) | **POST** /convert/autodetect/get-icon | Get PNG icon file for the file extension
+*CMConvertDocumentApi* | [**convertDocumentGetFileTypeIconAdvanced**](docs/CMConvertDocumentApi.md#convertdocumentgetfiletypeiconadvanced) | **POST** /convert/autodetect/get-icon/advanced | Get PNG icon byte array for the file extension
 *CMConvertDocumentApi* | [**convertDocumentHtmlToPdf**](docs/CMConvertDocumentApi.md#convertdocumenthtmltopdf) | **POST** /convert/html/to/pdf | Convert HTML document file to PDF Document
 *CMConvertDocumentApi* | [**convertDocumentHtmlToPng**](docs/CMConvertDocumentApi.md#convertdocumenthtmltopng) | **POST** /convert/html/to/png | Convert HTML document file to PNG image array
 *CMConvertDocumentApi* | [**convertDocumentHtmlToTxt**](docs/CMConvertDocumentApi.md#convertdocumenthtmltotxt) | **POST** /convert/html/to/txt | HTML Document file to Text (txt)
+*CMConvertDocumentApi* | [**convertDocumentKeynoteToJpg**](docs/CMConvertDocumentApi.md#convertdocumentkeynotetojpg) | **POST** /convert/key/to/jpg | Convert Keynote Presentation (KEY) to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentKeynoteToPdf**](docs/CMConvertDocumentApi.md#convertdocumentkeynotetopdf) | **POST** /convert/key/to/pdf | Convert Keynote Presentation (KEY) to PDF
+*CMConvertDocumentApi* | [**convertDocumentKeynoteToPng**](docs/CMConvertDocumentApi.md#convertdocumentkeynotetopng) | **POST** /convert/key/to/png | Convert Keynote Presentation (KEY) to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentKeynoteToPptx**](docs/CMConvertDocumentApi.md#convertdocumentkeynotetopptx) | **POST** /convert/key/to/pptx | Convert Keynote Presentation (KEY) to PPTX
+*CMConvertDocumentApi* | [**convertDocumentMsgToHtml**](docs/CMConvertDocumentApi.md#convertdocumentmsgtohtml) | **POST** /convert/msg/to/html | Convert Email MSG file to HTML string
+*CMConvertDocumentApi* | [**convertDocumentMsgToJpg**](docs/CMConvertDocumentApi.md#convertdocumentmsgtojpg) | **POST** /convert/msg/to/jpg | Convert Email MSG file to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentMsgToPdf**](docs/CMConvertDocumentApi.md#convertdocumentmsgtopdf) | **POST** /convert/msg/to/pdf | Convert Email MSG file to PDF document
+*CMConvertDocumentApi* | [**convertDocumentMsgToPng**](docs/CMConvertDocumentApi.md#convertdocumentmsgtopng) | **POST** /convert/msg/to/png | Convert Email MSG file to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentOdpToJpg**](docs/CMConvertDocumentApi.md#convertdocumentodptojpg) | **POST** /convert/odp/to/jpg | Convert ODP Presentation to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentOdpToPdf**](docs/CMConvertDocumentApi.md#convertdocumentodptopdf) | **POST** /convert/odp/to/pdf | Convert ODP Presentation to PDF
+*CMConvertDocumentApi* | [**convertDocumentOdpToPng**](docs/CMConvertDocumentApi.md#convertdocumentodptopng) | **POST** /convert/odp/to/png | Convert ODP Presentation to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentOdpToPptx**](docs/CMConvertDocumentApi.md#convertdocumentodptopptx) | **POST** /convert/odp/to/pptx | Convert ODP Presentation to PPTX
+*CMConvertDocumentApi* | [**convertDocumentOdsToJpg**](docs/CMConvertDocumentApi.md#convertdocumentodstojpg) | **POST** /convert/ods/to/jpg | Convert ODS Spreadsheet to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentOdsToPdf**](docs/CMConvertDocumentApi.md#convertdocumentodstopdf) | **POST** /convert/ods/to/pdf | Convert ODS Spreadsheet to PDF
+*CMConvertDocumentApi* | [**convertDocumentOdsToPng**](docs/CMConvertDocumentApi.md#convertdocumentodstopng) | **POST** /convert/ods/to/png | Convert ODS Spreadsheet to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentOdsToXlsx**](docs/CMConvertDocumentApi.md#convertdocumentodstoxlsx) | **POST** /convert/ods/to/xlsx | Convert ODS Spreadsheet to XLSX
+*CMConvertDocumentApi* | [**convertDocumentOdtToDocx**](docs/CMConvertDocumentApi.md#convertdocumentodttodocx) | **POST** /convert/odt/to/docx | Convert ODT Text File to Word DOCX
+*CMConvertDocumentApi* | [**convertDocumentOdtToJpg**](docs/CMConvertDocumentApi.md#convertdocumentodttojpg) | **POST** /convert/odt/to/jpg | Convert ODT Text File to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentOdtToPdf**](docs/CMConvertDocumentApi.md#convertdocumentodttopdf) | **POST** /convert/odt/to/pdf | Convert ODT Text File to PDF
+*CMConvertDocumentApi* | [**convertDocumentOdtToPng**](docs/CMConvertDocumentApi.md#convertdocumentodttopng) | **POST** /convert/odt/to/png | Convert ODT Text File to PNG image array
 *CMConvertDocumentApi* | [**convertDocumentPdfToDocx**](docs/CMConvertDocumentApi.md#convertdocumentpdftodocx) | **POST** /convert/pdf/to/docx | Convert PDF to Word DOCX Document
 *CMConvertDocumentApi* | [**convertDocumentPdfToDocxRasterize**](docs/CMConvertDocumentApi.md#convertdocumentpdftodocxrasterize) | **POST** /convert/pdf/to/docx/rasterize | Convert PDF to Word DOCX Document based on rasterized version of the PDF
+*CMConvertDocumentApi* | [**convertDocumentPdfToJpg**](docs/CMConvertDocumentApi.md#convertdocumentpdftojpg) | **POST** /convert/pdf/to/jpg | Convert PDF to JPG/JPEG image array
 *CMConvertDocumentApi* | [**convertDocumentPdfToPngArray**](docs/CMConvertDocumentApi.md#convertdocumentpdftopngarray) | **POST** /convert/pdf/to/png | Convert PDF to PNG Image Array
 *CMConvertDocumentApi* | [**convertDocumentPdfToPngSingle**](docs/CMConvertDocumentApi.md#convertdocumentpdftopngsingle) | **POST** /convert/pdf/to/png/merge-single | Convert PDF to Single PNG image
 *CMConvertDocumentApi* | [**convertDocumentPdfToPptx**](docs/CMConvertDocumentApi.md#convertdocumentpdftopptx) | **POST** /convert/pdf/to/pptx | Convert PDF to PowerPoint PPTX Presentation
@@ -334,13 +426,24 @@ Class | Method | HTTP request | Description
 *CMConvertDocumentApi* | [**convertDocumentPptToPdf**](docs/CMConvertDocumentApi.md#convertdocumentppttopdf) | **POST** /convert/ppt/to/pdf | Convert PowerPoint PPT (97-03) Presentation to PDF
 *CMConvertDocumentApi* | [**convertDocumentPptToPptx**](docs/CMConvertDocumentApi.md#convertdocumentppttopptx) | **POST** /convert/ppt/to/pptx | Convert PowerPoint PPT (97-03) Presentation to PPTX
 *CMConvertDocumentApi* | [**convertDocumentPptxToPdf**](docs/CMConvertDocumentApi.md#convertdocumentpptxtopdf) | **POST** /convert/pptx/to/pdf | Convert PowerPoint PPTX Presentation to PDF
+*CMConvertDocumentApi* | [**convertDocumentPptxToPng**](docs/CMConvertDocumentApi.md#convertdocumentpptxtopng) | **POST** /convert/pptx/to/png | Convert PowerPoint PPTX to PNG image array
+*CMConvertDocumentApi* | [**convertDocumentPptxToPpt**](docs/CMConvertDocumentApi.md#convertdocumentpptxtoppt) | **POST** /convert/pptx/to/ppt | Convert PowerPoint PPTX presentation to Legacy PowerPoint PPT (97-03)
 *CMConvertDocumentApi* | [**convertDocumentPptxToTxt**](docs/CMConvertDocumentApi.md#convertdocumentpptxtotxt) | **POST** /convert/pptx/to/txt | Convert PowerPoint PPTX Presentation to Text (txt)
+*CMConvertDocumentApi* | [**convertDocumentRtfToDocx**](docs/CMConvertDocumentApi.md#convertdocumentrtftodocx) | **POST** /convert/rtf/to/docx | Convert Rich Text Format RTF to DOCX Document
+*CMConvertDocumentApi* | [**convertDocumentRtfToHtml**](docs/CMConvertDocumentApi.md#convertdocumentrtftohtml) | **POST** /convert/rtf/to/html | Convert Rich Text Format RTF to HTML Document
+*CMConvertDocumentApi* | [**convertDocumentRtfToJpg**](docs/CMConvertDocumentApi.md#convertdocumentrtftojpg) | **POST** /convert/rtf/to/jpg | Convert Rich Text Format RTF to JPG/JPEG image array
+*CMConvertDocumentApi* | [**convertDocumentRtfToPdf**](docs/CMConvertDocumentApi.md#convertdocumentrtftopdf) | **POST** /convert/rtf/to/pdf | Convert Rich Text Format RTF to PDF
+*CMConvertDocumentApi* | [**convertDocumentRtfToPng**](docs/CMConvertDocumentApi.md#convertdocumentrtftopng) | **POST** /convert/rtf/to/png | Convert Rich Text Format RTF to PNG image array
 *CMConvertDocumentApi* | [**convertDocumentXlsToCsv**](docs/CMConvertDocumentApi.md#convertdocumentxlstocsv) | **POST** /convert/xls/to/csv | Convert Excel XLS (97-03) Spreadsheet to CSV
 *CMConvertDocumentApi* | [**convertDocumentXlsToPdf**](docs/CMConvertDocumentApi.md#convertdocumentxlstopdf) | **POST** /convert/xls/to/pdf | Convert Excel XLS (97-03) Spreadsheet to PDF
 *CMConvertDocumentApi* | [**convertDocumentXlsToXlsx**](docs/CMConvertDocumentApi.md#convertdocumentxlstoxlsx) | **POST** /convert/xls/to/xlsx | Convert Excel XLS (97-03) Spreadsheet to XLSX
-*CMConvertDocumentApi* | [**convertDocumentXlsxToCsv**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtocsv) | **POST** /convert/xlsx/to/csv | Convert Excel XLSX Spreadsheet to CSV
+*CMConvertDocumentApi* | [**convertDocumentXlsxToCsv**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtocsv) | **POST** /convert/xlsx/to/csv | Convert Excel XLSX Spreadsheet to CSV, Single Worksheet
+*CMConvertDocumentApi* | [**convertDocumentXlsxToCsvMulti**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtocsvmulti) | **POST** /convert/xlsx/to/csv/multi | Convert Excel XLSX Spreadsheet to CSV, Multiple Worksheets
+*CMConvertDocumentApi* | [**convertDocumentXlsxToHtml**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtohtml) | **POST** /convert/xlsx/to/html | Convert Excel XLSX Spreadsheet to HTML Document
 *CMConvertDocumentApi* | [**convertDocumentXlsxToPdf**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtopdf) | **POST** /convert/xlsx/to/pdf | Convert Excel XLSX Spreadsheet to PDF
+*CMConvertDocumentApi* | [**convertDocumentXlsxToPng**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtopng) | **POST** /convert/xlsx/to/png | Convert Excel XLSX spreadsheet to PNG image array
 *CMConvertDocumentApi* | [**convertDocumentXlsxToTxt**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtotxt) | **POST** /convert/xlsx/to/txt | Convert Excel XLSX Spreadsheet to Text (txt)
+*CMConvertDocumentApi* | [**convertDocumentXlsxToXls**](docs/CMConvertDocumentApi.md#convertdocumentxlsxtoxls) | **POST** /convert/xlsx/to/xls | Convert Excel XLSX Spreadsheet to Legacy Excel XLS (97-03)
 *CMConvertImageApi* | [**convertImageGetImageInfo**](docs/CMConvertImageApi.md#convertimagegetimageinfo) | **POST** /convert/image/get-info | Get information about an image
 *CMConvertImageApi* | [**convertImageImageFormatConvert**](docs/CMConvertImageApi.md#convertimageimageformatconvert) | **POST** /convert/image/{format1}/to/{format2} | Image format conversion
 *CMConvertImageApi* | [**convertImageImageSetDPI**](docs/CMConvertImageApi.md#convertimageimagesetdpi) | **POST** /convert/image/set-dpi/{dpi} | Change image DPI
@@ -356,15 +459,20 @@ Class | Method | HTTP request | Description
 *CMConvertWebApi* | [**convertWebUrlToScreenshot**](docs/CMConvertWebApi.md#convertweburltoscreenshot) | **POST** /convert/web/url/to/screenshot | Take screenshot of URL
 *CMConvertWebApi* | [**convertWebUrlToTxt**](docs/CMConvertWebApi.md#convertweburltotxt) | **POST** /convert/web/url/to/txt | Convert website URL page to text (txt)
 *CMEditDocumentApi* | [**editDocumentBeginEditing**](docs/CMEditDocumentApi.md#editdocumentbeginediting) | **POST** /convert/edit/begin-editing | Begin editing a document
+*CMEditDocumentApi* | [**editDocumentDocxAcceptAllTrackChanges**](docs/CMEditDocumentApi.md#editdocumentdocxacceptalltrackchanges) | **POST** /convert/edit/docx/track-changes/accept-all | Accept all tracked changes, revisions in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxBody**](docs/CMEditDocumentApi.md#editdocumentdocxbody) | **POST** /convert/edit/docx/get-body | Get body from a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxCreateBlankDocument**](docs/CMEditDocumentApi.md#editdocumentdocxcreateblankdocument) | **POST** /convert/edit/docx/create/blank | Create a blank Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxDeletePages**](docs/CMEditDocumentApi.md#editdocumentdocxdeletepages) | **POST** /convert/edit/docx/delete-pages | Delete, remove pages from a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxDeleteTableRow**](docs/CMEditDocumentApi.md#editdocumentdocxdeletetablerow) | **POST** /convert/edit/docx/delete-table-row | Deletes a table row in an existing table in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxDeleteTableRowRange**](docs/CMEditDocumentApi.md#editdocumentdocxdeletetablerowrange) | **POST** /convert/edit/docx/delete-table-row/range | Deletes a range of multiple table rows in an existing table in a Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxDisableTrackChanges**](docs/CMEditDocumentApi.md#editdocumentdocxdisabletrackchanges) | **POST** /convert/edit/docx/track-changes/disable | Disable track changes, revisions in a Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxEnableTrackChanges**](docs/CMEditDocumentApi.md#editdocumentdocxenabletrackchanges) | **POST** /convert/edit/docx/track-changes/enable | Enable track changes, revisions in a Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxFindParagraph**](docs/CMEditDocumentApi.md#editdocumentdocxfindparagraph) | **POST** /convert/edit/docx/find/paragraph | Find matching paragraphs in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxGetComments**](docs/CMEditDocumentApi.md#editdocumentdocxgetcomments) | **POST** /convert/edit/docx/get-comments/flat-list | Get comments from a Word DOCX document as a flat list
 *CMEditDocumentApi* | [**editDocumentDocxGetCommentsHierarchical**](docs/CMEditDocumentApi.md#editdocumentdocxgetcommentshierarchical) | **POST** /convert/edit/docx/get-comments/hierarchical | Get comments from a Word DOCX document hierarchically
 *CMEditDocumentApi* | [**editDocumentDocxGetHeadersAndFooters**](docs/CMEditDocumentApi.md#editdocumentdocxgetheadersandfooters) | **POST** /convert/edit/docx/get-headers-and-footers | Get content of a footer from a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxGetImages**](docs/CMEditDocumentApi.md#editdocumentdocxgetimages) | **POST** /convert/edit/docx/get-images | Get images from a Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxGetMetadataProperties**](docs/CMEditDocumentApi.md#editdocumentdocxgetmetadataproperties) | **POST** /convert/edit/docx/get-metadata | Get all metadata properties in Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxGetSections**](docs/CMEditDocumentApi.md#editdocumentdocxgetsections) | **POST** /convert/edit/docx/get-sections | Get sections from a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxGetStyles**](docs/CMEditDocumentApi.md#editdocumentdocxgetstyles) | **POST** /convert/edit/docx/get-styles | Get styles from a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxGetTableByIndex**](docs/CMEditDocumentApi.md#editdocumentdocxgettablebyindex) | **POST** /convert/edit/docx/get-table/by-index | Get a specific table by index in a Word DOCX document
@@ -376,9 +484,13 @@ Class | Method | HTTP request | Description
 *CMEditDocumentApi* | [**editDocumentDocxInsertTable**](docs/CMEditDocumentApi.md#editdocumentdocxinserttable) | **POST** /convert/edit/docx/insert-table | Insert a new table into a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxInsertTableRow**](docs/CMEditDocumentApi.md#editdocumentdocxinserttablerow) | **POST** /convert/edit/docx/insert-table-row | Insert a new row into an existing table in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxPages**](docs/CMEditDocumentApi.md#editdocumentdocxpages) | **POST** /convert/edit/docx/get-pages | Get pages and content from a Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxRemoveAllComments**](docs/CMEditDocumentApi.md#editdocumentdocxremoveallcomments) | **POST** /convert/edit/docx/comments/remove-all | Remove all comments from a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxRemoveHeadersAndFooters**](docs/CMEditDocumentApi.md#editdocumentdocxremoveheadersandfooters) | **POST** /convert/edit/docx/remove-headers-and-footers | Remove headers and footers from Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxRemoveObject**](docs/CMEditDocumentApi.md#editdocumentdocxremoveobject) | **POST** /convert/edit/docx/remove-object | Delete any object in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxReplace**](docs/CMEditDocumentApi.md#editdocumentdocxreplace) | **POST** /convert/edit/docx/replace-all | Replace string in Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxReplaceMulti**](docs/CMEditDocumentApi.md#editdocumentdocxreplacemulti) | **POST** /convert/edit/docx/replace-all/multi | Replace multiple strings in Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxReplaceParagraph**](docs/CMEditDocumentApi.md#editdocumentdocxreplaceparagraph) | **POST** /convert/edit/docx/replace/paragraph | Replace matching paragraphs in a Word DOCX document
+*CMEditDocumentApi* | [**editDocumentDocxSetCustomMetadataProperties**](docs/CMEditDocumentApi.md#editdocumentdocxsetcustommetadataproperties) | **POST** /convert/edit/docx/set-metadata/custom-property | Set custom property metadata properties in Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxSetFooter**](docs/CMEditDocumentApi.md#editdocumentdocxsetfooter) | **POST** /convert/edit/docx/set-footer | Set the footer in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxSetFooterAddPageNumber**](docs/CMEditDocumentApi.md#editdocumentdocxsetfooteraddpagenumber) | **POST** /convert/edit/docx/set-footer/add-page-number | Add page number to footer in a Word DOCX document
 *CMEditDocumentApi* | [**editDocumentDocxSetHeader**](docs/CMEditDocumentApi.md#editdocumentdocxsetheader) | **POST** /convert/edit/docx/set-header | Set the header in a Word DOCX document
@@ -387,22 +499,33 @@ Class | Method | HTTP request | Description
 *CMEditDocumentApi* | [**editDocumentFinishEditing**](docs/CMEditDocumentApi.md#editdocumentfinishediting) | **POST** /convert/edit/finish-editing | Finish editing document, and download result from document editing
 *CMEditDocumentApi* | [**editDocumentPptxDeleteSlides**](docs/CMEditDocumentApi.md#editdocumentpptxdeleteslides) | **POST** /convert/edit/pptx/delete-slides | Delete, remove slides from a PowerPoint PPTX presentation document
 *CMEditDocumentApi* | [**editDocumentPptxReplace**](docs/CMEditDocumentApi.md#editdocumentpptxreplace) | **POST** /convert/edit/pptx/replace-all | Replace string in PowerPoint PPTX presentation
+*CMEditDocumentApi* | [**editDocumentXlsxAppendRow**](docs/CMEditDocumentApi.md#editdocumentxlsxappendrow) | **POST** /convert/edit/xlsx/append-row | Append row to a Excel XLSX spreadsheet, worksheet
 *CMEditDocumentApi* | [**editDocumentXlsxClearCellByIndex**](docs/CMEditDocumentApi.md#editdocumentxlsxclearcellbyindex) | **POST** /convert/edit/xlsx/clear-cell/by-index | Clear cell contents in an Excel XLSX spreadsheet, worksheet by index
+*CMEditDocumentApi* | [**editDocumentXlsxClearRow**](docs/CMEditDocumentApi.md#editdocumentxlsxclearrow) | **POST** /convert/edit/xlsx/clear-row | Clear row from a Excel XLSX spreadsheet, worksheet
 *CMEditDocumentApi* | [**editDocumentXlsxCreateBlankSpreadsheet**](docs/CMEditDocumentApi.md#editdocumentxlsxcreateblankspreadsheet) | **POST** /convert/edit/xlsx/create/blank | Create a blank Excel XLSX spreadsheet
 *CMEditDocumentApi* | [**editDocumentXlsxCreateSpreadsheetFromData**](docs/CMEditDocumentApi.md#editdocumentxlsxcreatespreadsheetfromdata) | **POST** /convert/edit/xlsx/create/from/data | Create a new Excel XLSX spreadsheet from column and row data
 *CMEditDocumentApi* | [**editDocumentXlsxDeleteWorksheet**](docs/CMEditDocumentApi.md#editdocumentxlsxdeleteworksheet) | **POST** /convert/edit/xlsx/delete-worksheet | Delete, remove worksheet from an Excel XLSX spreadsheet document
+*CMEditDocumentApi* | [**editDocumentXlsxDisableSharedWorkbook**](docs/CMEditDocumentApi.md#editdocumentxlsxdisablesharedworkbook) | **POST** /convert/edit/xlsx/configuration/disable-shared-workbook | Disable Shared Workbook (legacy) in Excel XLSX spreadsheet
 *CMEditDocumentApi* | [**editDocumentXlsxEnableSharedWorkbook**](docs/CMEditDocumentApi.md#editdocumentxlsxenablesharedworkbook) | **POST** /convert/edit/xlsx/configuration/enable-shared-workbook | Enable Shared Workbook (legacy) in Excel XLSX spreadsheet
 *CMEditDocumentApi* | [**editDocumentXlsxGetCellByIdentifier**](docs/CMEditDocumentApi.md#editdocumentxlsxgetcellbyidentifier) | **POST** /convert/edit/xlsx/get-cell/by-identifier | Get cell from an Excel XLSX spreadsheet, worksheet by cell identifier
 *CMEditDocumentApi* | [**editDocumentXlsxGetCellByIndex**](docs/CMEditDocumentApi.md#editdocumentxlsxgetcellbyindex) | **POST** /convert/edit/xlsx/get-cell/by-index | Get cell from an Excel XLSX spreadsheet, worksheet by index
 *CMEditDocumentApi* | [**editDocumentXlsxGetColumns**](docs/CMEditDocumentApi.md#editdocumentxlsxgetcolumns) | **POST** /convert/edit/xlsx/get-columns | Get columns from a Excel XLSX spreadsheet, worksheet
 *CMEditDocumentApi* | [**editDocumentXlsxGetImages**](docs/CMEditDocumentApi.md#editdocumentxlsxgetimages) | **POST** /convert/edit/xlsx/get-images | Get images from a Excel XLSX spreadsheet, worksheet
 *CMEditDocumentApi* | [**editDocumentXlsxGetRowsAndCells**](docs/CMEditDocumentApi.md#editdocumentxlsxgetrowsandcells) | **POST** /convert/edit/xlsx/get-rows-and-cells | Get rows and cells from a Excel XLSX spreadsheet, worksheet
+*CMEditDocumentApi* | [**editDocumentXlsxGetSpecificRow**](docs/CMEditDocumentApi.md#editdocumentxlsxgetspecificrow) | **POST** /convert/edit/xlsx/get-specific-row | Get a specific row from a Excel XLSX spreadsheet, worksheet by path
 *CMEditDocumentApi* | [**editDocumentXlsxGetStyles**](docs/CMEditDocumentApi.md#editdocumentxlsxgetstyles) | **POST** /convert/edit/xlsx/get-styles | Get styles from a Excel XLSX spreadsheet, worksheet
 *CMEditDocumentApi* | [**editDocumentXlsxGetWorksheets**](docs/CMEditDocumentApi.md#editdocumentxlsxgetworksheets) | **POST** /convert/edit/xlsx/get-worksheets | Get worksheets from a Excel XLSX spreadsheet
 *CMEditDocumentApi* | [**editDocumentXlsxInsertWorksheet**](docs/CMEditDocumentApi.md#editdocumentxlsxinsertworksheet) | **POST** /convert/edit/xlsx/insert-worksheet | Insert a new worksheet into an Excel XLSX spreadsheet
+*CMEditDocumentApi* | [**editDocumentXlsxRenameWorksheet**](docs/CMEditDocumentApi.md#editdocumentxlsxrenameworksheet) | **POST** /convert/edit/xlsx/rename-worksheet | Rename a specific worksheet in a Excel XLSX spreadsheet
 *CMEditDocumentApi* | [**editDocumentXlsxSetCellByIdentifier**](docs/CMEditDocumentApi.md#editdocumentxlsxsetcellbyidentifier) | **POST** /convert/edit/xlsx/set-cell/by-identifier | Set, update cell contents in an Excel XLSX spreadsheet, worksheet by cell identifier
 *CMEditDocumentApi* | [**editDocumentXlsxSetCellByIndex**](docs/CMEditDocumentApi.md#editdocumentxlsxsetcellbyindex) | **POST** /convert/edit/xlsx/set-cell/by-index | Set, update cell contents in an Excel XLSX spreadsheet, worksheet by index
+*CMEditHtmlApi* | [**editHtmlHtmlAppendHeading**](docs/CMEditHtmlApi.md#edithtmlhtmlappendheading) | **POST** /convert/edit/html/append/heading | Append a Heading to an HTML Document
+*CMEditHtmlApi* | [**editHtmlHtmlAppendImageFromUrl**](docs/CMEditHtmlApi.md#edithtmlhtmlappendimagefromurl) | **POST** /convert/edit/html/append/image/from-url | Append an Image to an HTML Document from a URL
+*CMEditHtmlApi* | [**editHtmlHtmlAppendImageInline**](docs/CMEditHtmlApi.md#edithtmlhtmlappendimageinline) | **POST** /convert/edit/html/append/image/inline | Append a Base64 Inline Image to an HTML Document
+*CMEditHtmlApi* | [**editHtmlHtmlAppendParagraph**](docs/CMEditHtmlApi.md#edithtmlhtmlappendparagraph) | **POST** /convert/edit/html/append/paragraph | Append a Paragraph to an HTML Document
+*CMEditHtmlApi* | [**editHtmlHtmlCreateBlankDocument**](docs/CMEditHtmlApi.md#edithtmlhtmlcreateblankdocument) | **POST** /convert/edit/html/create/blank | Create a Blank HTML Document
 *CMEditPdfApi* | [**editPdfAddAnnotations**](docs/CMEditPdfApi.md#editpdfaddannotations) | **POST** /convert/edit/pdf/annotations/add-item | Add one or more PDF annotations, comments in the PDF document
+*CMEditPdfApi* | [**editPdfConvertToPdfA**](docs/CMEditPdfApi.md#editpdfconverttopdfa) | **POST** /convert/edit/pdf/optimize/pdf-a | Convert a PDF file to PDF/A
 *CMEditPdfApi* | [**editPdfDecrypt**](docs/CMEditPdfApi.md#editpdfdecrypt) | **POST** /convert/edit/pdf/decrypt | Decrypt and password-protect a PDF
 *CMEditPdfApi* | [**editPdfDeletePages**](docs/CMEditPdfApi.md#editpdfdeletepages) | **POST** /convert/edit/pdf/pages/delete | Remove, delete pages from a PDF document
 *CMEditPdfApi* | [**editPdfEncrypt**](docs/CMEditPdfApi.md#editpdfencrypt) | **POST** /convert/edit/pdf/encrypt | Encrypt and password-protect a PDF
@@ -411,9 +534,12 @@ Class | Method | HTTP request | Description
 *CMEditPdfApi* | [**editPdfGetMetadata**](docs/CMEditPdfApi.md#editpdfgetmetadata) | **POST** /convert/edit/pdf/get-metadata | Get PDF document metadata
 *CMEditPdfApi* | [**editPdfGetPdfTextByPages**](docs/CMEditPdfApi.md#editpdfgetpdftextbypages) | **POST** /convert/edit/pdf/pages/get-text | Get text in a PDF document by page
 *CMEditPdfApi* | [**editPdfInsertPages**](docs/CMEditPdfApi.md#editpdfinsertpages) | **POST** /convert/edit/pdf/pages/insert | Insert, copy pages from one PDF document into another
+*CMEditPdfApi* | [**editPdfLinearize**](docs/CMEditPdfApi.md#editpdflinearize) | **POST** /convert/edit/pdf/optimize/linearize | Linearize and optimize a PDF for streaming download
 *CMEditPdfApi* | [**editPdfRasterize**](docs/CMEditPdfApi.md#editpdfrasterize) | **POST** /convert/edit/pdf/rasterize | Rasterize a PDF to an image-based PDF
+*CMEditPdfApi* | [**editPdfReduceFileSize**](docs/CMEditPdfApi.md#editpdfreducefilesize) | **POST** /convert/edit/pdf/optimize/reduce-file-size | Reduce the file size and optimize a PDF
 *CMEditPdfApi* | [**editPdfRemoveAllAnnotations**](docs/CMEditPdfApi.md#editpdfremoveallannotations) | **POST** /convert/edit/pdf/annotations/remove-all | Remove all PDF annotations, including comments in the document
 *CMEditPdfApi* | [**editPdfRemoveAnnotationItem**](docs/CMEditPdfApi.md#editpdfremoveannotationitem) | **POST** /convert/edit/pdf/annotations/remove-item | Remove a specific PDF annotation, comment in the document
+*CMEditPdfApi* | [**editPdfResize**](docs/CMEditPdfApi.md#editpdfresize) | **POST** /convert/edit/pdf/resize | Change PDF Document&#39;s Paper Size
 *CMEditPdfApi* | [**editPdfRotateAllPages**](docs/CMEditPdfApi.md#editpdfrotateallpages) | **POST** /convert/edit/pdf/pages/rotate/all | Rotate all pages in a PDF document
 *CMEditPdfApi* | [**editPdfRotatePageRange**](docs/CMEditPdfApi.md#editpdfrotatepagerange) | **POST** /convert/edit/pdf/pages/rotate/page-range | Rotate a range, subset of pages in a PDF document
 *CMEditPdfApi* | [**editPdfSetFormFields**](docs/CMEditPdfApi.md#editpdfsetformfields) | **POST** /convert/edit/pdf/form/set-fields | Sets ands fills PDF Form field values
@@ -437,7 +563,8 @@ Class | Method | HTTP request | Description
 *CMMergeDocumentApi* | [**mergeDocumentDocxMulti**](docs/CMMergeDocumentApi.md#mergedocumentdocxmulti) | **POST** /convert/merge/docx/multi | Merge Multple Word DOCX Together
 *CMMergeDocumentApi* | [**mergeDocumentPdf**](docs/CMMergeDocumentApi.md#mergedocumentpdf) | **POST** /convert/merge/pdf | Merge Two PDF Files Together
 *CMMergeDocumentApi* | [**mergeDocumentPdfMulti**](docs/CMMergeDocumentApi.md#mergedocumentpdfmulti) | **POST** /convert/merge/pdf/multi | Merge Multple PDF Files Together
-*CMMergeDocumentApi* | [**mergeDocumentPng**](docs/CMMergeDocumentApi.md#mergedocumentpng) | **POST** /convert/merge/png/vertical | Merge Multple PNG Files Together
+*CMMergeDocumentApi* | [**mergeDocumentPng**](docs/CMMergeDocumentApi.md#mergedocumentpng) | **POST** /convert/merge/png/vertical | Merge Two PNG Files Together
+*CMMergeDocumentApi* | [**mergeDocumentPngMulti**](docs/CMMergeDocumentApi.md#mergedocumentpngmulti) | **POST** /convert/merge/png/vertical/multi | Merge Multple PNG Files Together
 *CMMergeDocumentApi* | [**mergeDocumentPptx**](docs/CMMergeDocumentApi.md#mergedocumentpptx) | **POST** /convert/merge/pptx | Merge Two PowerPoint PPTX Together
 *CMMergeDocumentApi* | [**mergeDocumentPptxMulti**](docs/CMMergeDocumentApi.md#mergedocumentpptxmulti) | **POST** /convert/merge/pptx/multi | Merge Multple PowerPoint PPTX Together
 *CMMergeDocumentApi* | [**mergeDocumentTxt**](docs/CMMergeDocumentApi.md#mergedocumenttxt) | **POST** /convert/merge/txt | Merge Two Text (TXT) Files Together
@@ -450,17 +577,34 @@ Class | Method | HTTP request | Description
 *CMSplitDocumentApi* | [**splitDocumentTxtByLine**](docs/CMSplitDocumentApi.md#splitdocumenttxtbyline) | **POST** /convert/split/txt/by-line | Split a single Text file (txt) into lines
 *CMSplitDocumentApi* | [**splitDocumentTxtByString**](docs/CMSplitDocumentApi.md#splitdocumenttxtbystring) | **POST** /convert/split/txt/by-string | Split a single Text file (txt) by a string delimiter
 *CMSplitDocumentApi* | [**splitDocumentXlsx**](docs/CMSplitDocumentApi.md#splitdocumentxlsx) | **POST** /convert/split/xlsx | Split a single Excel XLSX into Separate Worksheets
+*CMTransformDocumentApi* | [**transformDocumentDocxReplace**](docs/CMTransformDocumentApi.md#transformdocumentdocxreplace) | **POST** /convert/transform/docx/replace-all | Replace string in Word DOCX document
+*CMTransformDocumentApi* | [**transformDocumentPptxReplace**](docs/CMTransformDocumentApi.md#transformdocumentpptxreplace) | **POST** /convert/transform/pptx/replace-all | Replace string in PowerPoint PPTX presentation
 *CMValidateDocumentApi* | [**validateDocumentAutodetectValidation**](docs/CMValidateDocumentApi.md#validatedocumentautodetectvalidation) | **POST** /convert/validate/autodetect | Autodetect content type and validate
+*CMValidateDocumentApi* | [**validateDocumentCsvValidation**](docs/CMValidateDocumentApi.md#validatedocumentcsvvalidation) | **POST** /convert/validate/csv | Validate a CSV file document (CSV)
 *CMValidateDocumentApi* | [**validateDocumentDocxValidation**](docs/CMValidateDocumentApi.md#validatedocumentdocxvalidation) | **POST** /convert/validate/docx | Validate a Word document (DOCX)
+*CMValidateDocumentApi* | [**validateDocumentEmlValidation**](docs/CMValidateDocumentApi.md#validatedocumentemlvalidation) | **POST** /convert/validate/eml | Validate if an EML file is executable
 *CMValidateDocumentApi* | [**validateDocumentExecutableValidation**](docs/CMValidateDocumentApi.md#validatedocumentexecutablevalidation) | **POST** /convert/validate/executable | Validate if a file is executable
+*CMValidateDocumentApi* | [**validateDocumentGZipValidation**](docs/CMValidateDocumentApi.md#validatedocumentgzipvalidation) | **POST** /convert/validate/gzip | Validate a GZip Archive file (gzip or gz)
+*CMValidateDocumentApi* | [**validateDocumentHtmlValidation**](docs/CMValidateDocumentApi.md#validatedocumenthtmlvalidation) | **POST** /convert/validate/html | Validate an HTML file
+*CMValidateDocumentApi* | [**validateDocumentImageValidation**](docs/CMValidateDocumentApi.md#validatedocumentimagevalidation) | **POST** /convert/validate/image | Validate an Image File
+*CMValidateDocumentApi* | [**validateDocumentJpgValidation**](docs/CMValidateDocumentApi.md#validatedocumentjpgvalidation) | **POST** /convert/validate/jpg | Validate a JPG File
 *CMValidateDocumentApi* | [**validateDocumentJsonValidation**](docs/CMValidateDocumentApi.md#validatedocumentjsonvalidation) | **POST** /convert/validate/json | Validate a JSON file
+*CMValidateDocumentApi* | [**validateDocumentMsgValidation**](docs/CMValidateDocumentApi.md#validatedocumentmsgvalidation) | **POST** /convert/validate/msg | Validate if an MSG file is executable
 *CMValidateDocumentApi* | [**validateDocumentPdfValidation**](docs/CMValidateDocumentApi.md#validatedocumentpdfvalidation) | **POST** /convert/validate/pdf | Validate a PDF document file
+*CMValidateDocumentApi* | [**validateDocumentPngValidation**](docs/CMValidateDocumentApi.md#validatedocumentpngvalidation) | **POST** /convert/validate/png | Validate a PNG File
 *CMValidateDocumentApi* | [**validateDocumentPptxValidation**](docs/CMValidateDocumentApi.md#validatedocumentpptxvalidation) | **POST** /convert/validate/pptx | Validate a PowerPoint presentation (PPTX)
+*CMValidateDocumentApi* | [**validateDocumentRarValidation**](docs/CMValidateDocumentApi.md#validatedocumentrarvalidation) | **POST** /convert/validate/rar | Validate a RAR Archive file (RAR)
+*CMValidateDocumentApi* | [**validateDocumentTarValidation**](docs/CMValidateDocumentApi.md#validatedocumenttarvalidation) | **POST** /convert/validate/tar | Validate a TAR Tarball Archive file (TAR)
+*CMValidateDocumentApi* | [**validateDocumentTxtValidation**](docs/CMValidateDocumentApi.md#validatedocumenttxtvalidation) | **POST** /convert/validate/txt | Validate an TXT file
 *CMValidateDocumentApi* | [**validateDocumentXlsxValidation**](docs/CMValidateDocumentApi.md#validatedocumentxlsxvalidation) | **POST** /convert/validate/xlsx | Validate a Excel document (XLSX)
 *CMValidateDocumentApi* | [**validateDocumentXmlValidation**](docs/CMValidateDocumentApi.md#validatedocumentxmlvalidation) | **POST** /convert/validate/xml | Validate an XML file
+*CMValidateDocumentApi* | [**validateDocumentZipValidation**](docs/CMValidateDocumentApi.md#validatedocumentzipvalidation) | **POST** /convert/validate/zip | Validate a Zip Archive file (zip)
 *CMViewerToolsApi* | [**viewerToolsCreateSimple**](docs/CMViewerToolsApi.md#viewertoolscreatesimple) | **POST** /convert/viewer/create/web/simple | Create a web-based viewer
 *CMZipArchiveApi* | [**zipArchiveZipCreate**](docs/CMZipArchiveApi.md#ziparchivezipcreate) | **POST** /convert/archive/zip/create | Compress files to create a new zip archive
 *CMZipArchiveApi* | [**zipArchiveZipCreateAdvanced**](docs/CMZipArchiveApi.md#ziparchivezipcreateadvanced) | **POST** /convert/archive/zip/create/advanced | Compress files and folders to create a new zip archive with advanced options
+*CMZipArchiveApi* | [**zipArchiveZipCreateEncrypted**](docs/CMZipArchiveApi.md#ziparchivezipcreateencrypted) | **POST** /convert/archive/zip/create/encrypted | Compress files to create a new, encrypted and password-protected zip archive
+*CMZipArchiveApi* | [**zipArchiveZipDecrypt**](docs/CMZipArchiveApi.md#ziparchivezipdecrypt) | **POST** /convert/archive/zip/decrypt | Decrypt and remove password protection on a zip file
+*CMZipArchiveApi* | [**zipArchiveZipEncryptAdvanced**](docs/CMZipArchiveApi.md#ziparchivezipencryptadvanced) | **POST** /convert/archive/zip/encrypt/advanced | Encrypt and password protect a zip file
 *CMZipArchiveApi* | [**zipArchiveZipExtract**](docs/CMZipArchiveApi.md#ziparchivezipextract) | **POST** /convert/archive/zip/extract | Extract, decompress files and folders from a zip archive
 
 
@@ -468,9 +612,13 @@ Class | Method | HTTP request | Description
 
  - [CMAddPdfAnnotationRequest](docs/CMAddPdfAnnotationRequest.md)
  - [CMAlternateFileFormatCandidate](docs/CMAlternateFileFormatCandidate.md)
+ - [CMAppendXlsxRowRequest](docs/CMAppendXlsxRowRequest.md)
+ - [CMAppendXlsxRowResponse](docs/CMAppendXlsxRowResponse.md)
  - [CMAutodetectDocumentValidationResult](docs/CMAutodetectDocumentValidationResult.md)
  - [CMAutodetectGetInfoResult](docs/CMAutodetectGetInfoResult.md)
+ - [CMAutodetectToJpgResult](docs/CMAutodetectToJpgResult.md)
  - [CMAutodetectToPngResult](docs/CMAutodetectToPngResult.md)
+ - [CMAutodetectToThumbnailsResult](docs/CMAutodetectToThumbnailsResult.md)
  - [CMBase64DecodeRequest](docs/CMBase64DecodeRequest.md)
  - [CMBase64DecodeResponse](docs/CMBase64DecodeResponse.md)
  - [CMBase64DetectRequest](docs/CMBase64DetectRequest.md)
@@ -480,6 +628,9 @@ Class | Method | HTTP request | Description
  - [CMChangeLineEndingResponse](docs/CMChangeLineEndingResponse.md)
  - [CMClearXlsxCellRequest](docs/CMClearXlsxCellRequest.md)
  - [CMClearXlsxCellResponse](docs/CMClearXlsxCellResponse.md)
+ - [CMClearXlsxRowRequest](docs/CMClearXlsxRowRequest.md)
+ - [CMClearXlsxRowResponse](docs/CMClearXlsxRowResponse.md)
+ - [CMConvertedJpgPage](docs/CMConvertedJpgPage.md)
  - [CMConvertedPngPage](docs/CMConvertedPngPage.md)
  - [CMCreateBlankDocxRequest](docs/CMCreateBlankDocxRequest.md)
  - [CMCreateBlankDocxResponse](docs/CMCreateBlankDocxResponse.md)
@@ -488,11 +639,15 @@ Class | Method | HTTP request | Description
  - [CMCreateSpreadsheetFromDataRequest](docs/CMCreateSpreadsheetFromDataRequest.md)
  - [CMCreateSpreadsheetFromDataResponse](docs/CMCreateSpreadsheetFromDataResponse.md)
  - [CMCreateZipArchiveRequest](docs/CMCreateZipArchiveRequest.md)
+ - [CMCsvCollection](docs/CMCsvCollection.md)
+ - [CMCsvFileResult](docs/CMCsvFileResult.md)
  - [CMDeleteDocxTableRowRangeRequest](docs/CMDeleteDocxTableRowRangeRequest.md)
  - [CMDeleteDocxTableRowRangeResponse](docs/CMDeleteDocxTableRowRangeResponse.md)
  - [CMDeleteDocxTableRowRequest](docs/CMDeleteDocxTableRowRequest.md)
  - [CMDeleteDocxTableRowResponse](docs/CMDeleteDocxTableRowResponse.md)
  - [CMDetectLineEndingsResponse](docs/CMDetectLineEndingsResponse.md)
+ - [CMDisableSharedWorkbookRequest](docs/CMDisableSharedWorkbookRequest.md)
+ - [CMDisableSharedWorkbookResponse](docs/CMDisableSharedWorkbookResponse.md)
  - [CMDocumentValidationError](docs/CMDocumentValidationError.md)
  - [CMDocumentValidationResult](docs/CMDocumentValidationResult.md)
  - [CMDocxBody](docs/CMDocxBody.md)
@@ -504,12 +659,14 @@ Class | Method | HTTP request | Description
  - [CMDocxInsertCommentOnParagraphRequest](docs/CMDocxInsertCommentOnParagraphRequest.md)
  - [CMDocxInsertImageRequest](docs/CMDocxInsertImageRequest.md)
  - [CMDocxInsertImageResponse](docs/CMDocxInsertImageResponse.md)
+ - [CMDocxMetadataCustomProperty](docs/CMDocxMetadataCustomProperty.md)
  - [CMDocxPage](docs/CMDocxPage.md)
  - [CMDocxParagraph](docs/CMDocxParagraph.md)
  - [CMDocxRemoveObjectRequest](docs/CMDocxRemoveObjectRequest.md)
  - [CMDocxRemoveObjectResponse](docs/CMDocxRemoveObjectResponse.md)
  - [CMDocxRun](docs/CMDocxRun.md)
  - [CMDocxSection](docs/CMDocxSection.md)
+ - [CMDocxSetCustomMetadataPropertiesRequest](docs/CMDocxSetCustomMetadataPropertiesRequest.md)
  - [CMDocxSetFooterAddPageNumberRequest](docs/CMDocxSetFooterAddPageNumberRequest.md)
  - [CMDocxSetFooterRequest](docs/CMDocxSetFooterRequest.md)
  - [CMDocxSetFooterResponse](docs/CMDocxSetFooterResponse.md)
@@ -522,10 +679,18 @@ Class | Method | HTTP request | Description
  - [CMDocxTemplateApplicationRequest](docs/CMDocxTemplateApplicationRequest.md)
  - [CMDocxTemplateOperation](docs/CMDocxTemplateOperation.md)
  - [CMDocxText](docs/CMDocxText.md)
+ - [CMDocxToJpgResult](docs/CMDocxToJpgResult.md)
+ - [CMDocxToPngResult](docs/CMDocxToPngResult.md)
  - [CMDocxTopLevelComment](docs/CMDocxTopLevelComment.md)
+ - [CMEmlAttachment](docs/CMEmlAttachment.md)
+ - [CMEmlToHtmlResult](docs/CMEmlToHtmlResult.md)
+ - [CMEmlToJpgResult](docs/CMEmlToJpgResult.md)
+ - [CMEmlToPngResult](docs/CMEmlToPngResult.md)
  - [CMEnableSharedWorkbookRequest](docs/CMEnableSharedWorkbookRequest.md)
  - [CMEnableSharedWorkbookResponse](docs/CMEnableSharedWorkbookResponse.md)
  - [CMExifValue](docs/CMExifValue.md)
+ - [CMFindDocxParagraphRequest](docs/CMFindDocxParagraphRequest.md)
+ - [CMFindDocxParagraphResponse](docs/CMFindDocxParagraphResponse.md)
  - [CMFindRegexMatch](docs/CMFindRegexMatch.md)
  - [CMFindStringMatch](docs/CMFindStringMatch.md)
  - [CMFindStringRegexRequest](docs/CMFindStringRegexRequest.md)
@@ -543,6 +708,7 @@ Class | Method | HTTP request | Description
  - [CMGetDocxHeadersAndFootersResponse](docs/CMGetDocxHeadersAndFootersResponse.md)
  - [CMGetDocxImagesRequest](docs/CMGetDocxImagesRequest.md)
  - [CMGetDocxImagesResponse](docs/CMGetDocxImagesResponse.md)
+ - [CMGetDocxMetadataPropertiesResponse](docs/CMGetDocxMetadataPropertiesResponse.md)
  - [CMGetDocxPagesRequest](docs/CMGetDocxPagesRequest.md)
  - [CMGetDocxPagesResponse](docs/CMGetDocxPagesResponse.md)
  - [CMGetDocxSectionsRequest](docs/CMGetDocxSectionsRequest.md)
@@ -555,6 +721,7 @@ Class | Method | HTTP request | Description
  - [CMGetDocxTableRowResponse](docs/CMGetDocxTableRowResponse.md)
  - [CMGetDocxTablesRequest](docs/CMGetDocxTablesRequest.md)
  - [CMGetDocxTablesResponse](docs/CMGetDocxTablesResponse.md)
+ - [CMGetFileTypeIconResult](docs/CMGetFileTypeIconResult.md)
  - [CMGetImageInfoResult](docs/CMGetImageInfoResult.md)
  - [CMGetPdfAnnotationsResult](docs/CMGetPdfAnnotationsResult.md)
  - [CMGetXlsxCellByIdentifierRequest](docs/CMGetXlsxCellByIdentifierRequest.md)
@@ -567,6 +734,8 @@ Class | Method | HTTP request | Description
  - [CMGetXlsxImagesResponse](docs/CMGetXlsxImagesResponse.md)
  - [CMGetXlsxRowsAndCellsRequest](docs/CMGetXlsxRowsAndCellsRequest.md)
  - [CMGetXlsxRowsAndCellsResponse](docs/CMGetXlsxRowsAndCellsResponse.md)
+ - [CMGetXlsxSpecificRowRequest](docs/CMGetXlsxSpecificRowRequest.md)
+ - [CMGetXlsxSpecificRowResponse](docs/CMGetXlsxSpecificRowResponse.md)
  - [CMGetXlsxStylesRequest](docs/CMGetXlsxStylesRequest.md)
  - [CMGetXlsxStylesResponse](docs/CMGetXlsxStylesResponse.md)
  - [CMGetXlsxWorksheetsRequest](docs/CMGetXlsxWorksheetsRequest.md)
@@ -589,7 +758,20 @@ Class | Method | HTTP request | Description
  - [CMInsertDocxTablesResponse](docs/CMInsertDocxTablesResponse.md)
  - [CMInsertXlsxWorksheetRequest](docs/CMInsertXlsxWorksheetRequest.md)
  - [CMInsertXlsxWorksheetResponse](docs/CMInsertXlsxWorksheetResponse.md)
+ - [CMKeynoteToJpgResult](docs/CMKeynoteToJpgResult.md)
+ - [CMKeynoteToPngResult](docs/CMKeynoteToPngResult.md)
+ - [CMMsgAttachment](docs/CMMsgAttachment.md)
+ - [CMMsgToHtmlResult](docs/CMMsgToHtmlResult.md)
+ - [CMMsgToJpgResult](docs/CMMsgToJpgResult.md)
+ - [CMMsgToPngResult](docs/CMMsgToPngResult.md)
+ - [CMMultiReplaceStringRequest](docs/CMMultiReplaceStringRequest.md)
  - [CMMultipageImageFormatConversionResult](docs/CMMultipageImageFormatConversionResult.md)
+ - [CMOdpToJpgResult](docs/CMOdpToJpgResult.md)
+ - [CMOdpToPngResult](docs/CMOdpToPngResult.md)
+ - [CMOdsToJpgResult](docs/CMOdsToJpgResult.md)
+ - [CMOdsToPngResult](docs/CMOdsToPngResult.md)
+ - [CMOdtToJpgResult](docs/CMOdtToJpgResult.md)
+ - [CMOdtToPngResult](docs/CMOdtToPngResult.md)
  - [CMPageConversionResult](docs/CMPageConversionResult.md)
  - [CMPdfAnnotation](docs/CMPdfAnnotation.md)
  - [CMPdfDocument](docs/CMPdfDocument.md)
@@ -598,7 +780,9 @@ Class | Method | HTTP request | Description
  - [CMPdfMetadata](docs/CMPdfMetadata.md)
  - [CMPdfPageText](docs/CMPdfPageText.md)
  - [CMPdfTextByPageResult](docs/CMPdfTextByPageResult.md)
+ - [CMPdfToJpgResult](docs/CMPdfToJpgResult.md)
  - [CMPdfToPngResult](docs/CMPdfToPngResult.md)
+ - [CMPptxToPngResult](docs/CMPptxToPngResult.md)
  - [CMPresentationResult](docs/CMPresentationResult.md)
  - [CMRemoveDocxHeadersAndFootersRequest](docs/CMRemoveDocxHeadersAndFootersRequest.md)
  - [CMRemoveDocxHeadersAndFootersResponse](docs/CMRemoveDocxHeadersAndFootersResponse.md)
@@ -609,11 +793,17 @@ Class | Method | HTTP request | Description
  - [CMRemoveWhitespaceFromTextRequest](docs/CMRemoveWhitespaceFromTextRequest.md)
  - [CMRemoveWhitespaceFromTextResponse](docs/CMRemoveWhitespaceFromTextResponse.md)
  - [CMRemoveXlsxWorksheetRequest](docs/CMRemoveXlsxWorksheetRequest.md)
+ - [CMRenameXlsxWorksheetRequest](docs/CMRenameXlsxWorksheetRequest.md)
+ - [CMRenameXlsxWorksheetResponse](docs/CMRenameXlsxWorksheetResponse.md)
+ - [CMReplaceDocxParagraphRequest](docs/CMReplaceDocxParagraphRequest.md)
+ - [CMReplaceDocxParagraphResponse](docs/CMReplaceDocxParagraphResponse.md)
  - [CMReplaceStringRegexRequest](docs/CMReplaceStringRegexRequest.md)
  - [CMReplaceStringRegexResponse](docs/CMReplaceStringRegexResponse.md)
  - [CMReplaceStringRequest](docs/CMReplaceStringRequest.md)
  - [CMReplaceStringSimpleRequest](docs/CMReplaceStringSimpleRequest.md)
  - [CMReplaceStringSimpleResponse](docs/CMReplaceStringSimpleResponse.md)
+ - [CMRtfToJpgResult](docs/CMRtfToJpgResult.md)
+ - [CMRtfToPngResult](docs/CMRtfToPngResult.md)
  - [CMScreenshotRequest](docs/CMScreenshotRequest.md)
  - [CMSetFormFieldValue](docs/CMSetFormFieldValue.md)
  - [CMSetPdfFormFieldsRequest](docs/CMSetPdfFormFieldsRequest.md)
@@ -622,6 +812,7 @@ Class | Method | HTTP request | Description
  - [CMSetXlsxCellByIdentifierResponse](docs/CMSetXlsxCellByIdentifierResponse.md)
  - [CMSetXlsxCellRequest](docs/CMSetXlsxCellRequest.md)
  - [CMSetXlsxCellResponse](docs/CMSetXlsxCellResponse.md)
+ - [CMSingleReplaceString](docs/CMSingleReplaceString.md)
  - [CMSplitDocumentResult](docs/CMSplitDocumentResult.md)
  - [CMSplitDocxDocumentResult](docs/CMSplitDocxDocumentResult.md)
  - [CMSplitPdfResult](docs/CMSplitPdfResult.md)
@@ -633,6 +824,7 @@ Class | Method | HTTP request | Description
  - [CMTextDocumentElement](docs/CMTextDocumentElement.md)
  - [CMTextDocumentLine](docs/CMTextDocumentLine.md)
  - [CMTextEncodingDetectResponse](docs/CMTextEncodingDetectResponse.md)
+ - [CMThumbnail](docs/CMThumbnail.md)
  - [CMUpdateDocxTableCellRequest](docs/CMUpdateDocxTableCellRequest.md)
  - [CMUpdateDocxTableCellResponse](docs/CMUpdateDocxTableCellResponse.md)
  - [CMUpdateDocxTableRowRequest](docs/CMUpdateDocxTableRowRequest.md)
@@ -646,6 +838,7 @@ Class | Method | HTTP request | Description
  - [CMXlsxSpreadsheetCell](docs/CMXlsxSpreadsheetCell.md)
  - [CMXlsxSpreadsheetColumn](docs/CMXlsxSpreadsheetColumn.md)
  - [CMXlsxSpreadsheetRow](docs/CMXlsxSpreadsheetRow.md)
+ - [CMXlsxToPngResult](docs/CMXlsxToPngResult.md)
  - [CMXlsxWorksheet](docs/CMXlsxWorksheet.md)
  - [CMXmlAddAttributeWithXPathResult](docs/CMXmlAddAttributeWithXPathResult.md)
  - [CMXmlAddChildWithXPathResult](docs/CMXmlAddChildWithXPathResult.md)
@@ -657,6 +850,7 @@ Class | Method | HTTP request | Description
  - [CMXmlReplaceWithXPathResult](docs/CMXmlReplaceWithXPathResult.md)
  - [CMXmlSetValueWithXPathResult](docs/CMXmlSetValueWithXPathResult.md)
  - [CMZipDirectory](docs/CMZipDirectory.md)
+ - [CMZipEncryptionAdvancedRequest](docs/CMZipEncryptionAdvancedRequest.md)
  - [CMZipExtractResponse](docs/CMZipExtractResponse.md)
  - [CMZipFile](docs/CMZipFile.md)
 

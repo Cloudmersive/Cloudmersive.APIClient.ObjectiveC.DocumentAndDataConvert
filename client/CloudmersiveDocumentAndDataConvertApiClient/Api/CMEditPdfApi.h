@@ -41,6 +41,20 @@ extern NSInteger kCMEditPdfApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
+/// Convert a PDF file to PDF/A
+/// Converts the input PDF file to a PDF/A-1b or PDF/A-2b standardized PDF.
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param conformanceLevel Optional: Select the conformance level for PDF/A - specify &#39;1b&#39; for PDF/A-1b or specify &#39;2b&#39; for PDF/A-2b; default is PDF/A-1b (optional)
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editPdfConvertToPdfAWithInputFile: (NSURL*) inputFile
+    conformanceLevel: (NSString*) conformanceLevel
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
 /// Decrypt and password-protect a PDF
 /// Decrypt a PDF document with a password.  Decrypted PDF will no longer require a password to open.
 ///
@@ -129,11 +143,13 @@ extern NSInteger kCMEditPdfApiMissingParamErrorCode;
 /// Gets the text in a PDF by page
 ///
 /// @param inputFile Input file to perform the operation on.
+/// @param textFormattingMode Optional; specify how whitespace should be handled when converting the document to text.  Possible values are &#39;preserveWhitespace&#39; which will attempt to preserve whitespace in the document and relative positioning of text within the document, and &#39;minimizeWhitespace&#39; which will not insert additional spaces into the document in most cases.  Default is &#39;preserveWhitespace&#39;. (optional)
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return CMPdfTextByPageResult*
 -(NSURLSessionTask*) editPdfGetPdfTextByPagesWithInputFile: (NSURL*) inputFile
+    textFormattingMode: (NSString*) textFormattingMode
     completionHandler: (void (^)(CMPdfTextByPageResult* output, NSError* error)) handler;
 
 
@@ -157,6 +173,18 @@ extern NSInteger kCMEditPdfApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
+/// Linearize and optimize a PDF for streaming download
+/// Linearizes the content of a PDF to optimize it for streaming download, particularly over web streaming.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editPdfLinearizeWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
 /// Rasterize a PDF to an image-based PDF
 /// Rasterize a PDF into an image-based PDF.  The output is a PDF where each page is comprised of a high-resolution image, with all text, figures and other components removed.
 ///
@@ -166,6 +194,18 @@ extern NSInteger kCMEditPdfApiMissingParamErrorCode;
 ///
 /// @return NSData*
 -(NSURLSessionTask*) editPdfRasterizeWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Reduce the file size and optimize a PDF
+/// Reduces the file size and optimizes the content of a PDF to minimize its file size.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editPdfReduceFileSizeWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
@@ -192,6 +232,20 @@ extern NSInteger kCMEditPdfApiMissingParamErrorCode;
 /// @return NSData*
 -(NSURLSessionTask*) editPdfRemoveAnnotationItemWithInputFile: (NSURL*) inputFile
     annotationIndex: (NSNumber*) annotationIndex
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Change PDF Document's Paper Size
+/// Resizes a PDF document's paper size.
+///
+/// @param inputFile Input file to perform the operation on.
+/// @param paperSize The desired paper size for the resized PDF document. Size ranges from A7 (smallest) to A0 (largest).
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editPdfResizeWithInputFile: (NSURL*) inputFile
+    paperSize: (NSString*) paperSize
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 

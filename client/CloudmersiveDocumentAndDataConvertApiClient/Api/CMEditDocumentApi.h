@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
+#import "CMAppendXlsxRowRequest.h"
+#import "CMAppendXlsxRowResponse.h"
 #import "CMClearXlsxCellRequest.h"
 #import "CMClearXlsxCellResponse.h"
+#import "CMClearXlsxRowRequest.h"
+#import "CMClearXlsxRowResponse.h"
 #import "CMCreateBlankDocxRequest.h"
 #import "CMCreateBlankDocxResponse.h"
 #import "CMCreateBlankSpreadsheetRequest.h"
@@ -11,11 +15,14 @@
 #import "CMDeleteDocxTableRowRangeResponse.h"
 #import "CMDeleteDocxTableRowRequest.h"
 #import "CMDeleteDocxTableRowResponse.h"
+#import "CMDisableSharedWorkbookRequest.h"
+#import "CMDisableSharedWorkbookResponse.h"
 #import "CMDocxInsertCommentOnParagraphRequest.h"
 #import "CMDocxInsertImageRequest.h"
 #import "CMDocxInsertImageResponse.h"
 #import "CMDocxRemoveObjectRequest.h"
 #import "CMDocxRemoveObjectResponse.h"
+#import "CMDocxSetCustomMetadataPropertiesRequest.h"
 #import "CMDocxSetFooterAddPageNumberRequest.h"
 #import "CMDocxSetFooterRequest.h"
 #import "CMDocxSetFooterResponse.h"
@@ -23,6 +30,8 @@
 #import "CMDocxSetHeaderResponse.h"
 #import "CMEnableSharedWorkbookRequest.h"
 #import "CMEnableSharedWorkbookResponse.h"
+#import "CMFindDocxParagraphRequest.h"
+#import "CMFindDocxParagraphResponse.h"
 #import "CMFinishEditingRequest.h"
 #import "CMGetDocxBodyRequest.h"
 #import "CMGetDocxBodyResponse.h"
@@ -34,6 +43,7 @@
 #import "CMGetDocxHeadersAndFootersResponse.h"
 #import "CMGetDocxImagesRequest.h"
 #import "CMGetDocxImagesResponse.h"
+#import "CMGetDocxMetadataPropertiesResponse.h"
 #import "CMGetDocxPagesRequest.h"
 #import "CMGetDocxPagesResponse.h"
 #import "CMGetDocxSectionsRequest.h"
@@ -56,6 +66,8 @@
 #import "CMGetXlsxImagesResponse.h"
 #import "CMGetXlsxRowsAndCellsRequest.h"
 #import "CMGetXlsxRowsAndCellsResponse.h"
+#import "CMGetXlsxSpecificRowRequest.h"
+#import "CMGetXlsxSpecificRowResponse.h"
 #import "CMGetXlsxStylesRequest.h"
 #import "CMGetXlsxStylesResponse.h"
 #import "CMGetXlsxWorksheetsRequest.h"
@@ -69,11 +81,16 @@
 #import "CMInsertDocxTablesResponse.h"
 #import "CMInsertXlsxWorksheetRequest.h"
 #import "CMInsertXlsxWorksheetResponse.h"
+#import "CMMultiReplaceStringRequest.h"
 #import "CMRemoveDocxHeadersAndFootersRequest.h"
 #import "CMRemoveDocxHeadersAndFootersResponse.h"
 #import "CMRemoveDocxPagesRequest.h"
 #import "CMRemovePptxSlidesRequest.h"
 #import "CMRemoveXlsxWorksheetRequest.h"
+#import "CMRenameXlsxWorksheetRequest.h"
+#import "CMRenameXlsxWorksheetResponse.h"
+#import "CMReplaceDocxParagraphRequest.h"
+#import "CMReplaceDocxParagraphResponse.h"
 #import "CMReplaceStringRequest.h"
 #import "CMSetXlsxCellByIdentifierRequest.h"
 #import "CMSetXlsxCellByIdentifierResponse.h"
@@ -116,6 +133,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 /// @return NSString*
 -(NSURLSessionTask*) editDocumentBeginEditingWithInputFile: (NSURL*) inputFile
     completionHandler: (void (^)(NSString* output, NSError* error)) handler;
+
+
+/// Accept all tracked changes, revisions in a Word DOCX document
+/// Accepts all tracked changes and revisions in a Word DOCX document.  This will accept all pending changes in the document when tracked changes is turned on.  Track changes will remain on (if it is on) after this oepration is completed.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxAcceptAllTrackChangesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// Get body from a Word DOCX document
@@ -178,6 +207,42 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMDeleteDocxTableRowRangeResponse* output, NSError* error)) handler;
 
 
+/// Disable track changes, revisions in a Word DOCX document
+/// Diables tracking of changes and revisions in a Word DOCX document, and accepts any pending changes.  Users editing the document will no longer see changes tracked automatically.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxDisableTrackChangesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Enable track changes, revisions in a Word DOCX document
+/// Enables tracking of changes and revisions in a Word DOCX document.  Users editing the document will see changes tracked automatically, with edits highlighted, and the ability to accept or reject changes made to the document.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxEnableTrackChangesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Find matching paragraphs in a Word DOCX document
+/// Returns the paragraphs defined in the Word Document (DOCX) format file that match the input criteria
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMFindDocxParagraphResponse*
+-(NSURLSessionTask*) editDocumentDocxFindParagraphWithReqConfig: (CMFindDocxParagraphRequest*) reqConfig
+    completionHandler: (void (^)(CMFindDocxParagraphResponse* output, NSError* error)) handler;
+
+
 /// Get comments from a Word DOCX document as a flat list
 /// Returns the comments and review annotations stored in the Word Document (DOCX) format file as a flattened list (not as a hierarchy of comments and replies).
 ///
@@ -224,6 +289,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 /// @return CMGetDocxImagesResponse*
 -(NSURLSessionTask*) editDocumentDocxGetImagesWithReqConfig: (CMGetDocxImagesRequest*) reqConfig
     completionHandler: (void (^)(CMGetDocxImagesResponse* output, NSError* error)) handler;
+
+
+/// Get all metadata properties in Word DOCX document
+/// Returns all the metadata properties in an Office Word Document (docx)
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetDocxMetadataPropertiesResponse*
+-(NSURLSessionTask*) editDocumentDocxGetMetadataPropertiesWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(CMGetDocxMetadataPropertiesResponse* output, NSError* error)) handler;
 
 
 /// Get sections from a Word DOCX document
@@ -358,6 +435,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetDocxPagesResponse* output, NSError* error)) handler;
 
 
+/// Remove all comments from a Word DOCX document
+/// Removes all of the comments from a Word Document.
+///
+/// @param inputFile Input file to perform the operation on.
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxRemoveAllCommentsWithInputFile: (NSURL*) inputFile
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
 /// Remove headers and footers from Word DOCX document
 /// Remove all headers, or footers, or both from a Word Document (DOCX).  Call Finish Editing on the output URL to complete the operation.
 ///
@@ -391,6 +480,42 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 ///
 /// @return NSData*
 -(NSURLSessionTask*) editDocumentDocxReplaceWithReqConfig: (CMReplaceStringRequest*) reqConfig
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Replace multiple strings in Word DOCX document
+/// Replace all instances of multiple strings in an Office Word Document (docx)
+///
+/// @param reqConfig Document string replacement configuration input
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxReplaceMultiWithReqConfig: (CMMultiReplaceStringRequest*) reqConfig
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Replace matching paragraphs in a Word DOCX document
+/// Returns the edited Word Document (DOCX) format file with the matching paragraphs replaced as requested.  Replace a paragraph with another object such as an image.  Useful for performing templating operations.
+///
+/// @param reqConfig Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMReplaceDocxParagraphResponse*
+-(NSURLSessionTask*) editDocumentDocxReplaceParagraphWithReqConfig: (CMReplaceDocxParagraphRequest*) reqConfig
+    completionHandler: (void (^)(CMReplaceDocxParagraphResponse* output, NSError* error)) handler;
+
+
+/// Set custom property metadata properties in Word DOCX document
+/// Sets the custom property metadata for the metadata properties in an Office Word Document (docx)
+///
+/// @param input 
+/// 
+///  code:200 message:"OK"
+///
+/// @return NSData*
+-(NSURLSessionTask*) editDocumentDocxSetCustomMetadataPropertiesWithInput: (CMDocxSetCustomMetadataPropertiesRequest*) input
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
@@ -490,6 +615,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
+/// Append row to a Excel XLSX spreadsheet, worksheet
+/// Appends a row to the end of an Excel Spreadsheet worksheet.
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMAppendXlsxRowResponse*
+-(NSURLSessionTask*) editDocumentXlsxAppendRowWithInput: (CMAppendXlsxRowRequest*) input
+    completionHandler: (void (^)(CMAppendXlsxRowResponse* output, NSError* error)) handler;
+
+
 /// Clear cell contents in an Excel XLSX spreadsheet, worksheet by index
 /// Clears, sets to blank, the contents of a specific cell in an Excel XLSX spreadsheet, worksheet
 ///
@@ -500,6 +637,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 /// @return CMClearXlsxCellResponse*
 -(NSURLSessionTask*) editDocumentXlsxClearCellByIndexWithInput: (CMClearXlsxCellRequest*) input
     completionHandler: (void (^)(CMClearXlsxCellResponse* output, NSError* error)) handler;
+
+
+/// Clear row from a Excel XLSX spreadsheet, worksheet
+/// Clears data from a specific row in the Excel Spreadsheet worksheet, leaving a blank row. Use the Get Rows And Cells API to enumerate available rows in a spreadsheet.
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMClearXlsxRowResponse*
+-(NSURLSessionTask*) editDocumentXlsxClearRowWithInput: (CMClearXlsxRowRequest*) input
+    completionHandler: (void (^)(CMClearXlsxRowResponse* output, NSError* error)) handler;
 
 
 /// Create a blank Excel XLSX spreadsheet
@@ -533,9 +682,21 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return NSObject*
+/// @return NSData*
 -(NSURLSessionTask*) editDocumentXlsxDeleteWorksheetWithReqConfig: (CMRemoveXlsxWorksheetRequest*) reqConfig
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
+
+
+/// Disable Shared Workbook (legacy) in Excel XLSX spreadsheet
+/// Disable the Shared Workbook (legacy) mode in an Excel XLSX spreadsheet
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMDisableSharedWorkbookResponse*
+-(NSURLSessionTask*) editDocumentXlsxDisableSharedWorkbookWithInput: (CMDisableSharedWorkbookRequest*) input
+    completionHandler: (void (^)(CMDisableSharedWorkbookResponse* output, NSError* error)) handler;
 
 
 /// Enable Shared Workbook (legacy) in Excel XLSX spreadsheet
@@ -610,6 +771,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
     completionHandler: (void (^)(CMGetXlsxRowsAndCellsResponse* output, NSError* error)) handler;
 
 
+/// Get a specific row from a Excel XLSX spreadsheet, worksheet by path
+/// Returns the specific row and its cells defined in the Excel Spreadsheet worksheet based on the specified path.
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMGetXlsxSpecificRowResponse*
+-(NSURLSessionTask*) editDocumentXlsxGetSpecificRowWithInput: (CMGetXlsxSpecificRowRequest*) input
+    completionHandler: (void (^)(CMGetXlsxSpecificRowResponse* output, NSError* error)) handler;
+
+
 /// Get styles from a Excel XLSX spreadsheet, worksheet
 /// Returns the style defined in the Excel Spreadsheet
 ///
@@ -644,6 +817,18 @@ extern NSInteger kCMEditDocumentApiMissingParamErrorCode;
 /// @return CMInsertXlsxWorksheetResponse*
 -(NSURLSessionTask*) editDocumentXlsxInsertWorksheetWithInput: (CMInsertXlsxWorksheetRequest*) input
     completionHandler: (void (^)(CMInsertXlsxWorksheetResponse* output, NSError* error)) handler;
+
+
+/// Rename a specific worksheet in a Excel XLSX spreadsheet
+/// Edits the input Excel XLSX spreadsheet document to rename a specified worksheet (tab).  Use the Get Worksheets API to enumerate available worksheets in a spreadsheet.
+///
+/// @param input Document input request
+/// 
+///  code:200 message:"OK"
+///
+/// @return CMRenameXlsxWorksheetResponse*
+-(NSURLSessionTask*) editDocumentXlsxRenameWorksheetWithInput: (CMRenameXlsxWorksheetRequest*) input
+    completionHandler: (void (^)(CMRenameXlsxWorksheetResponse* output, NSError* error)) handler;
 
 
 /// Set, update cell contents in an Excel XLSX spreadsheet, worksheet by cell identifier

@@ -28,6 +28,9 @@
 /* True if the document is valid and has no errors, false otherwise [optional]
  */
 @property(nonatomic) NSNumber* documentIsValid;
+/* True if the document is password protected, false otherwise [optional]
+ */
+@property(nonatomic) NSNumber* passwordProtected;
 /* Number of validation errors found in the document [optional]
  */
 @property(nonatomic) NSNumber* errorCount;

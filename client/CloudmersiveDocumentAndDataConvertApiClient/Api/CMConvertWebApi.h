@@ -35,7 +35,7 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 /// Convert HTML to Word DOCX Document
 /// Convert HTML to Office Word Document (DOCX) format
 ///
-/// @param inputRequest HTL input to convert to DOCX
+/// @param inputRequest HTML input to convert to DOCX
 /// 
 ///  code:200 message:"OK"
 ///
@@ -63,9 +63,9 @@ extern NSInteger kCMConvertWebApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return NSObject*
+/// @return NSData*
 -(NSURLSessionTask*) convertWebHtmlToPngWithInput: (CMHtmlToPngRequest*) input
-    completionHandler: (void (^)(NSObject* output, NSError* error)) handler;
+    completionHandler: (void (^)(NSData* output, NSError* error)) handler;
 
 
 /// Convert HTML string to text (txt)
